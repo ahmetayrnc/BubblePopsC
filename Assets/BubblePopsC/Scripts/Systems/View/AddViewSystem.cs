@@ -13,12 +13,12 @@ namespace BubblePopsC.Scripts.Systems.View
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.AnyOf(GameMatcher.Tile));
+            return context.CreateCollector(GameMatcher.AnyOf(GameMatcher.Tile, GameMatcher.Bubble));
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return !entity.hasView && (entity.isTile);
+            return !entity.hasView && (entity.isTile || entity.isBubble);
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -32,20 +32,15 @@ namespace BubblePopsC.Scripts.Systems.View
         private static void InstantiateView(GameEntity entity)
         {
             GameObject go;
-//            if (entity.isTile)
-//            {
-            go = ViewFactory.SpawnTile();
-//            }
+            if (entity.isTile)
+            {
+                go = ViewFactory.SpawnTile();
+            }
+            else
+            {
+                go = ViewFactory.SpawnBubble();
+            }
 
-//            else if (entity.isPiece)
-//            {
-//                go = ViewFactory.SpawnPiece();
-//            }
-//            else
-//            {
-//                go = ViewFactory.SpawnCube();
-//            }
-//
             var view = go.GetComponent<Mono.View.View>();
             view.Link(entity);
             entity.AddView(view);

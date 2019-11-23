@@ -12,6 +12,9 @@
               <e p="Board" t="Include">
                 <e p="BoardSizeComponent.cs" t="Include" />
               </e>
+              <e p="Bubble" t="Include">
+                <e p="BubbleComponent.cs" t="Include" />
+              </e>
               <e p="DestroyedComponent.cs" t="Include" />
               <e p="Id" t="Include">
                 <e p="IdComponent.cs" t="Include" />
@@ -40,6 +43,7 @@
                 <e p="InputEmitter.cs" t="Include" />
               </e>
               <e p="View" t="Include">
+                <e p="BubbleView.cs" t="Include" />
                 <e p="TileView.cs" t="Include" />
                 <e p="View.cs" t="Include" />
                 <e p="ViewFactory.cs" t="Include" />
@@ -48,6 +52,7 @@
             <e p="Systems" t="Include">
               <e p="Initialize" t="Include">
                 <e p="InitializeBoardSystem.cs" t="Include" />
+                <e p="InitializeBubblesSystem.cs" t="Include" />
                 <e p="InitializeTilesSystem.cs" t="Include" />
               </e>
               <e p="Input" t="Include">
@@ -85,6 +90,7 @@
               <e p="GameAxialCoordComponent.cs" t="Include" />
               <e p="GameAxialCoordListenerComponent.cs" t="Include" />
               <e p="GameBoardSizeComponent.cs" t="Include" />
+              <e p="GameBubbleComponent.cs" t="Include" />
               <e p="GameDestroyedComponent.cs" t="Include" />
               <e p="GameIdComponent.cs" t="Include" />
               <e p="GameIdCountComponent.cs" t="Include" />

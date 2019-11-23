@@ -11,20 +11,22 @@ public static class GameComponentsLookup {
     public const int AnyBoardSizeListener = 0;
     public const int AxialCoordListener = 1;
     public const int BoardSize = 2;
-    public const int Destroyed = 3;
-    public const int Id = 4;
-    public const int IdCount = 5;
-    public const int AxialCoord = 6;
-    public const int Position = 7;
-    public const int Tile = 8;
-    public const int View = 9;
+    public const int Bubble = 3;
+    public const int Destroyed = 4;
+    public const int Id = 5;
+    public const int IdCount = 6;
+    public const int AxialCoord = 7;
+    public const int Position = 8;
+    public const int Tile = 9;
+    public const int View = 10;
 
-    public const int TotalComponents = 10;
+    public const int TotalComponents = 11;
 
     public static readonly string[] componentNames = {
         "AnyBoardSizeListener",
         "AxialCoordListener",
         "BoardSize",
+        "Bubble",
         "Destroyed",
         "Id",
         "IdCount",
@@ -38,6 +40,7 @@ public static class GameComponentsLookup {
         typeof(AnyBoardSizeListenerComponent),
         typeof(AxialCoordListenerComponent),
         typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.BubbleComponent),
         typeof(BubblePopsC.Scripts.Components.DestroyedComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdCountComponent),

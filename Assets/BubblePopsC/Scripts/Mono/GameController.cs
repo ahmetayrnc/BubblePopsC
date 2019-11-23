@@ -30,6 +30,7 @@ namespace BubblePopsC.Scripts.Mono
                     //initialize
                     .Add(new InitializeBoardSystem(contexts))
                     .Add(new InitializeTilesSystem(contexts))
+                    .Add(new InitializeBubblesSystem(contexts))
 
                     //input
                     .Add(new ProcessTouchDownSystem(contexts))

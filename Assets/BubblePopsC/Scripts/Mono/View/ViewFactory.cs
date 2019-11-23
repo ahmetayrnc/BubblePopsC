@@ -19,18 +19,20 @@ namespace BubblePopsC.Scripts.Mono.View
             }
         }
 
-//        public GameObject cubeView;
+        public GameObject bubbleView;
+
         public GameObject tileView;
 //        public GameObject pieceView;
 
         public Transform tileParent;
-//        public Transform cubeParent;
+
+        public Transform bubbleParent;
 //        public Transform pieceParent;
 
-//        public static GameObject SpawnCube()
-//        {
-//            return Instance.SpawnCubeInternal();
-//        }
+        public static GameObject SpawnBubble()
+        {
+            return Instance.SpawnBubbleInternal();
+        }
 
         public static GameObject SpawnTile()
         {
@@ -52,10 +54,10 @@ namespace BubblePopsC.Scripts.Mono.View
 //            Destroy(piece);
 //        }
 
-//        private GameObject SpawnCubeInternal()
-//        {
-//            return Instantiate(cubeView, cubeParent);
-//        }
+        private GameObject SpawnBubbleInternal()
+        {
+            return Instantiate(bubbleView, bubbleParent);
+        }
 
         private GameObject SpawnTileInternal()
         {
