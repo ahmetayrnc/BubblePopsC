@@ -20,14 +20,11 @@ namespace BubblePopsC.Scripts.Mono.View
         }
 
         public GameObject bubbleView;
-
         public GameObject tileView;
-//        public GameObject pieceView;
+        public GameObject playAreaView;
 
-        public Transform tileParent;
-
+        [Space] public Transform tileParent;
         public Transform bubbleParent;
-//        public Transform pieceParent;
 
         public static GameObject SpawnBubble()
         {
@@ -39,21 +36,6 @@ namespace BubblePopsC.Scripts.Mono.View
             return Instance.SpawnTileInternal();
         }
 
-//        public static GameObject SpawnPiece()
-//        {
-//            return Instance.SpawnPieceInternal();
-//        }
-
-//        public static void DestroyPiece(GameObject piece)
-//        {
-//            DestroyPieceInternal(piece);
-//        }
-
-//        private static void DestroyPieceInternal(GameObject piece)
-//        {
-//            Destroy(piece);
-//        }
-
         private GameObject SpawnBubbleInternal()
         {
             return Instantiate(bubbleView, bubbleParent);
@@ -64,9 +46,14 @@ namespace BubblePopsC.Scripts.Mono.View
             return Instantiate(tileView, tileParent);
         }
 
-//        private GameObject SpawnPieceInternal()
-//        {
-//            return Instantiate(pieceView, pieceParent);
-//        }
+        public static GameObject SpawnPlayArea()
+        {
+            return Instance.SpawnPlayAreaInternal();
+        }
+
+        private GameObject SpawnPlayAreaInternal()
+        {
+            return Instantiate(playAreaView, null);
+        }
     }
 }

@@ -6,6 +6,7 @@ namespace BubblePopsC.Scripts.Mono.View
 {
     public abstract class View : MonoBehaviour
     {
+        protected const string PlayAreaLayer = "PlayArea";
         protected const string TileLayer = "Tile";
         protected const string BubbleLayer = "Bubble";
 

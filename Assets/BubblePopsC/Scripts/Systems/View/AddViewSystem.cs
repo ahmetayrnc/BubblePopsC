@@ -13,12 +13,13 @@ namespace BubblePopsC.Scripts.Systems.View
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.AnyOf(GameMatcher.Tile, GameMatcher.Bubble));
+            return context.CreateCollector(
+                GameMatcher.AnyOf(GameMatcher.Tile, GameMatcher.Bubble, GameMatcher.PlayArea));
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return !entity.hasView && (entity.isTile || entity.isBubble);
+            return !entity.hasView && (entity.isTile || entity.isBubble || entity.hasPlayArea);
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -36,9 +37,13 @@ namespace BubblePopsC.Scripts.Systems.View
             {
                 go = ViewFactory.SpawnTile();
             }
-            else
+            else if (entity.isBubble)
             {
                 go = ViewFactory.SpawnBubble();
+            }
+            else
+            {
+                go = ViewFactory.SpawnPlayArea();
             }
 
             var view = go.GetComponent<Mono.View.View>();

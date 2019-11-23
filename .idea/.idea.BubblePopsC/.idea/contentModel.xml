@@ -25,6 +25,7 @@
                 <e p="TouchPositionComponent.cs" t="Include" />
                 <e p="TouchUpComponent.cs" t="Include" />
               </e>
+              <e p="PlayAreaComponent.cs" t="Include" />
               <e p="Position" t="Include">
                 <e p="CubeCoordComponent.cs" t="Include" />
                 <e p="PositionComponent.cs" t="Include" />
@@ -44,6 +45,7 @@
               </e>
               <e p="View" t="Include">
                 <e p="BubbleView.cs" t="Include" />
+                <e p="PlayAreaView.cs" t="Include" />
                 <e p="TileView.cs" t="Include" />
                 <e p="View.cs" t="Include" />
                 <e p="ViewFactory.cs" t="Include" />
@@ -53,6 +55,7 @@
               <e p="Initialize" t="Include">
                 <e p="InitializeBoardSystem.cs" t="Include" />
                 <e p="InitializeBubblesSystem.cs" t="Include" />
+                <e p="InitializePlayAreaSystem.cs" t="Include" />
                 <e p="InitializeTilesSystem.cs" t="Include" />
               </e>
               <e p="Input" t="Include">
@@ -94,6 +97,7 @@
               <e p="GameDestroyedComponent.cs" t="Include" />
               <e p="GameIdComponent.cs" t="Include" />
               <e p="GameIdCountComponent.cs" t="Include" />
+              <e p="GamePlayAreaComponent.cs" t="Include" />
               <e p="GamePositionComponent.cs" t="Include" />
               <e p="GameTileComponent.cs" t="Include" />
               <e p="GameViewComponent.cs" t="Include" />

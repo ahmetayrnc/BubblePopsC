@@ -311,6 +311,8 @@ MonoBehaviour:
     type: 3}
   tileView: {fileID: 8395366509360859271, guid: 7add69a4e54ccc04786c95f2f66263ce,
     type: 3}
+  playAreaView: {fileID: 5974880918937642534, guid: 6b5d0644472457f4797314f51a005427,
+    type: 3}
   tileParent: {fileID: 717387935}
   bubbleParent: {fileID: 838018522}
 --- !u!4 &1074019284
