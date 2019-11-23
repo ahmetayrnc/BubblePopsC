@@ -26,18 +26,34 @@
                 <e p="CubeCoordComponent.cs" t="Include" />
                 <e p="PositionComponent.cs" t="Include" />
               </e>
+              <e p="Tile" t="Include">
+                <e p="TileComponent.cs" t="Include" />
+              </e>
+              <e p="ViewComponent.cs" t="Include" />
             </e>
             <e p="Mono" t="Include">
               <e p="GameController.cs" t="Include" />
+              <e p="Input" t="Include">
+                <e p="InputEmitter.cs" t="Include" />
+              </e>
+              <e p="View" t="Include">
+                <e p="TileView.cs" t="Include" />
+                <e p="View.cs" t="Include" />
+                <e p="ViewFactory.cs" t="Include" />
+              </e>
             </e>
             <e p="Systems" t="Include">
               <e p="Initialize" t="Include">
                 <e p="InitializeBoardSystem.cs" t="Include" />
+                <e p="InitializeTilesSystem.cs" t="Include" />
               </e>
               <e p="Input" t="Include">
                 <e p="CleanupInputSystem.cs" t="Include" />
                 <e p="ProcessTouchDownSystem.cs" t="Include" />
                 <e p="ProcessTouchUpSystem.cs" t="Include" />
+              </e>
+              <e p="View" t="Include">
+                <e p="AddViewSystem.cs" t="Include" />
               </e>
             </e>
           </e>
@@ -47,25 +63,31 @@
           <e p="Events" t="Include">
             <e p="Components" t="Include">
               <e p="AnyBoardSizeListenerComponent.cs" t="Include" />
+              <e p="AxialCoordListenerComponent.cs" t="Include" />
             </e>
             <e p="GameEventSystems.cs" t="Include" />
             <e p="Interfaces" t="Include">
               <e p="IAnyBoardSizeListener.cs" t="Include" />
+              <e p="IAxialCoordListener.cs" t="Include" />
             </e>
             <e p="Systems" t="Include">
               <e p="AnyBoardSizeEventSystem.cs" t="Include" />
+              <e p="AxialCoordEventSystem.cs" t="Include" />
             </e>
           </e>
           <e p="Feature.cs" t="Include" />
           <e p="Game" t="Include">
             <e p="Components" t="Include">
               <e p="GameAnyBoardSizeListenerComponent.cs" t="Include" />
+              <e p="GameAxialCoordComponent.cs" t="Include" />
+              <e p="GameAxialCoordListenerComponent.cs" t="Include" />
               <e p="GameBoardSizeComponent.cs" t="Include" />
-              <e p="GameCubeCoordComponent.cs" t="Include" />
               <e p="GameDestroyedComponent.cs" t="Include" />
               <e p="GameIdComponent.cs" t="Include" />
               <e p="GameIdCountComponent.cs" t="Include" />
               <e p="GamePositionComponent.cs" t="Include" />
+              <e p="GameTileComponent.cs" t="Include" />
+              <e p="GameViewComponent.cs" t="Include" />
             </e>
             <e p="GameAttribute.cs" t="Include" />
             <e p="GameComponentsLookup.cs" t="Include" />

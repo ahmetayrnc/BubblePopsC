@@ -1,12 +1,12 @@
 ﻿using Entitas;
+using Entitas.CodeGeneration.Attributes;
 
 namespace BubblePopsC.Scripts.Components.Position
 {
-    [Game]
-    public class CubeCoordComponent : IComponent
+    [Game, Event(EventTarget.Self)]
+    public class AxialCoordComponent : IComponent
     {
-        public int X;
-        public int Y;
-        public int Z;
+        public int Q;
+        public int R;
     }
 }

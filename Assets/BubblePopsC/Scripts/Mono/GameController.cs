@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using BubblePopsC.Scripts.Systems.Initialize;
+using BubblePopsC.Scripts.Systems.Input;
+using BubblePopsC.Scripts.Systems.View;
+using UnityEngine;
 
 namespace BubblePopsC.Scripts.Mono
 {
@@ -25,7 +28,17 @@ namespace BubblePopsC.Scripts.Mono
         {
             return new Feature("Systems")
                     //initialize
-//                    .Add(new InitializeBoardSystem(contexts))
+                    .Add(new InitializeBoardSystem(contexts))
+                    .Add(new InitializeTilesSystem(contexts))
+
+                    //input
+                    .Add(new ProcessTouchDownSystem(contexts))
+                    .Add(new ProcessTouchUpSystem(contexts))
+                    .Add(new CleanupInputSystem(contexts))
+
+                    //view
+                    .Add(new AddViewSystem(contexts))
+                    .Add(new GameEventSystems(contexts))
                 ;
         }
 

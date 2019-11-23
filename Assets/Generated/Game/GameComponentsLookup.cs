@@ -9,32 +9,41 @@
 public static class GameComponentsLookup {
 
     public const int AnyBoardSizeListener = 0;
-    public const int BoardSize = 1;
-    public const int Destroyed = 2;
-    public const int Id = 3;
-    public const int IdCount = 4;
-    public const int CubeCoord = 5;
-    public const int Position = 6;
+    public const int AxialCoordListener = 1;
+    public const int BoardSize = 2;
+    public const int Destroyed = 3;
+    public const int Id = 4;
+    public const int IdCount = 5;
+    public const int AxialCoord = 6;
+    public const int Position = 7;
+    public const int Tile = 8;
+    public const int View = 9;
 
-    public const int TotalComponents = 7;
+    public const int TotalComponents = 10;
 
     public static readonly string[] componentNames = {
         "AnyBoardSizeListener",
+        "AxialCoordListener",
         "BoardSize",
         "Destroyed",
         "Id",
         "IdCount",
-        "CubeCoord",
-        "Position"
+        "AxialCoord",
+        "Position",
+        "Tile",
+        "View"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(AnyBoardSizeListenerComponent),
+        typeof(AxialCoordListenerComponent),
         typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
         typeof(BubblePopsC.Scripts.Components.DestroyedComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdCountComponent),
-        typeof(BubblePopsC.Scripts.Components.Position.CubeCoordComponent),
-        typeof(BubblePopsC.Scripts.Components.Position.PositionComponent)
+        typeof(BubblePopsC.Scripts.Components.Position.AxialCoordComponent),
+        typeof(BubblePopsC.Scripts.Components.Position.PositionComponent),
+        typeof(BubblePopsC.Scripts.Components.Tile.TileComponent),
+        typeof(BubblePopsC.Scripts.Components.ViewComponent)
     };
 }

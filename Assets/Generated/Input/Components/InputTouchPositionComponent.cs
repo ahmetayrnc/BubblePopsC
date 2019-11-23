@@ -11,14 +11,14 @@ public partial class InputEntity {
     public BubblePopsC.Scripts.Components.Input.TouchPositionComponent touchPosition { get { return (BubblePopsC.Scripts.Components.Input.TouchPositionComponent)GetComponent(InputComponentsLookup.TouchPosition); } }
     public bool hasTouchPosition { get { return HasComponent(InputComponentsLookup.TouchPosition); } }
 
-    public void AddTouchPosition(System.Numerics.Vector2 newValue) {
+    public void AddTouchPosition(UnityEngine.Vector2 newValue) {
         var index = InputComponentsLookup.TouchPosition;
         var component = (BubblePopsC.Scripts.Components.Input.TouchPositionComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Input.TouchPositionComponent));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceTouchPosition(System.Numerics.Vector2 newValue) {
+    public void ReplaceTouchPosition(UnityEngine.Vector2 newValue) {
         var index = InputComponentsLookup.TouchPosition;
         var component = (BubblePopsC.Scripts.Components.Input.TouchPositionComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Input.TouchPositionComponent));
         component.Value = newValue;

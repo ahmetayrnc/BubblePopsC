@@ -11,14 +11,14 @@ public partial class InputEntity {
     public BubblePopsC.Scripts.Components.Input.TouchUpComponent touchUp { get { return (BubblePopsC.Scripts.Components.Input.TouchUpComponent)GetComponent(InputComponentsLookup.TouchUp); } }
     public bool hasTouchUp { get { return HasComponent(InputComponentsLookup.TouchUp); } }
 
-    public void AddTouchUp(System.Numerics.Vector2 newValue) {
+    public void AddTouchUp(UnityEngine.Vector2 newValue) {
         var index = InputComponentsLookup.TouchUp;
         var component = (BubblePopsC.Scripts.Components.Input.TouchUpComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Input.TouchUpComponent));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceTouchUp(System.Numerics.Vector2 newValue) {
+    public void ReplaceTouchUp(UnityEngine.Vector2 newValue) {
         var index = InputComponentsLookup.TouchUp;
         var component = (BubblePopsC.Scripts.Components.Input.TouchUpComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Input.TouchUpComponent));
         component.Value = newValue;
