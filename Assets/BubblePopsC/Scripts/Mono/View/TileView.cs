@@ -19,7 +19,6 @@ namespace BubblePopsC.Scripts.Mono.View
         public void OnAxialCoord(GameEntity entity, int q, int r)
         {
             transform.position = HexTo(q, r);
-            Debug.Log("Hello");
         }
 
         private static Vector2 HexTo(int q, int r)

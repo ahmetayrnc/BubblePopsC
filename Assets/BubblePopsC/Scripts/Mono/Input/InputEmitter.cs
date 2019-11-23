@@ -6,12 +6,12 @@ namespace BubblePopsC.Scripts.Mono.Input
     {
         private Contexts _contexts;
 
-        private Camera _cam;
+        private UnityEngine.Camera _cam;
 
         // Start is called before the first frame update
         private void Start()
         {
-            _cam = Camera.main;
+            _cam = UnityEngine.Camera.main;
             _contexts = Contexts.sharedInstance;
         }
 
