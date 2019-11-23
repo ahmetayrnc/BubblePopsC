@@ -8,15 +8,33 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
+    public const int AnyBoardSizeListener = 0;
+    public const int BoardSize = 1;
+    public const int Destroyed = 2;
+    public const int Id = 3;
+    public const int IdCount = 4;
+    public const int CubeCoord = 5;
+    public const int Position = 6;
 
-
-    public const int TotalComponents = 0;
+    public const int TotalComponents = 7;
 
     public static readonly string[] componentNames = {
-
+        "AnyBoardSizeListener",
+        "BoardSize",
+        "Destroyed",
+        "Id",
+        "IdCount",
+        "CubeCoord",
+        "Position"
     };
 
     public static readonly System.Type[] componentTypes = {
-
+        typeof(AnyBoardSizeListenerComponent),
+        typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
+        typeof(BubblePopsC.Scripts.Components.DestroyedComponent),
+        typeof(BubblePopsC.Scripts.Components.Id.IdComponent),
+        typeof(BubblePopsC.Scripts.Components.Id.IdCountComponent),
+        typeof(BubblePopsC.Scripts.Components.Position.CubeCoordComponent),
+        typeof(BubblePopsC.Scripts.Components.Position.PositionComponent)
     };
 }

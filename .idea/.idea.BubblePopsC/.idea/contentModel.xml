@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\ASTOD\.Rider2019.2\system\extResources" t="IncludeRecursive" />
@@ -8,15 +8,65 @@
       <e p="Assets" t="Include">
         <e p="BubblePopsC" t="Include">
           <e p="Scripts" t="Include">
+            <e p="Components" t="Include">
+              <e p="Board" t="Include">
+                <e p="BoardSizeComponent.cs" t="Include" />
+              </e>
+              <e p="DestroyedComponent.cs" t="Include" />
+              <e p="Id" t="Include">
+                <e p="IdComponent.cs" t="Include" />
+                <e p="IdCountComponent.cs" t="Include" />
+              </e>
+              <e p="Input" t="Include">
+                <e p="TouchDownComponent.cs" t="Include" />
+                <e p="TouchPositionComponent.cs" t="Include" />
+                <e p="TouchUpComponent.cs" t="Include" />
+              </e>
+              <e p="Position" t="Include">
+                <e p="CubeCoordComponent.cs" t="Include" />
+                <e p="PositionComponent.cs" t="Include" />
+              </e>
+            </e>
             <e p="Mono" t="Include">
               <e p="GameController.cs" t="Include" />
+            </e>
+            <e p="Systems" t="Include">
+              <e p="Initialize" t="Include">
+                <e p="InitializeBoardSystem.cs" t="Include" />
+              </e>
+              <e p="Input" t="Include">
+                <e p="CleanupInputSystem.cs" t="Include" />
+                <e p="ProcessTouchDownSystem.cs" t="Include" />
+                <e p="ProcessTouchUpSystem.cs" t="Include" />
+              </e>
             </e>
           </e>
         </e>
         <e p="Generated" t="Include">
           <e p="Contexts.cs" t="Include" />
+          <e p="Events" t="Include">
+            <e p="Components" t="Include">
+              <e p="AnyBoardSizeListenerComponent.cs" t="Include" />
+            </e>
+            <e p="GameEventSystems.cs" t="Include" />
+            <e p="Interfaces" t="Include">
+              <e p="IAnyBoardSizeListener.cs" t="Include" />
+            </e>
+            <e p="Systems" t="Include">
+              <e p="AnyBoardSizeEventSystem.cs" t="Include" />
+            </e>
+          </e>
           <e p="Feature.cs" t="Include" />
           <e p="Game" t="Include">
+            <e p="Components" t="Include">
+              <e p="GameAnyBoardSizeListenerComponent.cs" t="Include" />
+              <e p="GameBoardSizeComponent.cs" t="Include" />
+              <e p="GameCubeCoordComponent.cs" t="Include" />
+              <e p="GameDestroyedComponent.cs" t="Include" />
+              <e p="GameIdComponent.cs" t="Include" />
+              <e p="GameIdCountComponent.cs" t="Include" />
+              <e p="GamePositionComponent.cs" t="Include" />
+            </e>
             <e p="GameAttribute.cs" t="Include" />
             <e p="GameComponentsLookup.cs" t="Include" />
             <e p="GameContext.cs" t="Include" />
@@ -24,6 +74,11 @@
             <e p="GameMatcher.cs" t="Include" />
           </e>
           <e p="Input" t="Include">
+            <e p="Components" t="Include">
+              <e p="InputTouchDownComponent.cs" t="Include" />
+              <e p="InputTouchPositionComponent.cs" t="Include" />
+              <e p="InputTouchUpComponent.cs" t="Include" />
+            </e>
             <e p="InputAttribute.cs" t="Include" />
             <e p="InputComponentsLookup.cs" t="Include" />
             <e p="InputContext.cs" t="Include" />
