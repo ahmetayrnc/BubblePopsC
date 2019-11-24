@@ -1,4 +1,6 @@
-﻿using Entitas;
+﻿using BubblePopsC.Scripts.Services;
+using Entitas;
+using UnityEngine;
 
 namespace BubblePopsC.Scripts.Systems.Initialize
 {
@@ -15,6 +17,12 @@ namespace BubblePopsC.Scripts.Systems.Initialize
 
         public void Initialize()
         {
+            CreateBubblesInGrid();
+            CreateBubblesInShooter();
+        }
+
+        private void CreateBubblesInGrid()
+        {
             var boardSize = _contexts.game.boardSize;
             const int firstRowsCount = 3;
             foreach (var tileEntity in _tilesGroup.GetEntities())
@@ -22,11 +30,17 @@ namespace BubblePopsC.Scripts.Systems.Initialize
                 var axialCoord = tileEntity.axialCoord;
                 if (boardSize.Value.y - axialCoord.R > firstRowsCount) continue;
 
-                var bubble = _contexts.game.CreateEntity();
-
-                bubble.isBubble = true;
+                var bubble = BubbleCreatorService.CreateBubble();
                 bubble.AddAxialCoord(axialCoord.Q, axialCoord.R);
             }
+        }
+
+        private void CreateBubblesInShooter()
+        {
+            var bubble = BubbleCreatorService.CreateBubble();
+
+            bubble.AddPosition(_contexts.game.shooterPosition.Value);
+            bubble.isWillBeShotNext = true;
         }
     }
 }

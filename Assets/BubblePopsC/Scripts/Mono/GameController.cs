@@ -35,6 +35,7 @@ namespace BubblePopsC.Scripts.Mono
                     //input
                     .Add(new ProcessTouchDownSystem(contexts))
                     .Add(new ProcessTouchUpSystem(contexts))
+                    .Add(new ProcessTouchPositionSystem(contexts))
                     .Add(new CleanupInputSystem(contexts))
 
                     //view

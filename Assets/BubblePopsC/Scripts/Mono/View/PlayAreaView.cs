@@ -15,21 +15,10 @@ namespace BubblePopsC.Scripts.Mono.View
         {
             spriteRenderer.sortingLayerName = PlayAreaLayer;
 
-            var boardSize = Contexts.sharedInstance.game.boardSize;
-            var boardWidth = boardSize.Value.x;
-            var boardHeight = boardSize.Value.y;
-
+            var playArea = entity.playArea;
             var transform1 = transform;
-
-            var newPos = transform1.position;
-            newPos.x = boardWidth / 2f - 0.25f;
-            newPos.y = 0.39f * boardHeight;
-            transform1.position = newPos;
-
-            var newScale = transform1.localScale;
-            newScale.x = boardWidth - 0.5f;
-            newScale.y = boardHeight * 0.88f;
-            transform1.localScale = newScale;
+            transform1.position = playArea.Center;
+            transform1.localScale = playArea.Size;
         }
     }
 }

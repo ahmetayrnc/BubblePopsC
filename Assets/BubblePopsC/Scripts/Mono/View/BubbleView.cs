@@ -2,13 +2,14 @@
 
 namespace BubblePopsC.Scripts.Mono.View
 {
-    public class BubbleView : View, IAxialCoordListener
+    public class BubbleView : View, IAxialCoordListener, IPositionListener
     {
         public SpriteRenderer spriteRenderer;
 
         protected override void AddListeners(GameEntity entity)
         {
             entity.AddAxialCoordListener(this);
+            entity.AddPositionListener(this);
         }
 
         protected override void InitializeView(GameEntity entity)
@@ -19,6 +20,11 @@ namespace BubblePopsC.Scripts.Mono.View
         public void OnAxialCoord(GameEntity entity, int q, int r)
         {
             transform.position = HexTo(q, r);
+        }
+
+        public void OnPosition(GameEntity entity, Vector2 value)
+        {
+            transform.position = value;
         }
 
         private static Vector2 HexTo(int q, int r)

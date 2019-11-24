@@ -11,14 +11,14 @@ public partial class GameEntity {
     public BubblePopsC.Scripts.Components.Position.PositionComponent position { get { return (BubblePopsC.Scripts.Components.Position.PositionComponent)GetComponent(GameComponentsLookup.Position); } }
     public bool hasPosition { get { return HasComponent(GameComponentsLookup.Position); } }
 
-    public void AddPosition(int newValue) {
+    public void AddPosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.Position;
         var component = (BubblePopsC.Scripts.Components.Position.PositionComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Position.PositionComponent));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplacePosition(int newValue) {
+    public void ReplacePosition(UnityEngine.Vector2 newValue) {
         var index = GameComponentsLookup.Position;
         var component = (BubblePopsC.Scripts.Components.Position.PositionComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Position.PositionComponent));
         component.Value = newValue;

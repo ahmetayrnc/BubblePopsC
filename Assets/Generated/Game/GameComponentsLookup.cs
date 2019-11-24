@@ -9,47 +9,65 @@
 public static class GameComponentsLookup {
 
     public const int AnyBoardSizeListener = 0;
-    public const int AxialCoordListener = 1;
-    public const int BoardSize = 2;
-    public const int Bubble = 3;
-    public const int Destroyed = 4;
-    public const int Id = 5;
-    public const int IdCount = 6;
-    public const int PlayArea = 7;
-    public const int AxialCoord = 8;
-    public const int Position = 9;
-    public const int Tile = 10;
-    public const int View = 11;
+    public const int AnyShootingTrajectoryListener = 1;
+    public const int AnyShootingTrajectoryRemovedListener = 2;
+    public const int AxialCoordListener = 3;
+    public const int BoardSize = 4;
+    public const int Bubble = 5;
+    public const int ShooterPosition = 6;
+    public const int WillBeShotNext = 7;
+    public const int Destroyed = 8;
+    public const int Id = 9;
+    public const int IdCount = 10;
+    public const int PlayArea = 11;
+    public const int AxialCoord = 12;
+    public const int Position = 13;
+    public const int ShootingTrajectory = 14;
+    public const int Tile = 15;
+    public const int View = 16;
+    public const int PositionListener = 17;
 
-    public const int TotalComponents = 12;
+    public const int TotalComponents = 18;
 
     public static readonly string[] componentNames = {
         "AnyBoardSizeListener",
+        "AnyShootingTrajectoryListener",
+        "AnyShootingTrajectoryRemovedListener",
         "AxialCoordListener",
         "BoardSize",
         "Bubble",
+        "ShooterPosition",
+        "WillBeShotNext",
         "Destroyed",
         "Id",
         "IdCount",
         "PlayArea",
         "AxialCoord",
         "Position",
+        "ShootingTrajectory",
         "Tile",
-        "View"
+        "View",
+        "PositionListener"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(AnyBoardSizeListenerComponent),
+        typeof(AnyShootingTrajectoryListenerComponent),
+        typeof(AnyShootingTrajectoryRemovedListenerComponent),
         typeof(AxialCoordListenerComponent),
         typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.ShooterPositionComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.WillBeShotNextComponent),
         typeof(BubblePopsC.Scripts.Components.DestroyedComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdCountComponent),
         typeof(BubblePopsC.Scripts.Components.PlayAreaComponent),
         typeof(BubblePopsC.Scripts.Components.Position.AxialCoordComponent),
         typeof(BubblePopsC.Scripts.Components.Position.PositionComponent),
+        typeof(BubblePopsC.Scripts.Components.ShootingTrajectoryComponent),
         typeof(BubblePopsC.Scripts.Components.Tile.TileComponent),
-        typeof(BubblePopsC.Scripts.Components.ViewComponent)
+        typeof(BubblePopsC.Scripts.Components.ViewComponent),
+        typeof(PositionListenerComponent)
     };
 }

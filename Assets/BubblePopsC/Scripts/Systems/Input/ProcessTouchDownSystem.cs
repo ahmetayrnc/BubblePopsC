@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BubblePopsC.Scripts.Services;
 using Entitas;
 
 namespace BubblePopsC.Scripts.Systems.Input
@@ -6,14 +7,10 @@ namespace BubblePopsC.Scripts.Systems.Input
     public class ProcessTouchDownSystem : ReactiveSystem<InputEntity>
     {
         private readonly Contexts _contexts;
-//        private readonly IGroup<GameEntity> _reserveSlots;
-
-//        private const float ReserveSlotRadius = 1.5f;
 
         public ProcessTouchDownSystem(Contexts contexts) : base(contexts.input)
         {
             _contexts = contexts;
-//            _reserveSlots = contexts.game.GetGroup(GameMatcher.ReserveSlot);
         }
 
         protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context)
@@ -31,30 +28,12 @@ namespace BubblePopsC.Scripts.Systems.Input
 //            var inputEntity = entities.SingleEntity();
 //            var input = inputEntity.touchDown;
 //
-//            foreach (var reserveSlot in _reserveSlots)
-//            {
-//                var reserveSlotPosition = reserveSlot.position.Value;
+//            var playArea = _contexts.game.playArea;
+//            var validTrajectory = TrajectoryCalculatorService.GetTrajectory(playArea, input.Value, out var trajectory);
 //
-//                if (!(input.Value.x >= reserveSlotPosition.x - ReserveSlotRadius) ||
-//                    !(input.Value.x <= reserveSlotPosition.x + ReserveSlotRadius)) continue;
+//            if (!validTrajectory) return;
 //
-//                if (!(input.Value.y >= reserveSlotPosition.y - ReserveSlotRadius) ||
-//                    !(input.Value.y <= reserveSlotPosition.y + ReserveSlotRadius)) continue;
-//
-//                if (!reserveSlot.hasPieceInReserve) continue;
-//
-//                var pieceId = reserveSlot.pieceInReserve.Id;
-//                PieceTouchedDown(pieceId);
-//                break;
-//            }
-        }
-
-        private void PieceTouchedDown(int pieceId)
-        {
-//            _contexts.game.SetPieceInAir(pieceId);
-//
-//            var piece = _contexts.game.GetEntityWithId(pieceId);
-//            piece.flagDrag = true;
+//            _contexts.game.SetShootingTrajectory(trajectory);
         }
     }
 }

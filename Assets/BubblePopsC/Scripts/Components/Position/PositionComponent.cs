@@ -1,10 +1,12 @@
 ﻿using Entitas;
+using Entitas.CodeGeneration.Attributes;
+using UnityEngine;
 
 namespace BubblePopsC.Scripts.Components.Position
 {
-    [Game]
+    [Game, Event(EventTarget.Self)]
     public class PositionComponent : IComponent
     {
-        public int Value;
+        public Vector2 Value;
     }
 }

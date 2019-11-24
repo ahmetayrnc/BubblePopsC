@@ -24,14 +24,9 @@ namespace BubblePopsC.Scripts.Systems.Input
 
         protected override void Execute(List<InputEntity> entities)
         {
-//            if (!_contexts.game.hasPieceInAir) return;
-//
-//            var piece = _contexts.game.GetEntityWithId(_contexts.game.pieceInAir.Id);
-//            _contexts.game.RemovePieceInAir();
-//
-//            if (piece == null) return;
-//
-//            piece.flagDrag = false;
+            if (!_contexts.game.hasShootingTrajectory) return;
+
+            _contexts.game.RemoveShootingTrajectory();
         }
     }
 }

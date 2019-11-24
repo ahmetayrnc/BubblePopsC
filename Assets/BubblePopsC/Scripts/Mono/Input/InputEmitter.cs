@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace BubblePopsC.Scripts.Mono.Input
 {
@@ -8,41 +9,35 @@ namespace BubblePopsC.Scripts.Mono.Input
 
         private UnityEngine.Camera _cam;
 
-        // Start is called before the first frame update
         private void Start()
         {
             _cam = UnityEngine.Camera.main;
             _contexts = Contexts.sharedInstance;
         }
 
-        // Update is called once per frame
         private void Update()
         {
-//            if (_contexts.game.gameState.Value != GameState.Playing) return;
-
             EmitInput();
         }
 
         private void EmitInput()
         {
             var touchPos = _cam.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
-            _contexts.input.CreateEntity().AddTouchPosition(touchPos);
 
-            var touchDown = UnityEngine.Input.GetMouseButtonDown(0);
-            var touchUp = UnityEngine.Input.GetMouseButtonUp(0);
-
-            if (!touchDown && !touchUp) return;
-
-            var mouseWorldPos = _cam.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
-
-            if (touchDown)
+            if (UnityEngine.Input.GetMouseButtonDown(0))
             {
-                _contexts.input.CreateEntity().AddTouchDown(mouseWorldPos);
+                _contexts.input.CreateEntity().AddTouchDown(touchPos);
+                _contexts.input.SetTouchPosition(touchPos);
             }
 
-            if (touchUp)
+            if (UnityEngine.Input.GetMouseButtonUp(0))
             {
-                _contexts.input.CreateEntity().AddTouchUp(mouseWorldPos);
+                _contexts.input.CreateEntity().AddTouchUp(touchPos);
+            }
+
+            if (_contexts.input.hasTouchPosition)
+            {
+                _contexts.input.ReplaceTouchPosition(touchPos);
             }
         }
     }

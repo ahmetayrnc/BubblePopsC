@@ -12,22 +12,22 @@ public partial class GameContext {
     public BubblePopsC.Scripts.Components.PlayAreaComponent playArea { get { return playAreaEntity.playArea; } }
     public bool hasPlayArea { get { return playAreaEntity != null; } }
 
-    public GameEntity SetPlayArea(float newWidth, float newHeight) {
+    public GameEntity SetPlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize, UnityEngine.Vector2 newRightWallStart, UnityEngine.Vector2 newRightWallEnd, UnityEngine.Vector2 newLeftWallStart, UnityEngine.Vector2 newLeftWallEnd) {
         if (hasPlayArea) {
             throw new Entitas.EntitasException("Could not set PlayArea!\n" + this + " already has an entity with BubblePopsC.Scripts.Components.PlayAreaComponent!",
                 "You should check if the context already has a playAreaEntity before setting it or use context.ReplacePlayArea().");
         }
         var entity = CreateEntity();
-        entity.AddPlayArea(newWidth, newHeight);
+        entity.AddPlayArea(newCenter, newSize, newRightWallStart, newRightWallEnd, newLeftWallStart, newLeftWallEnd);
         return entity;
     }
 
-    public void ReplacePlayArea(float newWidth, float newHeight) {
+    public void ReplacePlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize, UnityEngine.Vector2 newRightWallStart, UnityEngine.Vector2 newRightWallEnd, UnityEngine.Vector2 newLeftWallStart, UnityEngine.Vector2 newLeftWallEnd) {
         var entity = playAreaEntity;
         if (entity == null) {
-            entity = SetPlayArea(newWidth, newHeight);
+            entity = SetPlayArea(newCenter, newSize, newRightWallStart, newRightWallEnd, newLeftWallStart, newLeftWallEnd);
         } else {
-            entity.ReplacePlayArea(newWidth, newHeight);
+            entity.ReplacePlayArea(newCenter, newSize, newRightWallStart, newRightWallEnd, newLeftWallStart, newLeftWallEnd);
         }
     }
 
@@ -49,19 +49,27 @@ public partial class GameEntity {
     public BubblePopsC.Scripts.Components.PlayAreaComponent playArea { get { return (BubblePopsC.Scripts.Components.PlayAreaComponent)GetComponent(GameComponentsLookup.PlayArea); } }
     public bool hasPlayArea { get { return HasComponent(GameComponentsLookup.PlayArea); } }
 
-    public void AddPlayArea(float newWidth, float newHeight) {
+    public void AddPlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize, UnityEngine.Vector2 newRightWallStart, UnityEngine.Vector2 newRightWallEnd, UnityEngine.Vector2 newLeftWallStart, UnityEngine.Vector2 newLeftWallEnd) {
         var index = GameComponentsLookup.PlayArea;
         var component = (BubblePopsC.Scripts.Components.PlayAreaComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.PlayAreaComponent));
-        component.Width = newWidth;
-        component.Height = newHeight;
+        component.Center = newCenter;
+        component.Size = newSize;
+        component.RightWallStart = newRightWallStart;
+        component.RightWallEnd = newRightWallEnd;
+        component.LeftWallStart = newLeftWallStart;
+        component.LeftWallEnd = newLeftWallEnd;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayArea(float newWidth, float newHeight) {
+    public void ReplacePlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize, UnityEngine.Vector2 newRightWallStart, UnityEngine.Vector2 newRightWallEnd, UnityEngine.Vector2 newLeftWallStart, UnityEngine.Vector2 newLeftWallEnd) {
         var index = GameComponentsLookup.PlayArea;
         var component = (BubblePopsC.Scripts.Components.PlayAreaComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.PlayAreaComponent));
-        component.Width = newWidth;
-        component.Height = newHeight;
+        component.Center = newCenter;
+        component.Size = newSize;
+        component.RightWallStart = newRightWallStart;
+        component.RightWallEnd = newRightWallEnd;
+        component.LeftWallStart = newLeftWallStart;
+        component.LeftWallEnd = newLeftWallEnd;
         ReplaceComponent(index, component);
     }
 

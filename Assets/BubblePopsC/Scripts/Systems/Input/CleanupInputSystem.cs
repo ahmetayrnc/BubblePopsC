@@ -17,19 +17,22 @@ namespace BubblePopsC.Scripts.Systems.Input
 
         public void Cleanup()
         {
-            foreach (var touchDown in _touchDownGroup.GetEntities())
+            if (_touchDownGroup.count > 0)
             {
-                touchDown.Destroy();
+                foreach (var touchDown in _touchDownGroup.GetEntities())
+                {
+                    touchDown.Destroy();
+                }
             }
 
-            foreach (var touchUp in _touchUpGroup.GetEntities())
+            if (_touchUpGroup.count > 0)
             {
-                touchUp.Destroy();
-            }
+                foreach (var touchUp in _touchUpGroup.GetEntities())
+                {
+                    touchUp.Destroy();
+                }
 
-            foreach (var touchPosition in _touchPositionGroup.GetEntities())
-            {
-                touchPosition.Destroy();
+                Contexts.sharedInstance.input.RemoveTouchPosition();
             }
         }
     }

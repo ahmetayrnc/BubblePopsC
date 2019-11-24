@@ -14,6 +14,8 @@
               </e>
               <e p="Bubble" t="Include">
                 <e p="BubbleComponent.cs" t="Include" />
+                <e p="ShooterPositionComponent.cs" t="Include" />
+                <e p="WillBeShotNextComponent.cs" t="Include" />
               </e>
               <e p="DestroyedComponent.cs" t="Include" />
               <e p="Id" t="Include">
@@ -30,6 +32,7 @@
                 <e p="CubeCoordComponent.cs" t="Include" />
                 <e p="PositionComponent.cs" t="Include" />
               </e>
+              <e p="ShootingTrajectoryComponent.cs" t="Include" />
               <e p="Tile" t="Include">
                 <e p="TileComponent.cs" t="Include" />
               </e>
@@ -47,11 +50,19 @@
                 <e p="BubbleView.cs" t="Include" />
                 <e p="PlayAreaView.cs" t="Include" />
                 <e p="TileView.cs" t="Include" />
+                <e p="TrajectoryView.cs" t="Include" />
+                <e p="UniqueView.cs" t="Include" />
                 <e p="View.cs" t="Include" />
                 <e p="ViewFactory.cs" t="Include" />
               </e>
             </e>
+            <e p="Services" t="Include">
+              <e p="BubbleCreatorService.cs" t="Include" />
+              <e p="IdService.cs" t="Include" />
+              <e p="TrajectoryCalculatorService.cs" t="Include" />
+            </e>
             <e p="Systems" t="Include">
+              <e p="BubbleShooterRefillSystem.cs" t="Include" />
               <e p="Initialize" t="Include">
                 <e p="InitializeBoardSystem.cs" t="Include" />
                 <e p="InitializeBubblesSystem.cs" t="Include" />
@@ -61,6 +72,7 @@
               <e p="Input" t="Include">
                 <e p="CleanupInputSystem.cs" t="Include" />
                 <e p="ProcessTouchDownSystem.cs" t="Include" />
+                <e p="ProcessTouchPositionSystem.cs" t="Include" />
                 <e p="ProcessTouchUpSystem.cs" t="Include" />
               </e>
               <e p="View" t="Include">
@@ -74,22 +86,33 @@
           <e p="Events" t="Include">
             <e p="Components" t="Include">
               <e p="AnyBoardSizeListenerComponent.cs" t="Include" />
+              <e p="AnyShootingTrajectoryListenerComponent.cs" t="Include" />
+              <e p="AnyShootingTrajectoryRemovedListenerComponent.cs" t="Include" />
               <e p="AxialCoordListenerComponent.cs" t="Include" />
+              <e p="PositionListenerComponent.cs" t="Include" />
             </e>
             <e p="GameEventSystems.cs" t="Include" />
             <e p="Interfaces" t="Include">
               <e p="IAnyBoardSizeListener.cs" t="Include" />
+              <e p="IAnyShootingTrajectoryListener.cs" t="Include" />
+              <e p="IAnyShootingTrajectoryRemovedListener.cs" t="Include" />
               <e p="IAxialCoordListener.cs" t="Include" />
+              <e p="IPositionListener.cs" t="Include" />
             </e>
             <e p="Systems" t="Include">
               <e p="AnyBoardSizeEventSystem.cs" t="Include" />
+              <e p="AnyShootingTrajectoryEventSystem.cs" t="Include" />
+              <e p="AnyShootingTrajectoryRemovedEventSystem.cs" t="Include" />
               <e p="AxialCoordEventSystem.cs" t="Include" />
+              <e p="PositionEventSystem.cs" t="Include" />
             </e>
           </e>
           <e p="Feature.cs" t="Include" />
           <e p="Game" t="Include">
             <e p="Components" t="Include">
               <e p="GameAnyBoardSizeListenerComponent.cs" t="Include" />
+              <e p="GameAnyShootingTrajectoryListenerComponent.cs" t="Include" />
+              <e p="GameAnyShootingTrajectoryRemovedListenerComponent.cs" t="Include" />
               <e p="GameAxialCoordComponent.cs" t="Include" />
               <e p="GameAxialCoordListenerComponent.cs" t="Include" />
               <e p="GameBoardSizeComponent.cs" t="Include" />
@@ -99,8 +122,12 @@
               <e p="GameIdCountComponent.cs" t="Include" />
               <e p="GamePlayAreaComponent.cs" t="Include" />
               <e p="GamePositionComponent.cs" t="Include" />
+              <e p="GamePositionListenerComponent.cs" t="Include" />
+              <e p="GameShooterPositionComponent.cs" t="Include" />
+              <e p="GameShootingTrajectoryComponent.cs" t="Include" />
               <e p="GameTileComponent.cs" t="Include" />
               <e p="GameViewComponent.cs" t="Include" />
+              <e p="GameWillBeShotNextComponent.cs" t="Include" />
             </e>
             <e p="GameAttribute.cs" t="Include" />
             <e p="GameComponentsLookup.cs" t="Include" />
