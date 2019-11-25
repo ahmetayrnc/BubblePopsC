@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BubblePopsC.Scripts.Services;
+using UnityEngine;
 
 namespace BubblePopsC.Scripts.Mono.View
 {
@@ -18,14 +19,7 @@ namespace BubblePopsC.Scripts.Mono.View
 
         public void OnAxialCoord(GameEntity entity, int q, int r)
         {
-            transform.position = HexTo(q, r);
-        }
-
-        private static Vector2 HexTo(int q, int r)
-        {
-            var x = 1f / Mathf.Sqrt(3f) * (Mathf.Sqrt(3f) * q + Mathf.Sqrt(3f) / 2f * r);
-            var y = 1f / Mathf.Sqrt(3f) * (3f / 2 * r);
-            return new Vector2(x, y);
+            transform.position = HexHelperService.HexToPoint(q, r);
         }
     }
 }

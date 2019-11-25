@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BubblePopsC.Scripts.Components;
+using BubblePopsC.Scripts.Components.Position;
 using UnityEngine;
 
 namespace BubblePopsC.Scripts.Services
@@ -9,18 +10,19 @@ namespace BubblePopsC.Scripts.Services
     {
         public static bool GetTrajectory(PlayAreaComponent playArea, Vector2 touchPos, out List<Vector3> trajectory)
         {
-            var shooterPos = Contexts.sharedInstance.game.shooterPosition.Value;
-            var trajectoryVector = touchPos - shooterPos;
+            var bubbles = Contexts.sharedInstance.game.GetGroup(
+                GameMatcher.AllOf(GameMatcher.Bubble, GameMatcher.AxialCoord)).GetEntities();
 
+            var shooterPos = Contexts.sharedInstance.game.shooterPosition.Value;
             trajectory = new List<Vector3> {shooterPos};
 
-            var doesIntersectLeftWall = GetLineIntersection(shooterPos, trajectoryVector * 20, playArea.LeftWallStart,
-                playArea.LeftWallEnd, out var leftWallIntersection);
-            var doesIntersectRightWall = GetLineIntersection(shooterPos, trajectoryVector * 20,
-                playArea.RightWallStart,
-                playArea.RightWallEnd, out var rightWallIntersection);
-            var doesIntersectTopWall = GetLineIntersection(shooterPos, trajectoryVector * 20, playArea.LeftWallEnd,
-                playArea.RightWallEnd, out var topWallIntersection);
+            var trajectoryVector = touchPos - shooterPos;
+            var doesIntersectLeftWall = LineLineIntersection(shooterPos, trajectoryVector * 20,
+                playArea.LeftWallStart, playArea.LeftWallEnd, out var leftWallIntersection);
+            var doesIntersectRightWall = LineLineIntersection(shooterPos, trajectoryVector * 20,
+                playArea.RightWallStart, playArea.RightWallEnd, out var rightWallIntersection);
+            var doesIntersectTopWall = LineLineIntersection(shooterPos, trajectoryVector * 20,
+                playArea.LeftWallEnd, playArea.RightWallEnd, out var topWallIntersection);
 
             if (doesIntersectRightWall)
             {
@@ -37,11 +39,18 @@ namespace BubblePopsC.Scripts.Services
 
             if (trajectory.Count <= 1) return false;
 
+            // 1 line
+            foreach (var bubble in bubbles)
+            {
+                var bubbleAxialCoord = bubble.axialCoord;
+            }
+
+
             if (!doesIntersectLeftWall && !doesIntersectRightWall) return true;
 
             var newTrajectoryVector = trajectoryVector;
             newTrajectoryVector.x *= -1;
-            var shouldAddThirdPoint = GetLineIntersection(trajectory[1], newTrajectoryVector * 20,
+            var shouldAddThirdPoint = LineLineIntersection(trajectory[1], newTrajectoryVector * 20,
                 playArea.LeftWallEnd,
                 playArea.RightWallEnd, out var thirdPoint);
 
@@ -52,58 +61,86 @@ namespace BubblePopsC.Scripts.Services
             return true;
         }
 
-        private static bool GetLineIntersection(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3,
-            out Vector2 i)
+        private static bool LineLineIntersection(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, out Vector2 i)
         {
             i = Vector2.zero;
 
-            var s1X = p1.x - p0.x;
-            var s1Y = p1.y - p0.y;
-            var s2X = p3.x - p2.x;
-            var s2Y = p3.y - p2.y;
+            var s1 = p1 - p0;
+            var s2 = p3 - p2;
 
-            var s = (-s1Y * (p0.x - p2.x) + s1X * (p0.y - p2.y)) / (-s2X * s1Y + s1X * s2Y);
-            var t = (s2X * (p0.y - p2.y) - s2Y * (p0.x - p2.x)) / (-s2X * s1Y + s1X * s2Y);
+            var s = (-s1.y * (p0.x - p2.x) + s1.x * (p0.y - p2.y)) / (-s2.x * s1.y + s1.x * s2.y);
+            var t = (s2.x * (p0.y - p2.y) - s2.y * (p0.x - p2.x)) / (-s2.x * s1.y + s1.x * s2.y);
 
-            if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
-            {
-                // Collision detected
-                i.x = p0.x + t * s1X;
-                i.y = p0.y + t * s1Y;
-                return true;
-            }
+            if (!(s >= 0) || !(s <= 1) || !(t >= 0) || !(t <= 1)) return false;
 
-            return false; // No collision
+            i.x = p0.x + t * s1.x;
+            i.y = p0.y + t * s1.y;
+            return true;
         }
 
-        //Calculate the intersection point of two lines. Returns true if lines intersect, otherwise false.
-        //Note that in 3d, two lines do not intersect most of the time. So if the two lines are not in the 
-        //same plane, use ClosestPointsOnTwoLines() instead.
-        private static bool LineLineIntersection(out Vector3 intersection, Vector3 linePoint1, Vector3 lineVec1,
-            Vector3 linePoint2, Vector3 lineVec2)
+        public static bool LineCircleIntersection(Vector2 c, float radius, Vector2 lineStart, Vector2 lineEnd,
+            out Vector2 intersection)
         {
-            var lineVec3 = linePoint2 - linePoint1;
-            var crossVec1And2 = Vector3.Cross(lineVec1, lineVec2);
-            var crossVec3And2 = Vector3.Cross(lineVec3, lineVec2);
+            var intersections = FindLineCircleIntersections(c, radius, lineStart, lineEnd,
+                out var intersection1, out var intersection2);
 
-            var planarFactor = Vector3.Dot(lineVec3, crossVec1And2);
-
-            //is coplanar, and not parallel
-            if (Mathf.Abs(planarFactor) < 0.0001f && crossVec1And2.sqrMagnitude > 0.0001f)
+            if (intersections == 1)
             {
-                var s = Vector3.Dot(crossVec3And2, crossVec1And2) / crossVec1And2.sqrMagnitude;
-                intersection = linePoint1 + (lineVec1 * s);
+                intersection = intersection1;
                 return true;
             }
 
-            intersection = Vector3.zero;
+            if (intersections == 2)
+            {
+                double dist1 = Vector2.Distance(intersection1, lineStart);
+                double dist2 = Vector2.Distance(intersection2, lineStart);
+
+                intersection = dist1 < dist2 ? intersection1 : intersection2;
+                return true;
+            }
+
+            intersection = Vector2.zero;
             return false;
         }
 
-        private static bool OnSegment(Vector2 p, Vector2 q, Vector2 r)
+        private static int FindLineCircleIntersections(Vector2 center, float radius,
+            Vector2 point1, Vector2 point2,
+            out Vector2 intersection1, out Vector2 intersection2)
         {
-            return q.x <= Math.Max(p.x, r.x) && q.x >= Math.Min(p.x, r.x) &&
-                   q.y <= Math.Max(p.y, r.y) && q.y >= Math.Min(p.y, r.y);
+            float t;
+
+            var dx = point2.x - point1.x;
+            var dy = point2.y - point1.y;
+
+            var a = dx * dx + dy * dy;
+            var b = 2 * (dx * (point1.x - center.x) + dy * (point1.y - center.y));
+            var c = (point1.x - center.x) * (point1.x - center.x) + (point1.y - center.y) * (point1.y - center.y) -
+                    radius * radius;
+
+            var det = b * b - 4 * a * c;
+            if ((a <= 0.0000001) || (det < 0))
+            {
+                // No real solutions.
+                intersection1 = new Vector2(float.NaN, float.NaN);
+                intersection2 = new Vector2(float.NaN, float.NaN);
+                return 0;
+            }
+
+            if (Math.Abs(det) < 0.001f)
+            {
+                // One solution.
+                t = -b / (2 * a);
+                intersection1 = new Vector2(point1.x + t * dx, point1.y + t * dy);
+                intersection2 = new Vector2(float.NaN, float.NaN);
+                return 1;
+            }
+
+            // Two solutions.
+            t = (float) ((-b + Math.Sqrt(det)) / (2 * a));
+            intersection1 = new Vector2(point1.x + t * dx, point1.y + t * dy);
+            t = (float) ((-b - Math.Sqrt(det)) / (2 * a));
+            intersection2 = new Vector2(point1.x + t * dx, point1.y + t * dy);
+            return 2;
         }
     }
 }

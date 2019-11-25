@@ -47,9 +47,9 @@ TagManager:
   - name: Tile
     uniqueID: 998137587
     locked: 0
-  - name: Bubble
-    uniqueID: 2575424213
-    locked: 0
   - name: Trajectory
     uniqueID: 948004623
+    locked: 0
+  - name: Bubble
+    uniqueID: 2575424213
     locked: 0

@@ -58,6 +58,7 @@
             </e>
             <e p="Services" t="Include">
               <e p="BubbleCreatorService.cs" t="Include" />
+              <e p="HexHelperService.cs" t="Include" />
               <e p="IdService.cs" t="Include" />
               <e p="TrajectoryCalculatorService.cs" t="Include" />
             </e>
