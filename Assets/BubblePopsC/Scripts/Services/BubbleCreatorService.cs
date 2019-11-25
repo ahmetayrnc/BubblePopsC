@@ -1,6 +1,6 @@
 ﻿namespace BubblePopsC.Scripts.Services
 {
-    public class BubbleCreatorService
+    public static class BubbleCreatorService
     {
         public static GameEntity CreateBubble()
         {
@@ -9,7 +9,14 @@
             bubble.isBubble = true;
             bubble.AddId(IdService.GetNewId());
             return bubble;
-//            bubble.AddAxialCoord(axialCoord.Q, axialCoord.R);
+        }
+
+        public static GameEntity CreateGhostBubble()
+        {
+            var bubble = CreateBubble();
+            bubble.isGhost = true;
+
+            return bubble;
         }
     }
 }

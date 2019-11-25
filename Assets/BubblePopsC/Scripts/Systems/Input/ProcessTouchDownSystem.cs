@@ -25,15 +25,6 @@ namespace BubblePopsC.Scripts.Systems.Input
 
         protected override void Execute(List<InputEntity> entities)
         {
-//            var inputEntity = entities.SingleEntity();
-//            var input = inputEntity.touchDown;
-//
-//            var playArea = _contexts.game.playArea;
-//            var validTrajectory = TrajectoryCalculatorService.GetTrajectory(playArea, input.Value, out var trajectory);
-//
-//            if (!validTrajectory) return;
-//
-//            _contexts.game.SetShootingTrajectory(trajectory);
         }
     }
 }

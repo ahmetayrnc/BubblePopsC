@@ -24,9 +24,7 @@ namespace BubblePopsC.Scripts.Systems.Input
 
         protected override void Execute(List<InputEntity> entities)
         {
-            if (!_contexts.game.hasShootingTrajectory) return;
-
-            _contexts.game.RemoveShootingTrajectory();
+            if (_contexts.game.hasShootingTrajectory) _contexts.game.RemoveShootingTrajectory();
         }
     }
 }

@@ -14,6 +14,7 @@
               </e>
               <e p="Bubble" t="Include">
                 <e p="BubbleComponent.cs" t="Include" />
+                <e p="GhostComponent.cs" t="Include" />
                 <e p="ShooterPositionComponent.cs" t="Include" />
                 <e p="WillBeShotNextComponent.cs" t="Include" />
               </e>
@@ -90,6 +91,7 @@
               <e p="AnyShootingTrajectoryListenerComponent.cs" t="Include" />
               <e p="AnyShootingTrajectoryRemovedListenerComponent.cs" t="Include" />
               <e p="AxialCoordListenerComponent.cs" t="Include" />
+              <e p="GhostListenerComponent.cs" t="Include" />
               <e p="PositionListenerComponent.cs" t="Include" />
             </e>
             <e p="GameEventSystems.cs" t="Include" />
@@ -98,6 +100,7 @@
               <e p="IAnyShootingTrajectoryListener.cs" t="Include" />
               <e p="IAnyShootingTrajectoryRemovedListener.cs" t="Include" />
               <e p="IAxialCoordListener.cs" t="Include" />
+              <e p="IGhostListener.cs" t="Include" />
               <e p="IPositionListener.cs" t="Include" />
             </e>
             <e p="Systems" t="Include">
@@ -105,6 +108,7 @@
               <e p="AnyShootingTrajectoryEventSystem.cs" t="Include" />
               <e p="AnyShootingTrajectoryRemovedEventSystem.cs" t="Include" />
               <e p="AxialCoordEventSystem.cs" t="Include" />
+              <e p="GhostEventSystem.cs" t="Include" />
               <e p="PositionEventSystem.cs" t="Include" />
             </e>
           </e>
@@ -119,6 +123,8 @@
               <e p="GameBoardSizeComponent.cs" t="Include" />
               <e p="GameBubbleComponent.cs" t="Include" />
               <e p="GameDestroyedComponent.cs" t="Include" />
+              <e p="GameGhostComponent.cs" t="Include" />
+              <e p="GameGhostListenerComponent.cs" t="Include" />
               <e p="GameIdComponent.cs" t="Include" />
               <e p="GameIdCountComponent.cs" t="Include" />
               <e p="GamePlayAreaComponent.cs" t="Include" />

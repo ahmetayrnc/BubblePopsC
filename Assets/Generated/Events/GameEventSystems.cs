@@ -11,6 +11,7 @@ public sealed class GameEventSystems : Feature {
     public GameEventSystems(Contexts contexts) {
         Add(new AxialCoordEventSystem(contexts)); // priority: 0
         Add(new AnyBoardSizeEventSystem(contexts)); // priority: 0
+        Add(new GhostEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new AnyShootingTrajectoryEventSystem(contexts)); // priority: 0
         Add(new AnyShootingTrajectoryRemovedEventSystem(contexts)); // priority: 0

@@ -34,65 +34,9 @@ namespace BubblePopsC.Scripts.Services
             }
 
             return true;
-
-//            // check if the first line intersects any bubbles.
-//            // If it intersects change trajectory and return.
-//            if (GetClosesLineCircleIntersection(out var closestIntersection, bubbles, trajectory[0], trajectory[1]))
-//            {
-//                trajectory[1] = closestIntersection;
-//                return true;
-//            }
-
-//            const float lineLength = 20f;
-//            var bubbles = Contexts.sharedInstance.game.GetGroup(
-//                GameMatcher.AllOf(GameMatcher.Bubble, GameMatcher.AxialCoord)).GetEntities();
-//
-//            var shooterPos = Contexts.sharedInstance.game.shooterPosition.Value;
-//            trajectory = new List<Vector3> {shooterPos};
-//
-//            //check if a the line intersect any walls. If not return false
-//            if (!GetFirstTrajectoryLine(touchPos, shooterPos, playArea, out var firstIntersection,
-//                out var intersectionWall))
-//            {
-//                return false;
-//            }
-//
-//            trajectory.Add(firstIntersection);
-//
-//            // check if the first line intersects any bubbles.
-//            // If it intersects change trajectory and return.
-//            if (GetClosesLineCircleIntersection(out var closestIntersection, bubbles, trajectory[0], trajectory[1]))
-//            {
-//                trajectory[1] = closestIntersection;
-//                return true;
-//            }
-//
-//            // if the line intersects the top wall stop there.
-//            if (intersectionWall == IntersectionWall.Top) return true;
-//
-//            var trajectoryVector = touchPos - shooterPos;
-//            trajectoryVector.x *= -1;
-//            var hasTopIntersection = LineLineIntersection(trajectory[1], trajectoryVector * lineLength,
-//                playArea.LeftWallEnd,
-//                playArea.RightWallEnd, out var topIntersection);
-//
-//            // if the line is in such an angle that it does not intersect the top wall
-//            // stop there.
-//            if (!hasTopIntersection) return false;
-//
-//            trajectory.Add(topIntersection);
-//
-//            // check if the second line intersects any bubbles.
-//            // If it intersects change trajectory and return.
-//            if (GetClosesLineCircleIntersection(out var closestIntersection2, bubbles, trajectory[1], trajectory[2]))
-//            {
-//                trajectory[2] = closestIntersection2;
-//            }
-//
-//            return true;
         }
 
-        public static bool GetRoughTrajectory(PlayAreaComponent playArea, Vector2 touchPos,
+        private static bool GetRoughTrajectory(PlayAreaComponent playArea, Vector2 touchPos,
             out List<Vector3> trajectory)
         {
             const float lineLength = 20f;

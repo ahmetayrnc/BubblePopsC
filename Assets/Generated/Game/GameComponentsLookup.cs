@@ -14,20 +14,22 @@ public static class GameComponentsLookup {
     public const int AxialCoordListener = 3;
     public const int BoardSize = 4;
     public const int Bubble = 5;
-    public const int ShooterPosition = 6;
-    public const int WillBeShotNext = 7;
-    public const int Destroyed = 8;
-    public const int Id = 9;
-    public const int IdCount = 10;
-    public const int PlayArea = 11;
-    public const int AxialCoord = 12;
-    public const int Position = 13;
-    public const int ShootingTrajectory = 14;
-    public const int Tile = 15;
-    public const int View = 16;
-    public const int PositionListener = 17;
+    public const int Ghost = 6;
+    public const int ShooterPosition = 7;
+    public const int WillBeShotNext = 8;
+    public const int Destroyed = 9;
+    public const int Id = 10;
+    public const int IdCount = 11;
+    public const int PlayArea = 12;
+    public const int AxialCoord = 13;
+    public const int Position = 14;
+    public const int ShootingTrajectory = 15;
+    public const int Tile = 16;
+    public const int View = 17;
+    public const int GhostListener = 18;
+    public const int PositionListener = 19;
 
-    public const int TotalComponents = 18;
+    public const int TotalComponents = 20;
 
     public static readonly string[] componentNames = {
         "AnyBoardSizeListener",
@@ -36,6 +38,7 @@ public static class GameComponentsLookup {
         "AxialCoordListener",
         "BoardSize",
         "Bubble",
+        "Ghost",
         "ShooterPosition",
         "WillBeShotNext",
         "Destroyed",
@@ -47,6 +50,7 @@ public static class GameComponentsLookup {
         "ShootingTrajectory",
         "Tile",
         "View",
+        "GhostListener",
         "PositionListener"
     };
 
@@ -57,6 +61,7 @@ public static class GameComponentsLookup {
         typeof(AxialCoordListenerComponent),
         typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.GhostComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShooterPositionComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.WillBeShotNextComponent),
         typeof(BubblePopsC.Scripts.Components.DestroyedComponent),
@@ -68,6 +73,7 @@ public static class GameComponentsLookup {
         typeof(BubblePopsC.Scripts.Components.ShootingTrajectoryComponent),
         typeof(BubblePopsC.Scripts.Components.Tile.TileComponent),
         typeof(BubblePopsC.Scripts.Components.ViewComponent),
+        typeof(GhostListenerComponent),
         typeof(PositionListenerComponent)
     };
 }
