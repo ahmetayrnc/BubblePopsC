@@ -16,7 +16,7 @@ namespace BubblePopsC.Scripts.Services
             }
 
             var bubbles = Contexts.sharedInstance.game.GetGroup(
-                GameMatcher.AllOf(GameMatcher.Bubble, GameMatcher.AxialCoord)).GetEntities();
+                GameMatcher.AllOf(GameMatcher.Bubble, GameMatcher.AxialCoord).NoneOf(GameMatcher.Ghost)).GetEntities();
 
             for (var i = 0; i < trajectory.Count - 1; i++)
             {
@@ -135,6 +135,7 @@ namespace BubblePopsC.Scripts.Services
         private static bool GetClosesLineCircleIntersection(out Vector2 closestIntersection,
             IEnumerable<GameEntity> bubbles, Vector2 lp1, Vector2 lp2)
         {
+            var radius = 0.5f * Mathf.Sqrt(3f) / 2f;
             closestIntersection = lp2;
             var found = false;
             foreach (var bubble in bubbles)
@@ -142,7 +143,7 @@ namespace BubblePopsC.Scripts.Services
                 var bubbleAxialCoord = bubble.axialCoord;
                 var bubbleRegularCoord = HexHelperService.HexToPoint(bubbleAxialCoord.Q, bubbleAxialCoord.R);
 
-                if (!LineCircleIntersection(bubbleRegularCoord, 0.4f, lp1, lp2,
+                if (!LineCircleIntersection(bubbleRegularCoord, radius, lp1, lp2,
                     out var intersection)) continue;
 
                 if (!(Vector2.Distance(intersection, lp1) < Vector2.Distance(closestIntersection, lp1)))

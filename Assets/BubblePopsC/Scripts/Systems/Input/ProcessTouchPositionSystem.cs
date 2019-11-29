@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using BubblePopsC.Scripts.Mono.Collision;
 using BubblePopsC.Scripts.Services;
 using Entitas;
 using UnityEngine;
@@ -28,15 +28,17 @@ namespace BubblePopsC.Scripts.Systems.Input
         protected override void Execute(List<InputEntity> entities)
         {
             var inputEntity = entities.SingleEntity();
-            var input = inputEntity.touchPosition;
+            var touchPos = inputEntity.touchPosition.Value;
+            var shooterPos = _contexts.game.shooterPosition.Value;
 
-            var playArea = _contexts.game.playArea;
-            var validTrajectory = TrajectoryCalculatorService.GetTrajectory(playArea, input.Value, out var trajectory);
+            var validTrajectory = CollisionFinder.GetTrajectory(shooterPos, touchPos, out var trajectory);
+            var validEndPoint = CollisionFinder.GetRealCollisionPoint(shooterPos, touchPos, out var endPoint);
+
             UpdateTrajectory(validTrajectory, trajectory);
-            UpdateGhostBubble(validTrajectory, trajectory);
+            UpdateGhostBubble(validEndPoint, endPoint);
         }
 
-        private void UpdateGhostBubble(bool validTrajectory, List<Vector3> trajectory)
+        private void UpdateGhostBubble(bool validTrajectory, Vector3 endPoint)
         {
             var ghostBubble = _contexts.game.GetGroup(GameMatcher.Ghost).GetSingleEntity();
 
@@ -52,8 +54,11 @@ namespace BubblePopsC.Scripts.Systems.Input
                 return;
             }
 
-            var hex = HexHelperService.PointToHex(trajectory[trajectory.Count - 1]);
-            ghostBubble.ReplaceAxialCoord(hex.x, hex.y);
+            var hex = HexHelperService.PointToHex(endPoint);
+            var neighbourAxialCoord =
+                HexHelperService.FindNearestNeighbour(hex.x, hex.y, endPoint);
+
+            ghostBubble.ReplaceAxialCoord(neighbourAxialCoord.x, neighbourAxialCoord.y);
         }
 
         private void UpdateTrajectory(bool valid, List<Vector3> trajectory)

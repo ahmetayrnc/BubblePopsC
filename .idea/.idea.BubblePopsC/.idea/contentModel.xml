@@ -43,6 +43,9 @@
               <e p="Camera" t="Include">
                 <e p="CameraScaler.cs" t="Include" />
               </e>
+              <e p="Collision" t="Include">
+                <e p="CollisionFinder.cs" t="Include" />
+              </e>
               <e p="GameController.cs" t="Include" />
               <e p="Input" t="Include">
                 <e p="InputEmitter.cs" t="Include" />

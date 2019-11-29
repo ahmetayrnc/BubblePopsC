@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BubblePopsC.Scripts.Mono.Collision;
 using UnityEngine;
 
 namespace BubblePopsC.Scripts.Mono.Input
@@ -38,6 +39,8 @@ namespace BubblePopsC.Scripts.Mono.Input
             if (_contexts.input.hasTouchPosition)
             {
                 _contexts.input.ReplaceTouchPosition(touchPos);
+//                var list = CollisionFinder.GetTrajectory(_contexts.game.shooterPosition.Value, touchPos);
+//                Debug.Log(list.Count);
             }
         }
     }

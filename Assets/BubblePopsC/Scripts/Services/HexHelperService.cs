@@ -1,4 +1,5 @@
 ﻿using System;
+using BubblePopsC.Scripts.Components.Position;
 using UnityEngine;
 
 namespace BubblePopsC.Scripts.Services
@@ -21,12 +22,45 @@ namespace BubblePopsC.Scripts.Services
             return HexRound(new Vector2(q, r));
         }
 
+        public static Vector2Int FindNearestNeighbour(int q, int r, Vector2 point)
+        {
+            var axialDirections = new[]
+            {
+                new Vector2Int {x = 0, y = 1},
+                new Vector2Int {x = +1, y = 0},
+                new Vector2Int {x = +1, y = -1},
+                new Vector2Int {x = 0, y = -1},
+                new Vector2Int {x = -1, y = 0},
+                new Vector2Int {x = -1, y = 1},
+            };
+
+            var line = (point - HexToPoint(q, r)).normalized;
+            var angle = Vector2.SignedAngle(Vector2.down, line);
+            angle += -180f;
+            angle *= -1f;
+            var directionIndex = (int) angle / 60;
+
+//            Debug.Log($"angle: {angle}, index: {directionIndex}");
+            var neighbourDirection = axialDirections[directionIndex];
+            var neighbourAxialCoord = new Vector2Int(q, r)
+            {
+                x = neighbourDirection.x += q,
+                y = neighbourDirection.y += r
+            };
+
+            return neighbourAxialCoord;
+        }
+
+        private static double RadianToDegree(double angle)
+        {
+            return angle * (180.0 / Math.PI);
+        }
+
         private static Vector2Int HexRound(Vector2 hex)
         {
             var axial = CubeToAxial(CubeRound(AxialToCube(hex)));
             return new Vector2Int((int) axial.x, (int) axial.y);
         }
-
 
         private static Vector2 CubeToAxial(Vector3 cube)
         {

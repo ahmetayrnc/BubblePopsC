@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entitas;
+using UnityEngine;
 
 namespace BubblePopsC.Scripts.Systems.Input
 {
@@ -24,7 +25,13 @@ namespace BubblePopsC.Scripts.Systems.Input
 
         protected override void Execute(List<InputEntity> entities)
         {
-            if (_contexts.game.hasShootingTrajectory) _contexts.game.RemoveShootingTrajectory();
+            if (_contexts.game.hasShootingTrajectory) ShootBall();
+        }
+
+        private void ShootBall()
+        {
+            _contexts.game.RemoveShootingTrajectory();
+            //Debug.Log("Shoot");
         }
     }
 }
