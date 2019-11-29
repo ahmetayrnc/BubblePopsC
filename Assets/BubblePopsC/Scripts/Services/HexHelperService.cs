@@ -14,9 +14,9 @@ namespace BubblePopsC.Scripts.Services
             return new Vector2(x, y);
         }
 
-        public static Vector2Int PointToHex(Vector2 point)
+        public static AxialCoordComponent PointToHex(Vector2 point)
         {
-            var size = 0.5f;
+            const float size = 0.5f;
             var q = (Mathf.Sqrt(3f) / 3f * point.x - 1f / 3 * point.y) / size;
             var r = (2f / 3 * point.y) / size;
             return HexRound(new Vector2(q, r));
@@ -40,7 +40,6 @@ namespace BubblePopsC.Scripts.Services
             angle *= -1f;
             var directionIndex = (int) angle / 60;
 
-//            Debug.Log($"angle: {angle}, index: {directionIndex}");
             var neighbourDirection = axialDirections[directionIndex];
             var neighbourAxialCoord = new Vector2Int(q, r)
             {
@@ -51,22 +50,19 @@ namespace BubblePopsC.Scripts.Services
             return neighbourAxialCoord;
         }
 
-        private static double RadianToDegree(double angle)
+        private static AxialCoordComponent HexRound(Vector2 hex)
         {
-            return angle * (180.0 / Math.PI);
+            var cubeCoordinates = AxialToCube(hex);
+            var roundedCubeCoordinates = CubeRound(cubeCoordinates);
+            var roundedAxialCoordinates = CubeToAxial(roundedCubeCoordinates);
+            return roundedAxialCoordinates;
         }
 
-        private static Vector2Int HexRound(Vector2 hex)
-        {
-            var axial = CubeToAxial(CubeRound(AxialToCube(hex)));
-            return new Vector2Int((int) axial.x, (int) axial.y);
-        }
-
-        private static Vector2 CubeToAxial(Vector3 cube)
+        private static AxialCoordComponent CubeToAxial(Vector3Int cube)
         {
             var q = cube.x;
             var r = cube.z;
-            return new Vector2(q, r);
+            return new AxialCoordComponent {Q = q, R = r};
         }
 
         private static Vector3 AxialToCube(Vector2 hex)
@@ -80,28 +76,28 @@ namespace BubblePopsC.Scripts.Services
 
         private static Vector3Int CubeRound(Vector3 cube)
         {
-            int rx = Convert.ToInt32(cube.x);
-            var ry = Convert.ToInt32(cube.y);
-            var rz = Convert.ToInt32(cube.z);
+            var q = (int) Math.Round(cube.x);
+            var r = (int) Math.Round(cube.y);
+            var s = (int) Math.Round(cube.z);
 
-            var xDiff = Math.Abs(rx - cube.x);
-            var yDiff = Math.Abs(ry - cube.y);
-            var zDiff = Math.Abs(rz - cube.z);
+            var qDiff = Math.Abs(q - cube.x);
+            var rDiff = Math.Abs(r - cube.y);
+            var sDiff = Math.Abs(s - cube.z);
 
-            if (xDiff > yDiff && xDiff > zDiff)
+            if (qDiff > rDiff && qDiff > sDiff)
             {
-                rx = -ry - rz;
+                q = -r - s;
             }
-            else if (yDiff > zDiff)
+            else if (rDiff > sDiff)
             {
-                ry = -rx - rz;
+                r = -q - s;
             }
             else
             {
-                rz = -rx - ry;
+                s = -q - r;
             }
 
-            return new Vector3Int(rx, ry, rz);
+            return new Vector3Int(q, r, s);
         }
     }
 }

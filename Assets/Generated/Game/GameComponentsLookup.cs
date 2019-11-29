@@ -13,23 +13,29 @@ public static class GameComponentsLookup {
     public const int AnyShootingTrajectoryRemovedListener = 2;
     public const int AxialCoordListener = 3;
     public const int BoardSize = 4;
-    public const int Bubble = 5;
-    public const int Ghost = 6;
-    public const int ShooterPosition = 7;
-    public const int WillBeShotNext = 8;
-    public const int Destroyed = 9;
-    public const int Id = 10;
-    public const int IdCount = 11;
-    public const int PlayArea = 12;
-    public const int AxialCoord = 13;
-    public const int Position = 14;
-    public const int ShootingTrajectory = 15;
-    public const int Tile = 16;
-    public const int View = 17;
-    public const int GhostListener = 18;
-    public const int PositionListener = 19;
+    public const int PlayArea = 5;
+    public const int Bubble = 6;
+    public const int Ghost = 7;
+    public const int ShooterPosition = 8;
+    public const int Shot = 9;
+    public const int WillBeShotNext = 10;
+    public const int Destroyed = 11;
+    public const int Id = 12;
+    public const int IdCount = 13;
+    public const int AxialCoord = 14;
+    public const int Position = 15;
+    public const int ShootingTrajectory = 16;
+    public const int Tile = 17;
+    public const int View = 18;
+    public const int DestroyedListener = 19;
+    public const int GhostListener = 20;
+    public const int GhostRemovedListener = 21;
+    public const int PositionListener = 22;
+    public const int ShotListener = 23;
+    public const int WillBeShotNextListener = 24;
+    public const int WillBeShotNextRemovedListener = 25;
 
-    public const int TotalComponents = 20;
+    public const int TotalComponents = 26;
 
     public static readonly string[] componentNames = {
         "AnyBoardSizeListener",
@@ -37,21 +43,27 @@ public static class GameComponentsLookup {
         "AnyShootingTrajectoryRemovedListener",
         "AxialCoordListener",
         "BoardSize",
+        "PlayArea",
         "Bubble",
         "Ghost",
         "ShooterPosition",
+        "Shot",
         "WillBeShotNext",
         "Destroyed",
         "Id",
         "IdCount",
-        "PlayArea",
         "AxialCoord",
         "Position",
         "ShootingTrajectory",
         "Tile",
         "View",
+        "DestroyedListener",
         "GhostListener",
-        "PositionListener"
+        "GhostRemovedListener",
+        "PositionListener",
+        "ShotListener",
+        "WillBeShotNextListener",
+        "WillBeShotNextRemovedListener"
     };
 
     public static readonly System.Type[] componentTypes = {
@@ -60,20 +72,26 @@ public static class GameComponentsLookup {
         typeof(AnyShootingTrajectoryRemovedListenerComponent),
         typeof(AxialCoordListenerComponent),
         typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
+        typeof(BubblePopsC.Scripts.Components.Board.PlayAreaComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.GhostComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShooterPositionComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.ShotComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.WillBeShotNextComponent),
         typeof(BubblePopsC.Scripts.Components.DestroyedComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdCountComponent),
-        typeof(BubblePopsC.Scripts.Components.PlayAreaComponent),
         typeof(BubblePopsC.Scripts.Components.Position.AxialCoordComponent),
         typeof(BubblePopsC.Scripts.Components.Position.PositionComponent),
         typeof(BubblePopsC.Scripts.Components.ShootingTrajectoryComponent),
         typeof(BubblePopsC.Scripts.Components.Tile.TileComponent),
         typeof(BubblePopsC.Scripts.Components.ViewComponent),
+        typeof(DestroyedListenerComponent),
         typeof(GhostListenerComponent),
-        typeof(PositionListenerComponent)
+        typeof(GhostRemovedListenerComponent),
+        typeof(PositionListenerComponent),
+        typeof(ShotListenerComponent),
+        typeof(WillBeShotNextListenerComponent),
+        typeof(WillBeShotNextRemovedListenerComponent)
     };
 }

@@ -34,11 +34,11 @@ namespace BubblePopsC.Scripts.Systems.Input
             var validTrajectory = CollisionFinder.GetTrajectory(shooterPos, touchPos, out var trajectory);
             var validEndPoint = CollisionFinder.GetRealCollisionPoint(shooterPos, touchPos, out var endPoint);
 
-            UpdateTrajectory(validTrajectory, trajectory);
-            UpdateGhostBubble(validEndPoint, endPoint);
+            UpdateTrajectory(validEndPoint & validTrajectory, trajectory);
+            UpdateGhostBubble(validEndPoint & validTrajectory, endPoint);
         }
 
-        private void UpdateGhostBubble(bool validTrajectory, Vector3 endPoint)
+        private void UpdateGhostBubble(bool valid, Vector3 endPoint)
         {
             var ghostBubble = _contexts.game.GetGroup(GameMatcher.Ghost).GetSingleEntity();
 
@@ -48,17 +48,19 @@ namespace BubblePopsC.Scripts.Systems.Input
                 ghostBubble.AddAxialCoord(0, 0);
             }
 
-            if (!validTrajectory)
+            if (!valid)
             {
                 ghostBubble.isDestroyed = true;
                 return;
             }
 
             var hex = HexHelperService.PointToHex(endPoint);
+            Debug.Log($"endPoint: {endPoint}, hex: {hex}");
             var neighbourAxialCoord =
-                HexHelperService.FindNearestNeighbour(hex.x, hex.y, endPoint);
+                HexHelperService.FindNearestNeighbour(hex.Q, hex.R, endPoint);
 
             ghostBubble.ReplaceAxialCoord(neighbourAxialCoord.x, neighbourAxialCoord.y);
+//            ghostBubble.ReplaceAxialCoord(hex.Q, hex.R);
         }
 
         private void UpdateTrajectory(bool valid, List<Vector3> trajectory)

@@ -8,5 +8,10 @@ namespace BubblePopsC.Scripts.Components.Position
     {
         public int Q;
         public int R;
+
+        public override string ToString()
+        {
+            return $"(q:{Q}, r:{R})";
+        }
     }
 }

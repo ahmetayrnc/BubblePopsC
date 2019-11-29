@@ -41,19 +41,20 @@ namespace BubblePopsC.Scripts.Mono.Collision
 
             endCollisionPoint = shooterPos;
 
-            for (var i = 0; i < 4; i++)
+            for (var i = 0; i < 2; i++)
             {
                 var rayHit = Physics2D.Raycast(origin, direction, distance, LayerMask.GetMask(layerName));
 
                 if (rayHit.collider == null) break;
 
+                if (rayHit.collider.CompareTag(bubbleTag))
+                {
+                    endCollisionPoint = rayHit.point + (direction * 0.0001f);
+                    return true;
+                }
+
                 direction.x *= -1f;
-                origin = rayHit.point + direction * 0.001f;
-
-                if (!rayHit.collider.CompareTag(bubbleTag)) continue;
-
-                endCollisionPoint = rayHit.point + direction * 0.001f;
-                return true;
+                origin = rayHit.point + direction * 0.0001f;
             }
 
             return false;

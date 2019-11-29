@@ -9,25 +9,25 @@
 public partial class GameContext {
 
     public GameEntity playAreaEntity { get { return GetGroup(GameMatcher.PlayArea).GetSingleEntity(); } }
-    public BubblePopsC.Scripts.Components.PlayAreaComponent playArea { get { return playAreaEntity.playArea; } }
+    public BubblePopsC.Scripts.Components.Board.PlayAreaComponent playArea { get { return playAreaEntity.playArea; } }
     public bool hasPlayArea { get { return playAreaEntity != null; } }
 
-    public GameEntity SetPlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize, UnityEngine.Vector2 newRightWallStart, UnityEngine.Vector2 newRightWallEnd, UnityEngine.Vector2 newLeftWallStart, UnityEngine.Vector2 newLeftWallEnd) {
+    public GameEntity SetPlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize) {
         if (hasPlayArea) {
-            throw new Entitas.EntitasException("Could not set PlayArea!\n" + this + " already has an entity with BubblePopsC.Scripts.Components.PlayAreaComponent!",
+            throw new Entitas.EntitasException("Could not set PlayArea!\n" + this + " already has an entity with BubblePopsC.Scripts.Components.Board.PlayAreaComponent!",
                 "You should check if the context already has a playAreaEntity before setting it or use context.ReplacePlayArea().");
         }
         var entity = CreateEntity();
-        entity.AddPlayArea(newCenter, newSize, newRightWallStart, newRightWallEnd, newLeftWallStart, newLeftWallEnd);
+        entity.AddPlayArea(newCenter, newSize);
         return entity;
     }
 
-    public void ReplacePlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize, UnityEngine.Vector2 newRightWallStart, UnityEngine.Vector2 newRightWallEnd, UnityEngine.Vector2 newLeftWallStart, UnityEngine.Vector2 newLeftWallEnd) {
+    public void ReplacePlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize) {
         var entity = playAreaEntity;
         if (entity == null) {
-            entity = SetPlayArea(newCenter, newSize, newRightWallStart, newRightWallEnd, newLeftWallStart, newLeftWallEnd);
+            entity = SetPlayArea(newCenter, newSize);
         } else {
-            entity.ReplacePlayArea(newCenter, newSize, newRightWallStart, newRightWallEnd, newLeftWallStart, newLeftWallEnd);
+            entity.ReplacePlayArea(newCenter, newSize);
         }
     }
 
@@ -46,30 +46,22 @@ public partial class GameContext {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public BubblePopsC.Scripts.Components.PlayAreaComponent playArea { get { return (BubblePopsC.Scripts.Components.PlayAreaComponent)GetComponent(GameComponentsLookup.PlayArea); } }
+    public BubblePopsC.Scripts.Components.Board.PlayAreaComponent playArea { get { return (BubblePopsC.Scripts.Components.Board.PlayAreaComponent)GetComponent(GameComponentsLookup.PlayArea); } }
     public bool hasPlayArea { get { return HasComponent(GameComponentsLookup.PlayArea); } }
 
-    public void AddPlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize, UnityEngine.Vector2 newRightWallStart, UnityEngine.Vector2 newRightWallEnd, UnityEngine.Vector2 newLeftWallStart, UnityEngine.Vector2 newLeftWallEnd) {
+    public void AddPlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize) {
         var index = GameComponentsLookup.PlayArea;
-        var component = (BubblePopsC.Scripts.Components.PlayAreaComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.PlayAreaComponent));
+        var component = (BubblePopsC.Scripts.Components.Board.PlayAreaComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Board.PlayAreaComponent));
         component.Center = newCenter;
         component.Size = newSize;
-        component.RightWallStart = newRightWallStart;
-        component.RightWallEnd = newRightWallEnd;
-        component.LeftWallStart = newLeftWallStart;
-        component.LeftWallEnd = newLeftWallEnd;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize, UnityEngine.Vector2 newRightWallStart, UnityEngine.Vector2 newRightWallEnd, UnityEngine.Vector2 newLeftWallStart, UnityEngine.Vector2 newLeftWallEnd) {
+    public void ReplacePlayArea(UnityEngine.Vector2 newCenter, UnityEngine.Vector2 newSize) {
         var index = GameComponentsLookup.PlayArea;
-        var component = (BubblePopsC.Scripts.Components.PlayAreaComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.PlayAreaComponent));
+        var component = (BubblePopsC.Scripts.Components.Board.PlayAreaComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Board.PlayAreaComponent));
         component.Center = newCenter;
         component.Size = newSize;
-        component.RightWallStart = newRightWallStart;
-        component.RightWallEnd = newRightWallEnd;
-        component.LeftWallStart = newLeftWallStart;
-        component.LeftWallEnd = newLeftWallEnd;
         ReplaceComponent(index, component);
     }
 

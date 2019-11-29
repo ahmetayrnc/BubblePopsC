@@ -1,4 +1,5 @@
-﻿using BubblePopsC.Scripts.Systems.Initialize;
+﻿using BubblePopsC.Scripts.Systems;
+using BubblePopsC.Scripts.Systems.Initialize;
 using BubblePopsC.Scripts.Systems.Input;
 using BubblePopsC.Scripts.Systems.View;
 using UnityEngine;
@@ -41,6 +42,9 @@ namespace BubblePopsC.Scripts.Mono
                     //view
                     .Add(new AddViewSystem(contexts))
                     .Add(new GameEventSystems(contexts))
+
+                    //destroy
+                    .Add(new DestroySystem(contexts))
                 ;
         }
 
