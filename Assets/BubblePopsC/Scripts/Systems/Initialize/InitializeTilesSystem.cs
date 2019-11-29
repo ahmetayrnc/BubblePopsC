@@ -1,4 +1,5 @@
-﻿using Entitas;
+﻿using BubblePopsC.Scripts.Components.Position;
+using Entitas;
 using UnityEngine;
 
 namespace BubblePopsC.Scripts.Systems.Initialize
@@ -23,17 +24,17 @@ namespace BubblePopsC.Scripts.Systems.Initialize
                 var rOffset = r >> 1;
                 for (var q = -rOffset; q < width - rOffset; q++)
                 {
-                    CreateTile(q, r);
+                    CreateTile(new AxialCoord {Q = q, R = r});
                 }
             }
         }
 
-        private void CreateTile(int q, int r)
+        private void CreateTile(AxialCoord hex)
         {
             var tileEntity = _contexts.game.CreateEntity();
 
             tileEntity.isTile = true;
-            tileEntity.AddAxialCoord(q, r);
+            tileEntity.AddAxialCoord(hex);
         }
     }
 }

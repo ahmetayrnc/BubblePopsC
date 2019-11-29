@@ -30,7 +30,7 @@ public sealed class AxialCoordEventSystem : Entitas.ReactiveSystem<GameEntity> {
             _listenerBuffer.Clear();
             _listenerBuffer.AddRange(e.axialCoordListener.value);
             foreach (var listener in _listenerBuffer) {
-                listener.OnAxialCoord(e, component.Q, component.R);
+                listener.OnAxialCoord(e, component.Value);
             }
         }
     }

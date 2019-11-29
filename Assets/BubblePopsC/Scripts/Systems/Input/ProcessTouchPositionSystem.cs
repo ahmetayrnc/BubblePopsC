@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BubblePopsC.Scripts.Components.Position;
 using BubblePopsC.Scripts.Mono.Collision;
 using BubblePopsC.Scripts.Services;
 using Entitas;
@@ -45,7 +46,7 @@ namespace BubblePopsC.Scripts.Systems.Input
             if (ghostBubble == null)
             {
                 ghostBubble = BubbleCreatorService.CreateGhostBubble();
-                ghostBubble.AddAxialCoord(0, 0);
+                ghostBubble.AddAxialCoord(new AxialCoord {Q = 0, R = 0});
             }
 
             if (!valid)
@@ -55,12 +56,9 @@ namespace BubblePopsC.Scripts.Systems.Input
             }
 
             var hex = HexHelperService.PointToHex(endPoint);
-            Debug.Log($"endPoint: {endPoint}, hex: {hex}");
-            var neighbourAxialCoord =
-                HexHelperService.FindNearestNeighbour(hex.Q, hex.R, endPoint);
+            var neighbourAxialCoord = HexHelperService.FindNearestNeighbour(hex, endPoint);
 
-            ghostBubble.ReplaceAxialCoord(neighbourAxialCoord.x, neighbourAxialCoord.y);
-//            ghostBubble.ReplaceAxialCoord(hex.Q, hex.R);
+            ghostBubble.ReplaceAxialCoord(neighbourAxialCoord);
         }
 
         private void UpdateTrajectory(bool valid, List<Vector3> trajectory)

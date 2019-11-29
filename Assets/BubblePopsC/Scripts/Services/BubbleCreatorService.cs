@@ -1,4 +1,6 @@
-﻿namespace BubblePopsC.Scripts.Services
+﻿using UnityEngine;
+
+namespace BubblePopsC.Scripts.Services
 {
     public static class BubbleCreatorService
     {
@@ -8,6 +10,7 @@
 
             bubble.isBubble = true;
             bubble.AddId(IdService.GetNewId());
+            bubble.AddBubbleNumber(GenerateBubbleNumber());
             return bubble;
         }
 
@@ -15,6 +18,7 @@
         {
             var bubble = CreateBubble();
             bubble.isGhost = true;
+            bubble.RemoveBubbleNumber();
 
             return bubble;
         }
@@ -26,6 +30,12 @@
             bubble.AddPosition(Contexts.sharedInstance.game.shooterPosition.Value);
             bubble.isWillBeShotNext = true;
             return bubble;
+        }
+
+        public static int GenerateBubbleNumber()
+        {
+            var power = Random.Range(1, 6);
+            return (int) Mathf.Pow(2, power);
         }
     }
 }

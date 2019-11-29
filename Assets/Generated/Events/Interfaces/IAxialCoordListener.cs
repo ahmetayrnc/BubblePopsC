@@ -7,5 +7,5 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 public interface IAxialCoordListener {
-    void OnAxialCoord(GameEntity entity, int q, int r);
+    void OnAxialCoord(GameEntity entity, BubblePopsC.Scripts.Components.Position.AxialCoord value);
 }

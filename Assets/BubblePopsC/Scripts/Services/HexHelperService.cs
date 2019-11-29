@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BubblePopsC.Scripts.Components.Position;
 using UnityEngine;
 
@@ -6,15 +7,25 @@ namespace BubblePopsC.Scripts.Services
 {
     public static class HexHelperService
     {
-        public static Vector2 HexToPoint(int q, int r)
+        private static readonly Vector2Int[] AxialDirections =
+        {
+            new Vector2Int {x = 0, y = 1},
+            new Vector2Int {x = +1, y = 0},
+            new Vector2Int {x = +1, y = -1},
+            new Vector2Int {x = 0, y = -1},
+            new Vector2Int {x = -1, y = 0},
+            new Vector2Int {x = -1, y = 1},
+        };
+
+        public static Vector2 HexToPoint(AxialCoord hex)
         {
             const float size = 0.5f;
-            var x = size * (Mathf.Sqrt(3f) * q + Mathf.Sqrt(3f) / 2f * r);
-            var y = size * (3f / 2 * r);
+            var x = size * (Mathf.Sqrt(3f) * hex.Q + Mathf.Sqrt(3f) / 2f * hex.R);
+            var y = size * (3f / 2 * hex.R);
             return new Vector2(x, y);
         }
 
-        public static AxialCoordComponent PointToHex(Vector2 point)
+        public static AxialCoord PointToHex(Vector2 point)
         {
             const float size = 0.5f;
             var q = (Mathf.Sqrt(3f) / 3f * point.x - 1f / 3 * point.y) / size;
@@ -22,35 +33,30 @@ namespace BubblePopsC.Scripts.Services
             return HexRound(new Vector2(q, r));
         }
 
-        public static Vector2Int FindNearestNeighbour(int q, int r, Vector2 point)
+        public static AxialCoord FindNearestNeighbour(AxialCoord hex, Vector2 point)
         {
-            var axialDirections = new[]
-            {
-                new Vector2Int {x = 0, y = 1},
-                new Vector2Int {x = +1, y = 0},
-                new Vector2Int {x = +1, y = -1},
-                new Vector2Int {x = 0, y = -1},
-                new Vector2Int {x = -1, y = 0},
-                new Vector2Int {x = -1, y = 1},
-            };
-
-            var line = (point - HexToPoint(q, r)).normalized;
+            var line = (point - HexToPoint(hex)).normalized;
             var angle = Vector2.SignedAngle(Vector2.down, line);
             angle += -180f;
             angle *= -1f;
             var directionIndex = (int) angle / 60;
 
-            var neighbourDirection = axialDirections[directionIndex];
-            var neighbourAxialCoord = new Vector2Int(q, r)
+            var neighbourDirection = AxialDirections[directionIndex];
+            var neighbourAxialCoord = new AxialCoord()
             {
-                x = neighbourDirection.x += q,
-                y = neighbourDirection.y += r
+                Q = neighbourDirection.x += hex.Q,
+                R = neighbourDirection.y += hex.R
             };
 
             return neighbourAxialCoord;
         }
 
-        private static AxialCoordComponent HexRound(Vector2 hex)
+//        public static List<GameEntity> GetNeighbours()
+//        {
+//            var neighbours = new List<GameEntity>();
+//        }
+
+        private static AxialCoord HexRound(Vector2 hex)
         {
             var cubeCoordinates = AxialToCube(hex);
             var roundedCubeCoordinates = CubeRound(cubeCoordinates);
@@ -58,11 +64,11 @@ namespace BubblePopsC.Scripts.Services
             return roundedAxialCoordinates;
         }
 
-        private static AxialCoordComponent CubeToAxial(Vector3Int cube)
+        private static AxialCoord CubeToAxial(Vector3Int cube)
         {
             var q = cube.x;
             var r = cube.z;
-            return new AxialCoordComponent {Q = q, R = r};
+            return new AxialCoord {Q = q, R = r};
         }
 
         private static Vector3 AxialToCube(Vector2 hex)

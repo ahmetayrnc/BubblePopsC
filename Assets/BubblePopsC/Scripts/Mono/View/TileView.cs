@@ -1,4 +1,5 @@
-﻿using BubblePopsC.Scripts.Services;
+﻿using BubblePopsC.Scripts.Components.Position;
+using BubblePopsC.Scripts.Services;
 using UnityEngine;
 
 namespace BubblePopsC.Scripts.Mono.View
@@ -17,9 +18,9 @@ namespace BubblePopsC.Scripts.Mono.View
             spriteRenderer.sortingLayerName = TileLayer;
         }
 
-        public void OnAxialCoord(GameEntity entity, int q, int r)
+        public void OnAxialCoord(GameEntity entity, AxialCoord hex)
         {
-            transform.position = HexHelperService.HexToPoint(q, r);
+            transform.position = HexHelperService.HexToPoint(hex);
         }
     }
 }

@@ -12,39 +12,43 @@ public static class GameComponentsLookup {
     public const int AnyShootingTrajectoryListener = 1;
     public const int AnyShootingTrajectoryRemovedListener = 2;
     public const int AxialCoordListener = 3;
-    public const int BoardSize = 4;
-    public const int PlayArea = 5;
-    public const int Bubble = 6;
-    public const int Ghost = 7;
-    public const int ShooterPosition = 8;
-    public const int Shot = 9;
-    public const int WillBeShotNext = 10;
-    public const int Destroyed = 11;
-    public const int Id = 12;
-    public const int IdCount = 13;
-    public const int AxialCoord = 14;
-    public const int Position = 15;
-    public const int ShootingTrajectory = 16;
-    public const int Tile = 17;
-    public const int View = 18;
-    public const int DestroyedListener = 19;
-    public const int GhostListener = 20;
-    public const int GhostRemovedListener = 21;
-    public const int PositionListener = 22;
-    public const int ShotListener = 23;
-    public const int WillBeShotNextListener = 24;
-    public const int WillBeShotNextRemovedListener = 25;
+    public const int BubbleNumberListener = 4;
+    public const int BoardSize = 5;
+    public const int PlayArea = 6;
+    public const int Bubble = 7;
+    public const int BubbleNumber = 8;
+    public const int Ghost = 9;
+    public const int ShooterPosition = 10;
+    public const int Shot = 11;
+    public const int WillBeShotNext = 12;
+    public const int Destroyed = 13;
+    public const int Id = 14;
+    public const int IdCount = 15;
+    public const int AxialCoord = 16;
+    public const int Position = 17;
+    public const int ShootingTrajectory = 18;
+    public const int Tile = 19;
+    public const int View = 20;
+    public const int DestroyedListener = 21;
+    public const int GhostListener = 22;
+    public const int GhostRemovedListener = 23;
+    public const int PositionListener = 24;
+    public const int ShotListener = 25;
+    public const int WillBeShotNextListener = 26;
+    public const int WillBeShotNextRemovedListener = 27;
 
-    public const int TotalComponents = 26;
+    public const int TotalComponents = 28;
 
     public static readonly string[] componentNames = {
         "AnyBoardSizeListener",
         "AnyShootingTrajectoryListener",
         "AnyShootingTrajectoryRemovedListener",
         "AxialCoordListener",
+        "BubbleNumberListener",
         "BoardSize",
         "PlayArea",
         "Bubble",
+        "BubbleNumber",
         "Ghost",
         "ShooterPosition",
         "Shot",
@@ -71,9 +75,11 @@ public static class GameComponentsLookup {
         typeof(AnyShootingTrajectoryListenerComponent),
         typeof(AnyShootingTrajectoryRemovedListenerComponent),
         typeof(AxialCoordListenerComponent),
+        typeof(BubbleNumberListenerComponent),
         typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
         typeof(BubblePopsC.Scripts.Components.Board.PlayAreaComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.BubbleNumberComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.GhostComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShooterPositionComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShotComponent),

@@ -1,17 +1,20 @@
 ﻿using System;
+using BubblePopsC.Scripts.Components.Position;
 using BubblePopsC.Scripts.Services;
 using DG.Tweening;
 using Entitas.Unity;
+using TMPro;
 using UnityEngine;
 
 namespace BubblePopsC.Scripts.Mono.View
 {
     public class BubbleView : View, IAxialCoordListener, IPositionListener, IDestroyedListener, IShotListener,
-        IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener
+        IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener
     {
         public SpriteRenderer spriteRenderer;
         public CircleCollider2D visualCollider;
         public PolygonCollider2D realCollider;
+        public TextMeshPro bubbleNumber;
 
         protected override void AddListeners(GameEntity entity)
         {
@@ -22,16 +25,21 @@ namespace BubblePopsC.Scripts.Mono.View
             entity.AddGhostListener(this);
             entity.AddWillBeShotNextListener(this);
             entity.AddWillBeShotNextRemovedListener(this);
+            entity.AddBubbleNumberListener(this);
         }
 
         protected override void InitializeView(GameEntity entity)
         {
             spriteRenderer.sortingLayerName = BubbleLayer;
+            bubbleNumber.sortingLayerID = SortingLayer.NameToID(BubbleLayer);
+
+            spriteRenderer.sortingOrder = 0;
+            bubbleNumber.sortingOrder = 1;
         }
 
-        public void OnAxialCoord(GameEntity entity, int q, int r)
+        public void OnAxialCoord(GameEntity entity, AxialCoord hex)
         {
-            transform.position = HexHelperService.HexToPoint(q, r);
+            transform.position = HexHelperService.HexToPoint(hex);
         }
 
         public void OnPosition(GameEntity entity, Vector2 value)
@@ -74,6 +82,11 @@ namespace BubblePopsC.Scripts.Mono.View
         public void OnWillBeShotNextRemoved(GameEntity entity)
         {
             ToggleCollider(true);
+        }
+
+        public void OnBubbleNumber(GameEntity entity, int value)
+        {
+            bubbleNumber.text = entity.bubbleNumber.Value.ToString();
         }
     }
 }

@@ -39,8 +39,6 @@ namespace BubblePopsC.Scripts.Mono.Input
             if (_contexts.input.hasTouchPosition)
             {
                 _contexts.input.ReplaceTouchPosition(touchPos);
-//                var list = CollisionFinder.GetTrajectory(_contexts.game.shooterPosition.Value, touchPos);
-//                Debug.Log(list.Count);
             }
         }
     }

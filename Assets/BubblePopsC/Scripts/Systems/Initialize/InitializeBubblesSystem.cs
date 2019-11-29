@@ -27,11 +27,11 @@ namespace BubblePopsC.Scripts.Systems.Initialize
             const int firstRowsCount = 3;
             foreach (var tileEntity in _tilesGroup.GetEntities())
             {
-                var axialCoord = tileEntity.axialCoord;
+                var axialCoord = tileEntity.axialCoord.Value;
                 if (boardSize.Value.y - axialCoord.R > firstRowsCount) continue;
 
                 var bubble = BubbleCreatorService.CreateBubble();
-                bubble.AddAxialCoord(axialCoord.Q, axialCoord.R);
+                bubble.AddAxialCoord(axialCoord);
             }
         }
 

@@ -11,19 +11,17 @@ public partial class GameEntity {
     public BubblePopsC.Scripts.Components.Position.AxialCoordComponent axialCoord { get { return (BubblePopsC.Scripts.Components.Position.AxialCoordComponent)GetComponent(GameComponentsLookup.AxialCoord); } }
     public bool hasAxialCoord { get { return HasComponent(GameComponentsLookup.AxialCoord); } }
 
-    public void AddAxialCoord(int newQ, int newR) {
+    public void AddAxialCoord(BubblePopsC.Scripts.Components.Position.AxialCoord newValue) {
         var index = GameComponentsLookup.AxialCoord;
         var component = (BubblePopsC.Scripts.Components.Position.AxialCoordComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Position.AxialCoordComponent));
-        component.Q = newQ;
-        component.R = newR;
+        component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceAxialCoord(int newQ, int newR) {
+    public void ReplaceAxialCoord(BubblePopsC.Scripts.Components.Position.AxialCoord newValue) {
         var index = GameComponentsLookup.AxialCoord;
         var component = (BubblePopsC.Scripts.Components.Position.AxialCoordComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Position.AxialCoordComponent));
-        component.Q = newQ;
-        component.R = newR;
+        component.Value = newValue;
         ReplaceComponent(index, component);
     }
 
