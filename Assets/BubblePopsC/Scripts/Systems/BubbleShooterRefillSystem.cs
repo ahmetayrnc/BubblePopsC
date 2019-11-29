@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using BubblePopsC.Scripts.Components.Bubble;
+using BubblePopsC.Scripts.Services;
 using Entitas;
 
 namespace BubblePopsC.Scripts.Systems
@@ -11,17 +13,17 @@ namespace BubblePopsC.Scripts.Systems
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            throw new System.NotImplementedException();
+            return context.CreateCollector(GameMatcher.WillBeShotNext.Removed());
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            throw new System.NotImplementedException();
+            return !entity.isWillBeShotNext;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
-            throw new System.NotImplementedException();
+            BubbleCreatorService.CreateWillBeShotNextBubble();
         }
     }
 }

@@ -39,6 +39,9 @@ namespace BubblePopsC.Scripts.Mono
                     .Add(new ProcessTouchPositionSystem(contexts))
                     .Add(new CleanupInputSystem(contexts))
 
+                    //refill
+                    .Add(new BubbleShooterRefillSystem(contexts))
+
                     //view
                     .Add(new AddViewSystem(contexts))
                     .Add(new GameEventSystems(contexts))

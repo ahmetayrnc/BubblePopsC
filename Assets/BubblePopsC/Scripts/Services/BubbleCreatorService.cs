@@ -18,5 +18,14 @@
 
             return bubble;
         }
+
+        public static GameEntity CreateWillBeShotNextBubble()
+        {
+            var bubble = CreateBubble();
+
+            bubble.AddPosition(Contexts.sharedInstance.game.shooterPosition.Value);
+            bubble.isWillBeShotNext = true;
+            return bubble;
+        }
     }
 }

@@ -37,10 +37,7 @@ namespace BubblePopsC.Scripts.Systems.Initialize
 
         private void CreateBubblesInShooter()
         {
-            var bubble = BubbleCreatorService.CreateBubble();
-
-            bubble.AddPosition(_contexts.game.shooterPosition.Value);
-            bubble.isWillBeShotNext = true;
+            BubbleCreatorService.CreateWillBeShotNextBubble();
         }
     }
 }
