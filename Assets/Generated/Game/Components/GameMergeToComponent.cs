@@ -8,24 +8,22 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public BubblePopsC.Scripts.Components.Bubble.MergeToComponent mergeTo { get { return (BubblePopsC.Scripts.Components.Bubble.MergeToComponent)GetComponent(GameComponentsLookup.MergeTo); } }
+    public BubblePopsC.Scripts.Components.Merge.MergeToComponent mergeTo { get { return (BubblePopsC.Scripts.Components.Merge.MergeToComponent)GetComponent(GameComponentsLookup.MergeTo); } }
     public bool hasMergeTo { get { return HasComponent(GameComponentsLookup.MergeTo); } }
 
-    public void AddMergeTo(BubblePopsC.Scripts.Components.Position.AxialCoord newSpot, System.Action newCallback, bool newIsMaster) {
+    public void AddMergeTo(BubblePopsC.Scripts.Components.Position.AxialCoord newSpot, System.Action newCallback) {
         var index = GameComponentsLookup.MergeTo;
-        var component = (BubblePopsC.Scripts.Components.Bubble.MergeToComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Bubble.MergeToComponent));
+        var component = (BubblePopsC.Scripts.Components.Merge.MergeToComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Merge.MergeToComponent));
         component.Spot = newSpot;
         component.Callback = newCallback;
-        component.IsMaster = newIsMaster;
         AddComponent(index, component);
     }
 
-    public void ReplaceMergeTo(BubblePopsC.Scripts.Components.Position.AxialCoord newSpot, System.Action newCallback, bool newIsMaster) {
+    public void ReplaceMergeTo(BubblePopsC.Scripts.Components.Position.AxialCoord newSpot, System.Action newCallback) {
         var index = GameComponentsLookup.MergeTo;
-        var component = (BubblePopsC.Scripts.Components.Bubble.MergeToComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Bubble.MergeToComponent));
+        var component = (BubblePopsC.Scripts.Components.Merge.MergeToComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Merge.MergeToComponent));
         component.Spot = newSpot;
         component.Callback = newCallback;
-        component.IsMaster = newIsMaster;
         ReplaceComponent(index, component);
     }
 

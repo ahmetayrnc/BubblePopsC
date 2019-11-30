@@ -11,14 +11,13 @@
             <e p="Components" t="Include">
               <e p="Board" t="Include">
                 <e p="BoardSizeComponent.cs" t="Include" />
+                <e p="CeilingCoordsComponent.cs" t="Include" />
                 <e p="PlayAreaComponent.cs" t="Include" />
               </e>
               <e p="Bubble" t="Include">
                 <e p="BubbleComponent.cs" t="Include" />
                 <e p="BubbleNumberComponent.cs" t="Include" />
                 <e p="GhostComponent.cs" t="Include" />
-                <e p="MergeDirtyComponent.cs" t="Include" />
-                <e p="MergeToComponent.cs" t="Include" />
                 <e p="ShooterPositionComponent.cs" t="Include" />
                 <e p="ShotComponent.cs" t="Include" />
                 <e p="WillBeShotNextComponent.cs" t="Include" />
@@ -32,6 +31,10 @@
                 <e p="TouchDownComponent.cs" t="Include" />
                 <e p="TouchPositionComponent.cs" t="Include" />
                 <e p="TouchUpComponent.cs" t="Include" />
+              </e>
+              <e p="Merge" t="Include">
+                <e p="MergeDirtyComponent.cs" t="Include" />
+                <e p="MergeToComponent.cs" t="Include" />
               </e>
               <e p="Position" t="Include">
                 <e p="AxialCoordComponent.cs" t="Include" />
@@ -70,6 +73,8 @@
               <e p="IdService.cs" t="Include" />
             </e>
             <e p="Systems" t="Include">
+              <e p="BigBubbleExplodeSystem.cs" t="Include" />
+              <e p="BubbleDropperSystem.cs" t="Include" />
               <e p="BubbleShooterRefillSystem.cs" t="Include" />
               <e p="DestroySystem.cs" t="Include" />
               <e p="Initialize" t="Include">
@@ -170,6 +175,7 @@
               <e p="GameBubbleComponent.cs" t="Include" />
               <e p="GameBubbleNumberComponent.cs" t="Include" />
               <e p="GameBubbleNumberListenerComponent.cs" t="Include" />
+              <e p="GameCeilingCoordsComponent.cs" t="Include" />
               <e p="GameDestroyedComponent.cs" t="Include" />
               <e p="GameDestroyedListenerComponent.cs" t="Include" />
               <e p="GameGhostComponent.cs" t="Include" />
@@ -181,6 +187,7 @@
               <e p="GameMergeDirtyListenerComponent.cs" t="Include" />
               <e p="GameMergeToComponent.cs" t="Include" />
               <e p="GameMergeToListenerComponent.cs" t="Include" />
+              <e p="GameMergingComponent.cs" t="Include" />
               <e p="GamePlayAreaComponent.cs" t="Include" />
               <e p="GamePositionComponent.cs" t="Include" />
               <e p="GamePositionListenerComponent.cs" t="Include" />

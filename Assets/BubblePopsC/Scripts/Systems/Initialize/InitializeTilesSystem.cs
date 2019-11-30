@@ -1,4 +1,5 @@
-﻿using BubblePopsC.Scripts.Components.Position;
+﻿using System.Collections.Generic;
+using BubblePopsC.Scripts.Components.Position;
 using Entitas;
 using UnityEngine;
 
@@ -19,14 +20,23 @@ namespace BubblePopsC.Scripts.Systems.Initialize
             var width = boardSize.Value.x;
             var height = boardSize.Value.y;
 
+            var ceilingCoords = new List<AxialCoord>();
+
             for (var r = 0; r < height; r++)
             {
                 var rOffset = r >> 1;
                 for (var q = -rOffset; q < width - rOffset; q++)
                 {
                     CreateTile(new AxialCoord {Q = q, R = r});
+
+                    if (r == height - 1)
+                    {
+                        ceilingCoords.Add(new AxialCoord {Q = q, R = r});
+                    }
                 }
             }
+
+            _contexts.game.SetCeilingCoords(ceilingCoords);
         }
 
         private void CreateTile(AxialCoord hex)

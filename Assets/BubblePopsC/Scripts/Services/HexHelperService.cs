@@ -63,6 +63,84 @@ namespace BubblePopsC.Scripts.Services
             return new Vector2Int(axialCoord.Q + Mathf.FloorToInt(axialCoord.R / 2f), axialCoord.R);
         }
 
+        private static bool HasPath(AxialCoord start, AxialCoord goal)
+        {
+            var root = new Node(start) {G = 0, H = 0, F = 0};
+            var openList = new List<Node>();
+            var closedList = new List<Node>();
+
+            openList.Add(root);
+
+            while (true)
+            {
+                //if queue empty, goal can't be reached
+                if (openList.Count == 0) return false;
+
+                openList.Sort((n1, n2) => n1.F.CompareTo(n2.F));
+
+                var curNode = openList[0];
+                openList.RemoveAt(0);
+                var curCoord = curNode.Coord;
+                closedList.Add(curNode);
+
+                //goal state found
+                if (Equals(curCoord, goal))
+                {
+                    return true;
+                }
+
+                //create children nodes
+                var neighbours = HexHelperService.GetNeighbours(curCoord);
+
+                //Loop children nodes
+                foreach (var neighbour in neighbours)
+                {
+                    var neighbourNode = new Node(neighbour);
+                    // if the child node is already in the closed list,
+                    // do not add to the open list
+                    if (closedList.Any(closedNode => Equals(closedNode.Coord, neighbourNode.Coord))) continue;
+
+                    // Calculate g, h, f
+                    neighbourNode.G = curNode.G + 1;
+                    neighbourNode.H = Heuristic(neighbourNode.Coord, goal);
+                    neighbourNode.F = neighbourNode.G + neighbourNode.H;
+
+                    //if the child node is in the open list but the node in the open list has a better
+                    //g value, do not add the child to the open list
+                    if (openList.Any(openNode =>
+                        Equals(openNode.Coord, neighbourNode.Coord) && neighbourNode.G > openNode.G)) continue;
+
+                    openList.Add(neighbourNode);
+                }
+            }
+        }
+
+        private static int Heuristic(AxialCoord cur, AxialCoord goal)
+        {
+            return HexDistance(cur, goal);
+        }
+
+        private class Node
+        {
+            public readonly AxialCoord Coord;
+
+            public int G;
+            public int H;
+            public int F;
+
+            public Node(AxialCoord coord)
+            {
+                Coord = coord;
+            }
+        }
+
+        private static int HexDistance(AxialCoord a, AxialCoord b)
+        {
+            return (Mathf.Abs(a.Q - b.Q)
+                    + Mathf.Abs(a.Q + a.R - b.Q - b.R)
+                    + Mathf.Abs(a.R - b.R)) / 2;
+        }
+
         private static AxialCoord HexRound(Vector2 hex)
         {
             var cubeCoordinates = AxialToCube(hex);

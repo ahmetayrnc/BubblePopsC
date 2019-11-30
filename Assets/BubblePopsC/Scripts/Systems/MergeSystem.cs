@@ -47,9 +47,11 @@ namespace BubblePopsC.Scripts.Systems
             if (!canMerge)
             {
                 dirtyBubble.isMergeDirty = false;
+                _contexts.game.isMerging = false;
                 return;
             }
 
+            _contexts.game.isMerging = true;
             StartMerge(mergeCoord, rest);
         }
 
@@ -212,8 +214,7 @@ namespace BubblePopsC.Scripts.Systems
                         var b = _contexts.game.GetEntityWithId(bubbleId);
                         if (b == null) return;
                         b.isDestroyed = true;
-                    },
-                    false);
+                    });
             }
 
             var masterIndices = HexHelperService.GetArrayIndices(mergeSpot);
@@ -233,8 +234,7 @@ namespace BubblePopsC.Scripts.Systems
 
                     var nb = BubbleCreatorService.CreateBoardBubble(mergeSpot, bubbleNumber);
                     nb.isMergeDirty = true;
-                },
-                true);
+                });
         }
     }
 }

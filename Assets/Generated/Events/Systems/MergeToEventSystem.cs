@@ -30,7 +30,7 @@ public sealed class MergeToEventSystem : Entitas.ReactiveSystem<GameEntity> {
             _listenerBuffer.Clear();
             _listenerBuffer.AddRange(e.mergeToListener.value);
             foreach (var listener in _listenerBuffer) {
-                listener.OnMergeTo(e, component.Spot, component.Callback, component.IsMaster);
+                listener.OnMergeTo(e, component.Spot, component.Callback);
             }
         }
     }

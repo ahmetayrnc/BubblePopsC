@@ -7,5 +7,5 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 public interface IMergeToListener {
-    void OnMergeTo(GameEntity entity, BubblePopsC.Scripts.Components.Position.AxialCoord spot, System.Action callback, bool isMaster);
+    void OnMergeTo(GameEntity entity, BubblePopsC.Scripts.Components.Position.AxialCoord spot, System.Action callback);
 }

@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly BubblePopsC.Scripts.Components.Bubble.MergeDirtyComponent mergeDirtyComponent = new BubblePopsC.Scripts.Components.Bubble.MergeDirtyComponent();
+    static readonly BubblePopsC.Scripts.Components.Merge.MergeDirtyComponent mergeDirtyComponent = new BubblePopsC.Scripts.Components.Merge.MergeDirtyComponent();
 
     public bool isMergeDirty {
         get { return HasComponent(GameComponentsLookup.MergeDirty); }

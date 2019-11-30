@@ -14,34 +14,36 @@ public static class GameComponentsLookup {
     public const int AxialCoordListener = 3;
     public const int BubbleNumberListener = 4;
     public const int BoardSize = 5;
-    public const int PlayArea = 6;
-    public const int Bubble = 7;
-    public const int BubbleNumber = 8;
-    public const int Ghost = 9;
-    public const int MergeDirty = 10;
-    public const int MergeTo = 11;
-    public const int ShooterPosition = 12;
-    public const int Shot = 13;
-    public const int WillBeShotNext = 14;
-    public const int Destroyed = 15;
-    public const int Id = 16;
-    public const int IdCount = 17;
-    public const int AxialCoord = 18;
-    public const int Position = 19;
-    public const int ShootingTrajectory = 20;
-    public const int Tile = 21;
-    public const int View = 22;
-    public const int DestroyedListener = 23;
-    public const int GhostListener = 24;
-    public const int GhostRemovedListener = 25;
-    public const int MergeDirtyListener = 26;
-    public const int MergeToListener = 27;
-    public const int PositionListener = 28;
-    public const int ShotListener = 29;
-    public const int WillBeShotNextListener = 30;
-    public const int WillBeShotNextRemovedListener = 31;
+    public const int CeilingCoords = 6;
+    public const int PlayArea = 7;
+    public const int Bubble = 8;
+    public const int BubbleNumber = 9;
+    public const int Ghost = 10;
+    public const int ShooterPosition = 11;
+    public const int Shot = 12;
+    public const int WillBeShotNext = 13;
+    public const int Destroyed = 14;
+    public const int Id = 15;
+    public const int IdCount = 16;
+    public const int MergeDirty = 17;
+    public const int MergeTo = 18;
+    public const int Merging = 19;
+    public const int AxialCoord = 20;
+    public const int Position = 21;
+    public const int ShootingTrajectory = 22;
+    public const int Tile = 23;
+    public const int View = 24;
+    public const int DestroyedListener = 25;
+    public const int GhostListener = 26;
+    public const int GhostRemovedListener = 27;
+    public const int MergeDirtyListener = 28;
+    public const int MergeToListener = 29;
+    public const int PositionListener = 30;
+    public const int ShotListener = 31;
+    public const int WillBeShotNextListener = 32;
+    public const int WillBeShotNextRemovedListener = 33;
 
-    public const int TotalComponents = 32;
+    public const int TotalComponents = 34;
 
     public static readonly string[] componentNames = {
         "AnyBoardSizeListener",
@@ -50,18 +52,20 @@ public static class GameComponentsLookup {
         "AxialCoordListener",
         "BubbleNumberListener",
         "BoardSize",
+        "CeilingCoords",
         "PlayArea",
         "Bubble",
         "BubbleNumber",
         "Ghost",
-        "MergeDirty",
-        "MergeTo",
         "ShooterPosition",
         "Shot",
         "WillBeShotNext",
         "Destroyed",
         "Id",
         "IdCount",
+        "MergeDirty",
+        "MergeTo",
+        "Merging",
         "AxialCoord",
         "Position",
         "ShootingTrajectory",
@@ -85,18 +89,20 @@ public static class GameComponentsLookup {
         typeof(AxialCoordListenerComponent),
         typeof(BubbleNumberListenerComponent),
         typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
+        typeof(BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent),
         typeof(BubblePopsC.Scripts.Components.Board.PlayAreaComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleNumberComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.GhostComponent),
-        typeof(BubblePopsC.Scripts.Components.Bubble.MergeDirtyComponent),
-        typeof(BubblePopsC.Scripts.Components.Bubble.MergeToComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShooterPositionComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShotComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.WillBeShotNextComponent),
         typeof(BubblePopsC.Scripts.Components.DestroyedComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdCountComponent),
+        typeof(BubblePopsC.Scripts.Components.Merge.MergeDirtyComponent),
+        typeof(BubblePopsC.Scripts.Components.Merge.MergeToComponent),
+        typeof(BubblePopsC.Scripts.Components.Merge.MergingComponent),
         typeof(BubblePopsC.Scripts.Components.Position.AxialCoordComponent),
         typeof(BubblePopsC.Scripts.Components.Position.PositionComponent),
         typeof(BubblePopsC.Scripts.Components.ShootingTrajectoryComponent),

@@ -90,7 +90,7 @@ namespace BubblePopsC.Scripts.Mono.View
             bubbleNumber.text = entity.bubbleNumber.Value.ToString();
         }
 
-        public void OnMergeTo(GameEntity entity, AxialCoord spot, Action callback, bool isMaster)
+        public void OnMergeTo(GameEntity entity, AxialCoord spot, Action callback)
         {
             transform.DOMove(HexHelperService.HexToPoint(spot), 0.1f).onComplete +=
                 () => callback();
