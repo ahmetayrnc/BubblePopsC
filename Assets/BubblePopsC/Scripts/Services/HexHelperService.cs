@@ -63,8 +63,9 @@ namespace BubblePopsC.Scripts.Services
             return new Vector2Int(axialCoord.Q + Mathf.FloorToInt(axialCoord.R / 2f), axialCoord.R);
         }
 
-        private static bool HasPath(AxialCoord start, AxialCoord goal)
+        public static bool HasPath(AxialCoord start, AxialCoord goal)
         {
+            var boardSize = Contexts.sharedInstance.game.boardSize.Value;
             var root = new Node(start) {G = 0, H = 0, F = 0};
             var openList = new List<Node>();
             var closedList = new List<Node>();
@@ -90,12 +91,20 @@ namespace BubblePopsC.Scripts.Services
                 }
 
                 //create children nodes
-                var neighbours = HexHelperService.GetNeighbours(curCoord);
+                var neighbours = GetNeighbours(curCoord);
 
                 //Loop children nodes
-                foreach (var neighbour in neighbours)
+                foreach (var neighbourCoord in neighbours)
                 {
-                    var neighbourNode = new Node(neighbour);
+                    var arrayIndices = GetArrayIndices(neighbourCoord);
+
+                    //bounds check
+                    if (arrayIndices.x >= boardSize.x
+                        || arrayIndices.y >= boardSize.y
+                        || arrayIndices.x < 0
+                        || arrayIndices.y < 0) continue;
+
+                    var neighbourNode = new Node(neighbourCoord);
                     // if the child node is already in the closed list,
                     // do not add to the open list
                     if (closedList.Any(closedNode => Equals(closedNode.Coord, neighbourNode.Coord))) continue;

@@ -39,6 +39,8 @@ namespace BubblePopsC.Scripts.Systems
         {
             UpdateHexMap();
 
+            var ceilingCoords = _contexts.game.ceilingCoords.Value;
+
             for (var x = 0; x < _boardSize.x; x++)
             {
                 for (var y = 0; y < _boardSize.y; y++)
@@ -47,32 +49,22 @@ namespace BubblePopsC.Scripts.Systems
 
                     if (bubble == null) continue;
 
-//                    var bubbleNumber = bubble.bubbleNumber.Value;
-//                    if (bubbleNumber < 2048) continue;
-//
-//                    var bubbleCoord = bubble.axialCoord.Value;
-//                    var neighbours = HexHelperService.GetNeighbours(bubbleCoord);
-//
-//                    foreach (var neighbourCoord in neighbours)
-//                    {
-//                        var arrayIndices = HexHelperService.GetArrayIndices(neighbourCoord);
-//                        //bounds check
-//                        if (arrayIndices.x >= _boardSize.x
-//                            || arrayIndices.y >= _boardSize.y
-//                            || arrayIndices.x < 0
-//                            || arrayIndices.y < 0) continue;
-//
-//                        //null check
-//                        if (_hexMap[arrayIndices.x, arrayIndices.y] == null) continue;
-//
-//                        _hexMap[arrayIndices.x, arrayIndices.y].isDestroyed = true;
-//                    }
-//
-//                    bubble.isDestroyed = true;
+                    var connectedToCeiling = false;
+                    foreach (var ceilingCoord in ceilingCoords)
+                    {
+                        if (!HexHelperService.HasPath(bubble.axialCoord.Value, ceilingCoord)) continue;
+                        
+                        connectedToCeiling = true;
+                        break;
+                    }
+
+                    if (connectedToCeiling) continue;
+
+                    bubble.isDestroyed = true;
                 }
             }
         }
-        
+
         private void UpdateHexMap()
         {
             for (var x = 0; x < _boardSize.x; x++)
