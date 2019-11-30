@@ -45,8 +45,7 @@ namespace BubblePopsC.Scripts.Systems.Input
 
             if (ghostBubble == null)
             {
-                ghostBubble = BubbleCreatorService.CreateGhostBubble();
-                ghostBubble.AddAxialCoord(new AxialCoord {Q = 0, R = 0});
+                ghostBubble = BubbleCreatorService.CreateGhostBubble(new AxialCoord {Q = 0, R = 0});
             }
 
             if (!valid)

@@ -42,6 +42,9 @@ namespace BubblePopsC.Scripts.Mono
                     //refill
                     .Add(new BubbleShooterRefillSystem(contexts))
 
+                    //merge
+                    .Add(new MergeSystem(contexts))
+
                     //view
                     .Add(new AddViewSystem(contexts))
                     .Add(new GameEventSystems(contexts))

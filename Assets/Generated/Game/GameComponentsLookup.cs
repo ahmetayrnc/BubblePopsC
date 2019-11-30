@@ -18,26 +18,30 @@ public static class GameComponentsLookup {
     public const int Bubble = 7;
     public const int BubbleNumber = 8;
     public const int Ghost = 9;
-    public const int ShooterPosition = 10;
-    public const int Shot = 11;
-    public const int WillBeShotNext = 12;
-    public const int Destroyed = 13;
-    public const int Id = 14;
-    public const int IdCount = 15;
-    public const int AxialCoord = 16;
-    public const int Position = 17;
-    public const int ShootingTrajectory = 18;
-    public const int Tile = 19;
-    public const int View = 20;
-    public const int DestroyedListener = 21;
-    public const int GhostListener = 22;
-    public const int GhostRemovedListener = 23;
-    public const int PositionListener = 24;
-    public const int ShotListener = 25;
-    public const int WillBeShotNextListener = 26;
-    public const int WillBeShotNextRemovedListener = 27;
+    public const int MergeDirty = 10;
+    public const int MergeTo = 11;
+    public const int ShooterPosition = 12;
+    public const int Shot = 13;
+    public const int WillBeShotNext = 14;
+    public const int Destroyed = 15;
+    public const int Id = 16;
+    public const int IdCount = 17;
+    public const int AxialCoord = 18;
+    public const int Position = 19;
+    public const int ShootingTrajectory = 20;
+    public const int Tile = 21;
+    public const int View = 22;
+    public const int DestroyedListener = 23;
+    public const int GhostListener = 24;
+    public const int GhostRemovedListener = 25;
+    public const int MergeDirtyListener = 26;
+    public const int MergeToListener = 27;
+    public const int PositionListener = 28;
+    public const int ShotListener = 29;
+    public const int WillBeShotNextListener = 30;
+    public const int WillBeShotNextRemovedListener = 31;
 
-    public const int TotalComponents = 28;
+    public const int TotalComponents = 32;
 
     public static readonly string[] componentNames = {
         "AnyBoardSizeListener",
@@ -50,6 +54,8 @@ public static class GameComponentsLookup {
         "Bubble",
         "BubbleNumber",
         "Ghost",
+        "MergeDirty",
+        "MergeTo",
         "ShooterPosition",
         "Shot",
         "WillBeShotNext",
@@ -64,6 +70,8 @@ public static class GameComponentsLookup {
         "DestroyedListener",
         "GhostListener",
         "GhostRemovedListener",
+        "MergeDirtyListener",
+        "MergeToListener",
         "PositionListener",
         "ShotListener",
         "WillBeShotNextListener",
@@ -81,6 +89,8 @@ public static class GameComponentsLookup {
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleNumberComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.GhostComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.MergeDirtyComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.MergeToComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShooterPositionComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShotComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.WillBeShotNextComponent),
@@ -95,6 +105,8 @@ public static class GameComponentsLookup {
         typeof(DestroyedListenerComponent),
         typeof(GhostListenerComponent),
         typeof(GhostRemovedListenerComponent),
+        typeof(MergeDirtyListenerComponent),
+        typeof(MergeToListenerComponent),
         typeof(PositionListenerComponent),
         typeof(ShotListenerComponent),
         typeof(WillBeShotNextListenerComponent),

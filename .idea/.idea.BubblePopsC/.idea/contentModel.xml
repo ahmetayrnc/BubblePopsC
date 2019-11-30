@@ -17,6 +17,8 @@
                 <e p="BubbleComponent.cs" t="Include" />
                 <e p="BubbleNumberComponent.cs" t="Include" />
                 <e p="GhostComponent.cs" t="Include" />
+                <e p="MergeDirtyComponent.cs" t="Include" />
+                <e p="MergeToComponent.cs" t="Include" />
                 <e p="ShooterPositionComponent.cs" t="Include" />
                 <e p="ShotComponent.cs" t="Include" />
                 <e p="WillBeShotNextComponent.cs" t="Include" />
@@ -115,6 +117,8 @@
               <e p="DestroyedListenerComponent.cs" t="Include" />
               <e p="GhostListenerComponent.cs" t="Include" />
               <e p="GhostRemovedListenerComponent.cs" t="Include" />
+              <e p="MergeDirtyListenerComponent.cs" t="Include" />
+              <e p="MergeToListenerComponent.cs" t="Include" />
               <e p="PositionListenerComponent.cs" t="Include" />
               <e p="ShotListenerComponent.cs" t="Include" />
               <e p="WillBeShotNextListenerComponent.cs" t="Include" />
@@ -130,6 +134,8 @@
               <e p="IDestroyedListener.cs" t="Include" />
               <e p="IGhostListener.cs" t="Include" />
               <e p="IGhostRemovedListener.cs" t="Include" />
+              <e p="IMergeDirtyListener.cs" t="Include" />
+              <e p="IMergeToListener.cs" t="Include" />
               <e p="IPositionListener.cs" t="Include" />
               <e p="IShotListener.cs" t="Include" />
               <e p="IWillBeShotNextListener.cs" t="Include" />
@@ -144,6 +150,8 @@
               <e p="DestroyedEventSystem.cs" t="Include" />
               <e p="GhostEventSystem.cs" t="Include" />
               <e p="GhostRemovedEventSystem.cs" t="Include" />
+              <e p="MergeDirtyEventSystem.cs" t="Include" />
+              <e p="MergeToEventSystem.cs" t="Include" />
               <e p="PositionEventSystem.cs" t="Include" />
               <e p="ShotEventSystem.cs" t="Include" />
               <e p="WillBeShotNextEventSystem.cs" t="Include" />
@@ -169,6 +177,10 @@
               <e p="GameGhostRemovedListenerComponent.cs" t="Include" />
               <e p="GameIdComponent.cs" t="Include" />
               <e p="GameIdCountComponent.cs" t="Include" />
+              <e p="GameMergeDirtyComponent.cs" t="Include" />
+              <e p="GameMergeDirtyListenerComponent.cs" t="Include" />
+              <e p="GameMergeToComponent.cs" t="Include" />
+              <e p="GameMergeToListenerComponent.cs" t="Include" />
               <e p="GamePlayAreaComponent.cs" t="Include" />
               <e p="GamePositionComponent.cs" t="Include" />
               <e p="GamePositionListenerComponent.cs" t="Include" />

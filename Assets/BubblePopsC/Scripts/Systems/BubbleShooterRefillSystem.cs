@@ -23,7 +23,7 @@ namespace BubblePopsC.Scripts.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            BubbleCreatorService.CreateWillBeShotNextBubble();
+            BubbleCreatorService.CreateShooterBubble();
         }
     }
 }

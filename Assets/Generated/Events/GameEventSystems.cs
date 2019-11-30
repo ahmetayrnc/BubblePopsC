@@ -15,6 +15,8 @@ public sealed class GameEventSystems : Feature {
         Add(new DestroyedEventSystem(contexts)); // priority: 0
         Add(new GhostEventSystem(contexts)); // priority: 0
         Add(new GhostRemovedEventSystem(contexts)); // priority: 0
+        Add(new MergeDirtyEventSystem(contexts)); // priority: 0
+        Add(new MergeToEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new AnyShootingTrajectoryEventSystem(contexts)); // priority: 0
         Add(new AnyShootingTrajectoryRemovedEventSystem(contexts)); // priority: 0

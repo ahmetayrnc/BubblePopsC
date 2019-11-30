@@ -9,7 +9,7 @@ using UnityEngine;
 namespace BubblePopsC.Scripts.Mono.View
 {
     public class BubbleView : View, IAxialCoordListener, IPositionListener, IDestroyedListener, IShotListener,
-        IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener
+        IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener, IMergeToListener
     {
         public SpriteRenderer spriteRenderer;
         public CircleCollider2D visualCollider;
@@ -26,6 +26,7 @@ namespace BubblePopsC.Scripts.Mono.View
             entity.AddWillBeShotNextListener(this);
             entity.AddWillBeShotNextRemovedListener(this);
             entity.AddBubbleNumberListener(this);
+            entity.AddMergeToListener(this);
         }
 
         protected override void InitializeView(GameEntity entity)
@@ -57,7 +58,7 @@ namespace BubblePopsC.Scripts.Mono.View
         public void OnShot(GameEntity entity, Vector3[] trajectory, Action callback)
         {
             var movement = transform.DOPath(trajectory, 0.4f);
-            movement.onComplete += () => { callback(); };
+            movement.onComplete += () => callback();
             movement.SetEase(Ease.InOutSine);
         }
 
@@ -87,6 +88,12 @@ namespace BubblePopsC.Scripts.Mono.View
         public void OnBubbleNumber(GameEntity entity, int value)
         {
             bubbleNumber.text = entity.bubbleNumber.Value.ToString();
+        }
+
+        public void OnMergeTo(GameEntity entity, AxialCoord spot, Action callback, bool isMaster)
+        {
+            transform.DOMove(HexHelperService.HexToPoint(spot), 0.1f).onComplete +=
+                () => callback();
         }
     }
 }

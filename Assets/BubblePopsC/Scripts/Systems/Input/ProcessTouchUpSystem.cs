@@ -39,13 +39,16 @@ namespace BubblePopsC.Scripts.Systems.Input
 
         private void ShootBall(List<Vector3> trajectory, GameEntity ghostBubble)
         {
+            var shotBubble = _contexts.game.GetGroup(GameMatcher.Shot).GetSingleEntity();
+            if (shotBubble != null) return;
+
             var finalAxialPos = ghostBubble.axialCoord.Value;
             var finalPos = HexHelperService.HexToPoint(finalAxialPos);
             trajectory[trajectory.Count - 1] = finalPos;
 
-            var willBeShoutNextBubble = _contexts.game.GetGroup(GameMatcher.WillBeShotNext).GetSingleEntity();
-            var bubbleId = willBeShoutNextBubble.id.Value;
-            willBeShoutNextBubble.AddShot(trajectory.ToArray(), () =>
+            var shooterBubble = _contexts.game.GetGroup(GameMatcher.WillBeShotNext).GetSingleEntity();
+            var bubbleId = shooterBubble.id.Value;
+            shooterBubble.AddShot(trajectory.ToArray(), () =>
             {
                 var bubble = _contexts.game.GetEntityWithId(bubbleId);
                 if (bubble == null) return;
@@ -54,6 +57,7 @@ namespace BubblePopsC.Scripts.Systems.Input
                 bubble.isWillBeShotNext = false;
                 bubble.RemovePosition();
                 bubble.AddAxialCoord(finalAxialPos);
+                bubble.isMergeDirty = true;
             });
 
             ghostBubble.isDestroyed = true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BubblePopsC.Scripts.Components.Position;
 using UnityEngine;
 
@@ -7,14 +8,14 @@ namespace BubblePopsC.Scripts.Services
 {
     public static class HexHelperService
     {
-        private static readonly Vector2Int[] AxialDirections =
+        private static readonly AxialCoord[] AxialDirections =
         {
-            new Vector2Int {x = 0, y = 1},
-            new Vector2Int {x = +1, y = 0},
-            new Vector2Int {x = +1, y = -1},
-            new Vector2Int {x = 0, y = -1},
-            new Vector2Int {x = -1, y = 0},
-            new Vector2Int {x = -1, y = 1},
+            new AxialCoord {Q = 0, R = 1},
+            new AxialCoord {Q = +1, R = 0},
+            new AxialCoord {Q = +1, R = -1},
+            new AxialCoord {Q = 0, R = -1},
+            new AxialCoord {Q = -1, R = 0},
+            new AxialCoord {Q = -1, R = 1},
         };
 
         public static Vector2 HexToPoint(AxialCoord hex)
@@ -42,19 +43,25 @@ namespace BubblePopsC.Scripts.Services
             var directionIndex = (int) angle / 60;
 
             var neighbourDirection = AxialDirections[directionIndex];
-            var neighbourAxialCoord = new AxialCoord()
+            var neighbourAxialCoord = new AxialCoord
             {
-                Q = neighbourDirection.x += hex.Q,
-                R = neighbourDirection.y += hex.R
+                Q = neighbourDirection.Q + hex.Q,
+                R = neighbourDirection.R + hex.R
             };
 
             return neighbourAxialCoord;
         }
 
-//        public static List<GameEntity> GetNeighbours()
-//        {
-//            var neighbours = new List<GameEntity>();
-//        }
+        public static List<AxialCoord> GetNeighbours(AxialCoord hex)
+        {
+            return AxialDirections.Select(axialDirection =>
+                new AxialCoord {Q = axialDirection.Q + hex.Q, R = axialDirection.R + hex.R}).ToList();
+        }
+
+        public static Vector2Int GetArrayIndices(AxialCoord axialCoord)
+        {
+            return new Vector2Int(axialCoord.Q + Mathf.FloorToInt(axialCoord.R / 2f), axialCoord.R);
+        }
 
         private static AxialCoord HexRound(Vector2 hex)
         {

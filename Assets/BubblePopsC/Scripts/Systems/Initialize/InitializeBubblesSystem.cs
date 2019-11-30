@@ -30,14 +30,13 @@ namespace BubblePopsC.Scripts.Systems.Initialize
                 var axialCoord = tileEntity.axialCoord.Value;
                 if (boardSize.Value.y - axialCoord.R > firstRowsCount) continue;
 
-                var bubble = BubbleCreatorService.CreateBubble();
-                bubble.AddAxialCoord(axialCoord);
+                BubbleCreatorService.CreateBoardBubble(axialCoord, BubbleCreatorService.GenerateRandomBubbleNumber());
             }
         }
 
         private void CreateBubblesInShooter()
         {
-            BubbleCreatorService.CreateWillBeShotNextBubble();
+            BubbleCreatorService.CreateShooterBubble();
         }
     }
 }
