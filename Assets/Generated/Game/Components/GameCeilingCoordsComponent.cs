@@ -12,7 +12,7 @@ public partial class GameContext {
     public BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent ceilingCoords { get { return ceilingCoordsEntity.ceilingCoords; } }
     public bool hasCeilingCoords { get { return ceilingCoordsEntity != null; } }
 
-    public GameEntity SetCeilingCoords(System.Collections.Generic.List<BubblePopsC.Scripts.Components.Position.AxialCoord> newValue) {
+    public GameEntity SetCeilingCoords(System.Collections.Generic.HashSet<BubblePopsC.Scripts.Components.Position.AxialCoord> newValue) {
         if (hasCeilingCoords) {
             throw new Entitas.EntitasException("Could not set CeilingCoords!\n" + this + " already has an entity with BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent!",
                 "You should check if the context already has a ceilingCoordsEntity before setting it or use context.ReplaceCeilingCoords().");
@@ -22,7 +22,7 @@ public partial class GameContext {
         return entity;
     }
 
-    public void ReplaceCeilingCoords(System.Collections.Generic.List<BubblePopsC.Scripts.Components.Position.AxialCoord> newValue) {
+    public void ReplaceCeilingCoords(System.Collections.Generic.HashSet<BubblePopsC.Scripts.Components.Position.AxialCoord> newValue) {
         var entity = ceilingCoordsEntity;
         if (entity == null) {
             entity = SetCeilingCoords(newValue);
@@ -49,14 +49,14 @@ public partial class GameEntity {
     public BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent ceilingCoords { get { return (BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent)GetComponent(GameComponentsLookup.CeilingCoords); } }
     public bool hasCeilingCoords { get { return HasComponent(GameComponentsLookup.CeilingCoords); } }
 
-    public void AddCeilingCoords(System.Collections.Generic.List<BubblePopsC.Scripts.Components.Position.AxialCoord> newValue) {
+    public void AddCeilingCoords(System.Collections.Generic.HashSet<BubblePopsC.Scripts.Components.Position.AxialCoord> newValue) {
         var index = GameComponentsLookup.CeilingCoords;
         var component = (BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceCeilingCoords(System.Collections.Generic.List<BubblePopsC.Scripts.Components.Position.AxialCoord> newValue) {
+    public void ReplaceCeilingCoords(System.Collections.Generic.HashSet<BubblePopsC.Scripts.Components.Position.AxialCoord> newValue) {
         var index = GameComponentsLookup.CeilingCoords;
         var component = (BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent));
         component.Value = newValue;

@@ -20,7 +20,7 @@ namespace BubblePopsC.Scripts.Systems.Initialize
             var width = boardSize.Value.x;
             var height = boardSize.Value.y;
 
-            var ceilingCoords = new List<AxialCoord>();
+            var ceilingCoords = new HashSet<AxialCoord>();
 
             for (var r = 0; r < height; r++)
             {

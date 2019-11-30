@@ -8,6 +8,6 @@ namespace BubblePopsC.Scripts.Components.Board
     [Game, Unique]
     public class CeilingCoordsComponent : IComponent
     {
-        public List<AxialCoord> Value;
+        public HashSet<AxialCoord> Value;
     }
 }
