@@ -39,6 +39,8 @@ namespace BubblePopsC.Scripts.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
+            _contexts.game.isMerging = true;
+
             var dirtyBubble = entities[0];
 
             UpdateHexMap();

@@ -78,6 +78,7 @@
             </e>
             <e p="Systems" t="Include">
               <e p="BigBubbleExplodeSystem.cs" t="Include" />
+              <e p="BoardShifterSystem.cs" t="Include" />
               <e p="BubbleDropperSystem.cs" t="Include" />
               <e p="BubbleShooterRefillSystem.cs" t="Include" />
               <e p="DestroySystem.cs" t="Include" />
