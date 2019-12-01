@@ -8,49 +8,53 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int AnyBoardSizeListener = 0;
-    public const int AnyShootingTrajectoryListener = 1;
-    public const int AnyShootingTrajectoryRemovedListener = 2;
-    public const int AxialCoordListener = 3;
-    public const int BubbleNumberListener = 4;
-    public const int BoardSize = 5;
-    public const int CeilingCoords = 6;
-    public const int PlayArea = 7;
-    public const int Bubble = 8;
-    public const int BubbleNumber = 9;
-    public const int Ghost = 10;
-    public const int ShooterPosition = 11;
-    public const int Shot = 12;
-    public const int WillBeShotNext = 13;
-    public const int Destroyed = 14;
-    public const int Id = 15;
-    public const int IdCount = 16;
-    public const int MergeDirty = 17;
-    public const int MergeTo = 18;
-    public const int Merging = 19;
-    public const int AxialCoord = 20;
-    public const int Position = 21;
-    public const int ShootingTrajectory = 22;
-    public const int Tile = 23;
-    public const int View = 24;
-    public const int DestroyedListener = 25;
-    public const int GhostListener = 26;
-    public const int GhostRemovedListener = 27;
-    public const int MergeDirtyListener = 28;
-    public const int MergeToListener = 29;
-    public const int PositionListener = 30;
-    public const int ShotListener = 31;
-    public const int WillBeShotNextListener = 32;
-    public const int WillBeShotNextRemovedListener = 33;
+    public const int AnyBoardOffsetListener = 0;
+    public const int AnyBoardSizeListener = 1;
+    public const int AnyShootingTrajectoryListener = 2;
+    public const int AnyShootingTrajectoryRemovedListener = 3;
+    public const int AxialCoordListener = 4;
+    public const int BubbleNumberListener = 5;
+    public const int BoardOffset = 6;
+    public const int BoardSize = 7;
+    public const int CeilingCoords = 8;
+    public const int PlayArea = 9;
+    public const int Bubble = 10;
+    public const int BubbleNumber = 11;
+    public const int Ghost = 12;
+    public const int ShooterPosition = 13;
+    public const int Shot = 14;
+    public const int WillBeShotNext = 15;
+    public const int Destroyed = 16;
+    public const int Id = 17;
+    public const int IdCount = 18;
+    public const int MergeDirty = 19;
+    public const int MergeTo = 20;
+    public const int Merging = 21;
+    public const int AxialCoord = 22;
+    public const int Position = 23;
+    public const int ShootingTrajectory = 24;
+    public const int Tile = 25;
+    public const int View = 26;
+    public const int DestroyedListener = 27;
+    public const int GhostListener = 28;
+    public const int GhostRemovedListener = 29;
+    public const int MergeDirtyListener = 30;
+    public const int MergeToListener = 31;
+    public const int PositionListener = 32;
+    public const int ShotListener = 33;
+    public const int WillBeShotNextListener = 34;
+    public const int WillBeShotNextRemovedListener = 35;
 
-    public const int TotalComponents = 34;
+    public const int TotalComponents = 36;
 
     public static readonly string[] componentNames = {
+        "AnyBoardOffsetListener",
         "AnyBoardSizeListener",
         "AnyShootingTrajectoryListener",
         "AnyShootingTrajectoryRemovedListener",
         "AxialCoordListener",
         "BubbleNumberListener",
+        "BoardOffset",
         "BoardSize",
         "CeilingCoords",
         "PlayArea",
@@ -83,11 +87,13 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(AnyBoardOffsetListenerComponent),
         typeof(AnyBoardSizeListenerComponent),
         typeof(AnyShootingTrajectoryListenerComponent),
         typeof(AnyShootingTrajectoryRemovedListenerComponent),
         typeof(AxialCoordListenerComponent),
         typeof(BubbleNumberListenerComponent),
+        typeof(BubblePopsC.Scripts.Components.Board.BoardOffset),
         typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
         typeof(BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent),
         typeof(BubblePopsC.Scripts.Components.Board.PlayAreaComponent),

@@ -20,14 +20,18 @@ namespace BubblePopsC.Scripts.Services
 
         public static Vector2 HexToPoint(AxialCoord hex)
         {
+            var offset = Contexts.sharedInstance.game.boardOffset.Value;
             const float size = 0.5f;
             var x = size * (Mathf.Sqrt(3f) * hex.Q + Mathf.Sqrt(3f) / 2f * hex.R);
-            var y = size * (3f / 2 * hex.R);
+            var y = size * (3f / 2 * hex.R) + offset;
             return new Vector2(x, y);
         }
 
         public static AxialCoord PointToHex(Vector2 point)
         {
+            var offset = Contexts.sharedInstance.game.boardOffset.Value;
+            point.y -= offset;
+
             const float size = 0.5f;
             var q = (Mathf.Sqrt(3f) / 3f * point.x - 1f / 3 * point.y) / size;
             var r = (2f / 3 * point.y) / size;
@@ -63,92 +67,7 @@ namespace BubblePopsC.Scripts.Services
             return new Vector2Int(axialCoord.Q + Mathf.FloorToInt(axialCoord.R / 2f), axialCoord.R);
         }
 
-        public static bool HasPath(AxialCoord start, AxialCoord goal)
-        {
-            var boardSize = Contexts.sharedInstance.game.boardSize.Value;
-            var root = new Node(start) {G = 0, H = 0, F = 0};
-            var openList = new List<Node>();
-            var closedList = new List<Node>();
-
-            openList.Add(root);
-
-            while (true)
-            {
-                //if queue empty, goal can't be reached
-                if (openList.Count == 0) return false;
-
-                openList.Sort((n1, n2) => n1.F.CompareTo(n2.F));
-
-                var curNode = openList[0];
-                openList.RemoveAt(0);
-                var curCoord = curNode.Coord;
-                closedList.Add(curNode);
-
-                //goal state found
-                if (Equals(curCoord, goal))
-                {
-                    return true;
-                }
-
-                //create children nodes
-                var neighbours = GetNeighbours(curCoord);
-
-                //Loop children nodes
-                foreach (var neighbourCoord in neighbours)
-                {
-                    var arrayIndices = GetArrayIndices(neighbourCoord);
-
-                    //bounds check
-                    if (arrayIndices.x >= boardSize.x
-                        || arrayIndices.y >= boardSize.y
-                        || arrayIndices.x < 0
-                        || arrayIndices.y < 0) continue;
-
-                    var neighbourNode = new Node(neighbourCoord);
-                    // if the child node is already in the closed list,
-                    // do not add to the open list
-                    if (closedList.Any(closedNode => Equals(closedNode.Coord, neighbourNode.Coord))) continue;
-
-                    // Calculate g, h, f
-                    neighbourNode.G = curNode.G + 1;
-                    neighbourNode.H = Heuristic(neighbourNode.Coord, goal);
-                    neighbourNode.F = neighbourNode.G + neighbourNode.H;
-
-                    //if the child node is in the open list but the node in the open list has a better
-                    //g value, do not add the child to the open list
-                    if (openList.Any(openNode =>
-                        Equals(openNode.Coord, neighbourNode.Coord) && neighbourNode.G > openNode.G)) continue;
-
-                    openList.Add(neighbourNode);
-                }
-            }
-        }
-
-        private static int Heuristic(AxialCoord cur, AxialCoord goal)
-        {
-            return HexDistance(cur, goal);
-        }
-
-        private class Node
-        {
-            public readonly AxialCoord Coord;
-
-            public int G;
-            public int H;
-            public int F;
-
-            public Node(AxialCoord coord)
-            {
-                Coord = coord;
-            }
-        }
-
-        private static int HexDistance(AxialCoord a, AxialCoord b)
-        {
-            return (Mathf.Abs(a.Q - b.Q)
-                    + Mathf.Abs(a.Q + a.R - b.Q - b.R)
-                    + Mathf.Abs(a.R - b.R)) / 2;
-        }
+        #region internalMethods
 
         private static AxialCoord HexRound(Vector2 hex)
         {
@@ -199,5 +118,7 @@ namespace BubblePopsC.Scripts.Services
 
             return new Vector3Int(q, r, s);
         }
+
+        #endregion
     }
 }

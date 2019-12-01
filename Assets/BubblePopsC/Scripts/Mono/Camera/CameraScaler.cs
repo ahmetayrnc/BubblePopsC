@@ -25,8 +25,8 @@ namespace BubblePopsC.Scripts.Mono.Camera
 
         private void Update()
         {
-            _sceneHeight = _boardHeight + heightPadding;
-            _sceneWidth = _boardWidth + widthPadding;
+            _sceneHeight = _boardHeight - 1f + heightPadding;
+            _sceneWidth = _boardWidth - 1f + widthPadding;
 
             var newPos = _transform.position;
             var unitsPerPixelAccToWidth = _sceneWidth / Screen.width;
@@ -35,8 +35,8 @@ namespace BubblePopsC.Scripts.Mono.Camera
             var unitsPerPixelAccToHeight = _sceneHeight / Screen.height;
             var desiredHalfHeightAccToHeight = 0.5f * unitsPerPixelAccToHeight * Screen.height;
 
-            newPos.x = (_sceneWidth - widthPadding) / 2f - 0.25f;
-            newPos.y = (_sceneHeight - heightPadding) / 2f - 2.5f;
+            newPos.x = (_sceneWidth - widthPadding) / 2f; //- 0.25f;
+            newPos.y = (_sceneHeight - heightPadding) / 2f; // - 2.5f;
             _transform.position = newPos;
 
             _camera.orthographicSize = Mathf.Max(desiredHalfHeightAccToHeight, desiredHalfHeightAccToWidth);

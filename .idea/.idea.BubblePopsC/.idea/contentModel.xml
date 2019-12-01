@@ -10,6 +10,7 @@
           <e p="Scripts" t="Include">
             <e p="Components" t="Include">
               <e p="Board" t="Include">
+                <e p="BoardOffset.cs" t="Include" />
                 <e p="BoardSizeComponent.cs" t="Include" />
                 <e p="CeilingCoordsComponent.cs" t="Include" />
                 <e p="PlayAreaComponent.cs" t="Include" />
@@ -114,6 +115,7 @@
           <e p="Contexts.cs" t="Include" />
           <e p="Events" t="Include">
             <e p="Components" t="Include">
+              <e p="AnyBoardOffsetListenerComponent.cs" t="Include" />
               <e p="AnyBoardSizeListenerComponent.cs" t="Include" />
               <e p="AnyShootingTrajectoryListenerComponent.cs" t="Include" />
               <e p="AnyShootingTrajectoryRemovedListenerComponent.cs" t="Include" />
@@ -131,6 +133,7 @@
             </e>
             <e p="GameEventSystems.cs" t="Include" />
             <e p="Interfaces" t="Include">
+              <e p="IAnyBoardOffsetListener.cs" t="Include" />
               <e p="IAnyBoardSizeListener.cs" t="Include" />
               <e p="IAnyShootingTrajectoryListener.cs" t="Include" />
               <e p="IAnyShootingTrajectoryRemovedListener.cs" t="Include" />
@@ -147,6 +150,7 @@
               <e p="IWillBeShotNextRemovedListener.cs" t="Include" />
             </e>
             <e p="Systems" t="Include">
+              <e p="AnyBoardOffsetEventSystem.cs" t="Include" />
               <e p="AnyBoardSizeEventSystem.cs" t="Include" />
               <e p="AnyShootingTrajectoryEventSystem.cs" t="Include" />
               <e p="AnyShootingTrajectoryRemovedEventSystem.cs" t="Include" />
@@ -166,11 +170,13 @@
           <e p="Feature.cs" t="Include" />
           <e p="Game" t="Include">
             <e p="Components" t="Include">
+              <e p="GameAnyBoardOffsetListenerComponent.cs" t="Include" />
               <e p="GameAnyBoardSizeListenerComponent.cs" t="Include" />
               <e p="GameAnyShootingTrajectoryListenerComponent.cs" t="Include" />
               <e p="GameAnyShootingTrajectoryRemovedListenerComponent.cs" t="Include" />
               <e p="GameAxialCoordComponent.cs" t="Include" />
               <e p="GameAxialCoordListenerComponent.cs" t="Include" />
+              <e p="GameBoardOffsetComponent.cs" t="Include" />
               <e p="GameBoardSizeComponent.cs" t="Include" />
               <e p="GameBubbleComponent.cs" t="Include" />
               <e p="GameBubbleNumberComponent.cs" t="Include" />

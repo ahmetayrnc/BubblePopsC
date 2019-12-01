@@ -9,12 +9,15 @@ using UnityEngine;
 namespace BubblePopsC.Scripts.Mono.View
 {
     public class BubbleView : View, IAxialCoordListener, IPositionListener, IDestroyedListener, IShotListener,
-        IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener, IMergeToListener
+        IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener,
+        IMergeToListener, IAnyBoardOffsetListener
     {
         public SpriteRenderer spriteRenderer;
         public CircleCollider2D visualCollider;
         public PolygonCollider2D realCollider;
         public TextMeshPro bubbleNumber;
+
+        private GameEntity _entity;
 
         protected override void AddListeners(GameEntity entity)
         {
@@ -27,10 +30,12 @@ namespace BubblePopsC.Scripts.Mono.View
             entity.AddWillBeShotNextRemovedListener(this);
             entity.AddBubbleNumberListener(this);
             entity.AddMergeToListener(this);
+            entity.AddAnyBoardOffsetListener(this);
         }
 
         protected override void InitializeView(GameEntity entity)
         {
+            _entity = entity;
             spriteRenderer.sortingLayerName = BubbleLayer;
             bubbleNumber.sortingLayerID = SortingLayer.NameToID(BubbleLayer);
 
@@ -94,6 +99,12 @@ namespace BubblePopsC.Scripts.Mono.View
         {
             transform.DOMove(HexHelperService.HexToPoint(spot), 0.1f).onComplete +=
                 () => callback();
+        }
+
+        public void OnAnyBoardOffset(GameEntity entity, float value)
+        {
+            if (!_entity.hasAxialCoord) return;
+            transform.position = HexHelperService.HexToPoint(_entity.axialCoord.Value);
         }
     }
 }
