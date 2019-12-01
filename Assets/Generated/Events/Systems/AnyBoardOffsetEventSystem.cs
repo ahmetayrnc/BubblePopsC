@@ -35,7 +35,7 @@ public sealed class AnyBoardOffsetEventSystem : Entitas.ReactiveSystem<GameEntit
                 _listenerBuffer.Clear();
                 _listenerBuffer.AddRange(listenerEntity.anyBoardOffsetListener.value);
                 foreach (var listener in _listenerBuffer) {
-                    listener.OnAnyBoardOffset(e, component.Value);
+                    listener.OnAnyBoardOffset(e, component.Indented);
                 }
             }
         }

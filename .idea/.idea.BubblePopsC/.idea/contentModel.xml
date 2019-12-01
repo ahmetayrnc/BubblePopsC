@@ -36,6 +36,7 @@
               <e p="Merge" t="Include">
                 <e p="MergeDirtyComponent.cs" t="Include" />
                 <e p="MergeToComponent.cs" t="Include" />
+                <e p="ShiftToComponent.cs" t="Include" />
               </e>
               <e p="Position" t="Include">
                 <e p="AxialCoordComponent.cs" t="Include" />
@@ -74,6 +75,7 @@
             <e p="Services" t="Include">
               <e p="BubbleCreatorService.cs" t="Include" />
               <e p="HexHelperService.cs" t="Include" />
+              <e p="HexStorageService.cs" t="Include" />
               <e p="IdService.cs" t="Include" />
             </e>
             <e p="Systems" t="Include">
@@ -131,6 +133,7 @@
               <e p="MergeDirtyListenerComponent.cs" t="Include" />
               <e p="MergeToListenerComponent.cs" t="Include" />
               <e p="PositionListenerComponent.cs" t="Include" />
+              <e p="ShiftToListenerComponent.cs" t="Include" />
               <e p="ShotListenerComponent.cs" t="Include" />
               <e p="WillBeShotNextListenerComponent.cs" t="Include" />
               <e p="WillBeShotNextRemovedListenerComponent.cs" t="Include" />
@@ -149,6 +152,7 @@
               <e p="IMergeDirtyListener.cs" t="Include" />
               <e p="IMergeToListener.cs" t="Include" />
               <e p="IPositionListener.cs" t="Include" />
+              <e p="IShiftToListener.cs" t="Include" />
               <e p="IShotListener.cs" t="Include" />
               <e p="IWillBeShotNextListener.cs" t="Include" />
               <e p="IWillBeShotNextRemovedListener.cs" t="Include" />
@@ -166,6 +170,7 @@
               <e p="MergeDirtyEventSystem.cs" t="Include" />
               <e p="MergeToEventSystem.cs" t="Include" />
               <e p="PositionEventSystem.cs" t="Include" />
+              <e p="ShiftToEventSystem.cs" t="Include" />
               <e p="ShotEventSystem.cs" t="Include" />
               <e p="WillBeShotNextEventSystem.cs" t="Include" />
               <e p="WillBeShotNextRemovedEventSystem.cs" t="Include" />
@@ -201,6 +206,8 @@
               <e p="GamePlayAreaComponent.cs" t="Include" />
               <e p="GamePositionComponent.cs" t="Include" />
               <e p="GamePositionListenerComponent.cs" t="Include" />
+              <e p="GameShiftToComponent.cs" t="Include" />
+              <e p="GameShiftToListenerComponent.cs" t="Include" />
               <e p="GameShooterPositionComponent.cs" t="Include" />
               <e p="GameShootingTrajectoryComponent.cs" t="Include" />
               <e p="GameShotComponent.cs" t="Include" />

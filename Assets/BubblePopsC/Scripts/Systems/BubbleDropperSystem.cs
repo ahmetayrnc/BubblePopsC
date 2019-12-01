@@ -7,24 +7,15 @@ using UnityEngine;
 
 namespace BubblePopsC.Scripts.Systems
 {
-    public class BubbleDropperSystem : ReactiveSystem<GameEntity>, IInitializeSystem
+    public class BubbleDropperSystem : ReactiveSystem<GameEntity>
     {
         private Vector2Int _boardSize;
         private readonly Contexts _contexts;
         private GameEntity[,] _hexMap;
-        private IGroup<GameEntity> _bubbleGroup;
 
         public BubbleDropperSystem(Contexts contexts) : base(contexts.game)
         {
             _contexts = contexts;
-        }
-
-        public void Initialize()
-        {
-            _boardSize = _contexts.game.boardSize.Value;
-            _hexMap = new GameEntity[_boardSize.x, _boardSize.y];
-            _bubbleGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Bubble)
-                .NoneOf(GameMatcher.Destroyed, GameMatcher.Ghost, GameMatcher.WillBeShotNext));
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -39,7 +30,8 @@ namespace BubblePopsC.Scripts.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            UpdateHexMap();
+            _boardSize = _contexts.game.boardSize.Value;
+            _hexMap = HexStorageService.UpdateHexMap();
 
             foreach (var bubble in _hexMap)
             {
@@ -101,25 +93,6 @@ namespace BubblePopsC.Scripts.Systems
             }
 
             return false;
-        }
-
-        private void UpdateHexMap()
-        {
-            for (var x = 0; x < _boardSize.x; x++)
-            {
-                for (var y = 0; y < _boardSize.y; y++)
-                {
-                    _hexMap[x, y] = null;
-                }
-            }
-
-            //get the bubbles in an array
-            foreach (var bubble in _bubbleGroup)
-            {
-                var bubbleAxialCoord = bubble.axialCoord.Value;
-                var arrayIndices = HexHelperService.GetArrayIndices(bubbleAxialCoord);
-                _hexMap[arrayIndices.x, arrayIndices.y] = bubble;
-            }
         }
     }
 }

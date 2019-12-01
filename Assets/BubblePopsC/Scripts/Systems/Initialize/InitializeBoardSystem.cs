@@ -15,12 +15,12 @@ namespace BubblePopsC.Scripts.Systems.Initialize
         public void Initialize()
         {
             const int boardWidth = 6;
-            const int boardHeight = 10;
+            const int boardHeight = 11;
             _contexts.game.SetBoardSize(new Vector2Int(boardWidth, boardHeight));
             _contexts.game.SetIdCount(0);
             SetPlayArea(boardWidth);
             _contexts.game.SetShooterPosition(new Vector2(_contexts.game.playArea.Size.x / 2f, -0.5f));
-            _contexts.game.SetBoardOffset(0f);
+            _contexts.game.SetBoardOffset(false);
         }
 
         private void SetPlayArea(int boardWidth)

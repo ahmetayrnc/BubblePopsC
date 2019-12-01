@@ -6,6 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface IAnyBoardOffsetListener {
-    void OnAnyBoardOffset(GameEntity entity, bool indented);
+public interface IShiftToListener {
+    void OnShiftTo(GameEntity entity, UnityEngine.Vector2 spot, System.Action callback);
 }

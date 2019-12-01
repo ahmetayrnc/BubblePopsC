@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using BubblePopsC.Scripts.Components.Position;
 using BubblePopsC.Scripts.Services;
 using Entitas;
 using UnityEngine;
@@ -7,9 +9,7 @@ namespace BubblePopsC.Scripts.Systems
 {
     public class BoardShifterSystem : ReactiveSystem<GameEntity>, IInitializeSystem
     {
-        private Vector2Int _boardSize;
         private readonly Contexts _contexts;
-        private GameEntity[,] _hexMap;
         private IGroup<GameEntity> _bubbleGroup;
 
         private const float ShiftAmount = 0.75f;
@@ -23,9 +23,7 @@ namespace BubblePopsC.Scripts.Systems
 
         public void Initialize()
         {
-            _boardSize = _contexts.game.boardSize.Value;
-            _hexMap = new GameEntity[_boardSize.x, _boardSize.y];
-            _bubbleGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Bubble)
+            _bubbleGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Bubble, GameMatcher.AxialCoord)
                 .NoneOf(GameMatcher.Destroyed, GameMatcher.Ghost, GameMatcher.WillBeShotNext));
         }
 
@@ -48,19 +46,40 @@ namespace BubblePopsC.Scripts.Systems
                 if (point.y <= UpShitLimit) shouldShiftDown = false;
                 if (point.y <= DownShiftLimit)
                 {
-                    ShiftBoard(ShiftAmount);
+                    ShiftUp();
                     return;
                 }
             }
 
-            if (shouldShiftDown) ShiftBoard(-ShiftAmount);
+            if (shouldShiftDown) ShiftDown();
         }
 
-        private void ShiftBoard(float amount)
+        private void ShiftUp()
         {
-            var boardOffset = _contexts.game.boardOffset.Value;
-            boardOffset += amount;
-            _contexts.game.ReplaceBoardOffset(boardOffset);
+            ShiftBubbles(+1);
+            Debug.Log("Shift Up");
+        }
+
+        private void ShiftDown()
+        {
+            ShiftBubbles(-1);
+            Debug.Log("Shift Down");
+        }
+
+        private void ShiftBubbles(int direction)
+        {
+            var indented = _contexts.game.boardOffset.Indented;
+            foreach (var bubble in _bubbleGroup)
+            {
+                var bubblePos = HexHelperService.HexToPoint(bubble.axialCoord.Value);
+                bubblePos.y += ShiftAmount * direction;
+                bubble.AddShiftTo(bubblePos, () =>
+                {
+                    bubble.RemoveShiftTo();
+                    _contexts.game.ReplaceBoardOffset(!indented);
+                    bubble.ReplaceAxialCoord(HexHelperService.PointToHex(bubblePos, !indented));
+                });
+            }
         }
     }
 }

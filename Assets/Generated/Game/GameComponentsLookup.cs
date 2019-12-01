@@ -30,22 +30,24 @@ public static class GameComponentsLookup {
     public const int MergeDirty = 19;
     public const int MergeTo = 20;
     public const int Merging = 21;
-    public const int AxialCoord = 22;
-    public const int Position = 23;
-    public const int ShootingTrajectory = 24;
-    public const int Tile = 25;
-    public const int View = 26;
-    public const int DestroyedListener = 27;
-    public const int GhostListener = 28;
-    public const int GhostRemovedListener = 29;
-    public const int MergeDirtyListener = 30;
-    public const int MergeToListener = 31;
-    public const int PositionListener = 32;
-    public const int ShotListener = 33;
-    public const int WillBeShotNextListener = 34;
-    public const int WillBeShotNextRemovedListener = 35;
+    public const int ShiftTo = 22;
+    public const int AxialCoord = 23;
+    public const int Position = 24;
+    public const int ShootingTrajectory = 25;
+    public const int Tile = 26;
+    public const int View = 27;
+    public const int DestroyedListener = 28;
+    public const int GhostListener = 29;
+    public const int GhostRemovedListener = 30;
+    public const int MergeDirtyListener = 31;
+    public const int MergeToListener = 32;
+    public const int PositionListener = 33;
+    public const int ShiftToListener = 34;
+    public const int ShotListener = 35;
+    public const int WillBeShotNextListener = 36;
+    public const int WillBeShotNextRemovedListener = 37;
 
-    public const int TotalComponents = 36;
+    public const int TotalComponents = 38;
 
     public static readonly string[] componentNames = {
         "AnyBoardOffsetListener",
@@ -70,6 +72,7 @@ public static class GameComponentsLookup {
         "MergeDirty",
         "MergeTo",
         "Merging",
+        "ShiftTo",
         "AxialCoord",
         "Position",
         "ShootingTrajectory",
@@ -81,6 +84,7 @@ public static class GameComponentsLookup {
         "MergeDirtyListener",
         "MergeToListener",
         "PositionListener",
+        "ShiftToListener",
         "ShotListener",
         "WillBeShotNextListener",
         "WillBeShotNextRemovedListener"
@@ -109,6 +113,7 @@ public static class GameComponentsLookup {
         typeof(BubblePopsC.Scripts.Components.Merge.MergeDirtyComponent),
         typeof(BubblePopsC.Scripts.Components.Merge.MergeToComponent),
         typeof(BubblePopsC.Scripts.Components.Merge.MergingComponent),
+        typeof(BubblePopsC.Scripts.Components.Merge.ShiftToComponent),
         typeof(BubblePopsC.Scripts.Components.Position.AxialCoordComponent),
         typeof(BubblePopsC.Scripts.Components.Position.PositionComponent),
         typeof(BubblePopsC.Scripts.Components.ShootingTrajectoryComponent),
@@ -120,6 +125,7 @@ public static class GameComponentsLookup {
         typeof(MergeDirtyListenerComponent),
         typeof(MergeToListenerComponent),
         typeof(PositionListenerComponent),
+        typeof(ShiftToListenerComponent),
         typeof(ShotListenerComponent),
         typeof(WillBeShotNextListenerComponent),
         typeof(WillBeShotNextRemovedListenerComponent)

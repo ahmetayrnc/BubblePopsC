@@ -18,19 +18,55 @@ namespace BubblePopsC.Scripts.Services
             new AxialCoord {Q = -1, R = 1},
         };
 
-        public static Vector2 HexToPoint(AxialCoord hex)
+        public static Vector2 HexToPoint(AxialCoord hex, bool indented)
         {
-            var offset = Contexts.sharedInstance.game.boardOffset.Value;
             const float size = 0.5f;
             var x = size * (Mathf.Sqrt(3f) * hex.Q + Mathf.Sqrt(3f) / 2f * hex.R);
-            var y = size * (3f / 2 * hex.R) + offset;
+            var y = size * (3f / 2 * hex.R);
+
+            if (indented)
+            {
+                y += 0.75f;
+            }
+
             return new Vector2(x, y);
+        }
+
+        public static Vector2 HexToPoint(AxialCoord hex)
+        {
+            const float size = 0.5f;
+            var x = size * (Mathf.Sqrt(3f) * hex.Q + Mathf.Sqrt(3f) / 2f * hex.R);
+            var y = size * (3f / 2 * hex.R);
+
+            var indented = Contexts.sharedInstance.game.boardOffset.Indented;
+            if (indented)
+            {
+                y += 0.75f;
+            }
+
+            return new Vector2(x, y);
+        }
+
+        public static AxialCoord PointToHex(Vector2 point, bool indented)
+        {
+            if (indented)
+            {
+                point.y -= 0.75f;
+            }
+
+            const float size = 0.5f;
+            var q = (Mathf.Sqrt(3f) / 3f * point.x - 1f / 3 * point.y) / size;
+            var r = (2f / 3 * point.y) / size;
+            return HexRound(new Vector2(q, r));
         }
 
         public static AxialCoord PointToHex(Vector2 point)
         {
-            var offset = Contexts.sharedInstance.game.boardOffset.Value;
-            point.y -= offset;
+            var indented = Contexts.sharedInstance.game.boardOffset.Indented;
+            if (indented)
+            {
+                point.y -= 0.75f;
+            }
 
             const float size = 0.5f;
             var q = (Mathf.Sqrt(3f) / 3f * point.x - 1f / 3 * point.y) / size;

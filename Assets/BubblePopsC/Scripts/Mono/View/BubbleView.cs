@@ -11,7 +11,7 @@ namespace BubblePopsC.Scripts.Mono.View
 {
     public class BubbleView : View, IAxialCoordListener, IPositionListener, IDestroyedListener, IShotListener,
         IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener,
-        IMergeToListener, IAnyBoardOffsetListener
+        IMergeToListener, IShiftToListener
     {
         public SpriteRenderer spriteRenderer;
         public SpriteRenderer shadow;
@@ -33,7 +33,7 @@ namespace BubblePopsC.Scripts.Mono.View
             entity.AddWillBeShotNextRemovedListener(this);
             entity.AddBubbleNumberListener(this);
             entity.AddMergeToListener(this);
-            entity.AddAnyBoardOffsetListener(this);
+            entity.AddShiftToListener(this);
         }
 
         protected override void InitializeView(GameEntity entity)
@@ -107,10 +107,10 @@ namespace BubblePopsC.Scripts.Mono.View
                 () => callback();
         }
 
-        public void OnAnyBoardOffset(GameEntity entity, float value)
+        public void OnShiftTo(GameEntity entity, Vector2 spot, Action callback)
         {
-            if (!_entity.hasAxialCoord) return;
-            transform.position = HexHelperService.HexToPoint(_entity.axialCoord.Value);
+            var movement = transform.DOMove(spot, 0.5f);
+            movement.onComplete += () => callback();
         }
     }
 }

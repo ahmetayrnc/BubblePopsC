@@ -7,24 +7,15 @@ using UnityEngine;
 
 namespace BubblePopsC.Scripts.Systems
 {
-    public class MergeSystem : ReactiveSystem<GameEntity>, IInitializeSystem
+    public class MergeSystem : ReactiveSystem<GameEntity>
     {
         private Vector2Int _boardSize;
         private readonly Contexts _contexts;
         private GameEntity[,] _hexMap;
-        private IGroup<GameEntity> _bubbleGroup;
 
         public MergeSystem(Contexts contexts) : base(contexts.game)
         {
             _contexts = contexts;
-        }
-
-        public void Initialize()
-        {
-            _boardSize = _contexts.game.boardSize.Value;
-            _hexMap = new GameEntity[_boardSize.x, _boardSize.y];
-            _bubbleGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Bubble)
-                .NoneOf(GameMatcher.Destroyed, GameMatcher.Ghost, GameMatcher.WillBeShotNext));
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -43,7 +34,8 @@ namespace BubblePopsC.Scripts.Systems
 
             var dirtyBubble = entities[0];
 
-            UpdateHexMap();
+            _boardSize = _contexts.game.boardSize.Value;
+            _hexMap = HexStorageService.UpdateHexMap();
 
             var canMerge = GetSpotToMerge(dirtyBubble, out var mergeCoord, out var rest);
             if (!canMerge)
@@ -55,25 +47,6 @@ namespace BubblePopsC.Scripts.Systems
 
             _contexts.game.isMerging = true;
             StartMerge(mergeCoord, rest);
-        }
-
-        private void UpdateHexMap()
-        {
-            for (var x = 0; x < _boardSize.x; x++)
-            {
-                for (var y = 0; y < _boardSize.y; y++)
-                {
-                    _hexMap[x, y] = null;
-                }
-            }
-
-            //get the bubbles in an array
-            foreach (var bubble in _bubbleGroup)
-            {
-                var bubbleAxialCoord = bubble.axialCoord.Value;
-                var arrayIndices = HexHelperService.GetArrayIndices(bubbleAxialCoord);
-                _hexMap[arrayIndices.x, arrayIndices.y] = bubble;
-            }
         }
 
         private bool GetSpotToMerge(GameEntity bubble, out AxialCoord mergeCoord, out List<AxialCoord> rest)

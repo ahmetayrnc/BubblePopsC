@@ -12,22 +12,22 @@ public partial class GameContext {
     public BubblePopsC.Scripts.Components.Board.BoardOffset boardOffset { get { return boardOffsetEntity.boardOffset; } }
     public bool hasBoardOffset { get { return boardOffsetEntity != null; } }
 
-    public GameEntity SetBoardOffset(float newValue) {
+    public GameEntity SetBoardOffset(bool newIndented) {
         if (hasBoardOffset) {
             throw new Entitas.EntitasException("Could not set BoardOffset!\n" + this + " already has an entity with BubblePopsC.Scripts.Components.Board.BoardOffset!",
                 "You should check if the context already has a boardOffsetEntity before setting it or use context.ReplaceBoardOffset().");
         }
         var entity = CreateEntity();
-        entity.AddBoardOffset(newValue);
+        entity.AddBoardOffset(newIndented);
         return entity;
     }
 
-    public void ReplaceBoardOffset(float newValue) {
+    public void ReplaceBoardOffset(bool newIndented) {
         var entity = boardOffsetEntity;
         if (entity == null) {
-            entity = SetBoardOffset(newValue);
+            entity = SetBoardOffset(newIndented);
         } else {
-            entity.ReplaceBoardOffset(newValue);
+            entity.ReplaceBoardOffset(newIndented);
         }
     }
 
@@ -49,17 +49,17 @@ public partial class GameEntity {
     public BubblePopsC.Scripts.Components.Board.BoardOffset boardOffset { get { return (BubblePopsC.Scripts.Components.Board.BoardOffset)GetComponent(GameComponentsLookup.BoardOffset); } }
     public bool hasBoardOffset { get { return HasComponent(GameComponentsLookup.BoardOffset); } }
 
-    public void AddBoardOffset(float newValue) {
+    public void AddBoardOffset(bool newIndented) {
         var index = GameComponentsLookup.BoardOffset;
         var component = (BubblePopsC.Scripts.Components.Board.BoardOffset)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Board.BoardOffset));
-        component.Value = newValue;
+        component.Indented = newIndented;
         AddComponent(index, component);
     }
 
-    public void ReplaceBoardOffset(float newValue) {
+    public void ReplaceBoardOffset(bool newIndented) {
         var index = GameComponentsLookup.BoardOffset;
         var component = (BubblePopsC.Scripts.Components.Board.BoardOffset)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Board.BoardOffset));
-        component.Value = newValue;
+        component.Indented = newIndented;
         ReplaceComponent(index, component);
     }
 
