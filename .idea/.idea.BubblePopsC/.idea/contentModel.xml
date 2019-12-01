@@ -12,6 +12,7 @@
               <e p="Board" t="Include">
                 <e p="BoardOffset.cs" t="Include" />
                 <e p="BoardSizeComponent.cs" t="Include" />
+                <e p="BubbleDropDirty.cs" t="Include" />
                 <e p="BubbleShiftDirty.cs" t="Include" />
                 <e p="CeilingCoordsComponent.cs" t="Include" />
                 <e p="PlayAreaComponent.cs" t="Include" />
@@ -19,6 +20,7 @@
               <e p="Bubble" t="Include">
                 <e p="BubbleComponent.cs" t="Include" />
                 <e p="BubbleNumberComponent.cs" t="Include" />
+                <e p="DroppedComponent.cs" t="Include" />
                 <e p="GhostComponent.cs" t="Include" />
                 <e p="ShooterPositionComponent.cs" t="Include" />
                 <e p="ShotComponent.cs" t="Include" />
@@ -130,6 +132,7 @@
               <e p="AxialCoordListenerComponent.cs" t="Include" />
               <e p="BubbleNumberListenerComponent.cs" t="Include" />
               <e p="DestroyedListenerComponent.cs" t="Include" />
+              <e p="DroppedListenerComponent.cs" t="Include" />
               <e p="GhostListenerComponent.cs" t="Include" />
               <e p="GhostRemovedListenerComponent.cs" t="Include" />
               <e p="MergeDirtyListenerComponent.cs" t="Include" />
@@ -149,6 +152,7 @@
               <e p="IAxialCoordListener.cs" t="Include" />
               <e p="IBubbleNumberListener.cs" t="Include" />
               <e p="IDestroyedListener.cs" t="Include" />
+              <e p="IDroppedListener.cs" t="Include" />
               <e p="IGhostListener.cs" t="Include" />
               <e p="IGhostRemovedListener.cs" t="Include" />
               <e p="IMergeDirtyListener.cs" t="Include" />
@@ -167,6 +171,7 @@
               <e p="AxialCoordEventSystem.cs" t="Include" />
               <e p="BubbleNumberEventSystem.cs" t="Include" />
               <e p="DestroyedEventSystem.cs" t="Include" />
+              <e p="DroppedEventSystem.cs" t="Include" />
               <e p="GhostEventSystem.cs" t="Include" />
               <e p="GhostRemovedEventSystem.cs" t="Include" />
               <e p="MergeDirtyEventSystem.cs" t="Include" />
@@ -190,12 +195,15 @@
               <e p="GameBoardOffsetComponent.cs" t="Include" />
               <e p="GameBoardSizeComponent.cs" t="Include" />
               <e p="GameBubbleComponent.cs" t="Include" />
+              <e p="GameBubbleDropDirtyComponent.cs" t="Include" />
               <e p="GameBubbleNumberComponent.cs" t="Include" />
               <e p="GameBubbleNumberListenerComponent.cs" t="Include" />
               <e p="GameBubbleShiftDirtyComponent.cs" t="Include" />
               <e p="GameCeilingCoordsComponent.cs" t="Include" />
               <e p="GameDestroyedComponent.cs" t="Include" />
               <e p="GameDestroyedListenerComponent.cs" t="Include" />
+              <e p="GameDroppedComponent.cs" t="Include" />
+              <e p="GameDroppedListenerComponent.cs" t="Include" />
               <e p="GameGhostComponent.cs" t="Include" />
               <e p="GameGhostListenerComponent.cs" t="Include" />
               <e p="GameGhostRemovedListenerComponent.cs" t="Include" />

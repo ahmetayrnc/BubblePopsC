@@ -1,4 +1,6 @@
-﻿using BubblePopsC.Scripts.Services;
+﻿using System.Collections.Generic;
+using BubblePopsC.Scripts.Components.Position;
+using BubblePopsC.Scripts.Services;
 using Entitas;
 using UnityEngine;
 
@@ -23,15 +25,30 @@ namespace BubblePopsC.Scripts.Systems.Initialize
 
         private void CreateBubblesInGrid()
         {
-            var boardSize = _contexts.game.boardSize;
-            const int firstRowsCount = 3;
-            foreach (var tileEntity in _tilesGroup.GetEntities())
+            var boardSize = _contexts.game.boardSize.Value;
+            const int firstRowsCount = 4;
+            const int ceilingRowsCount = 2;
+            var ceilingCoords = new HashSet<AxialCoord>();
+            for (var r = 0; r < boardSize.y; r++)
             {
-                var axialCoord = tileEntity.axialCoord.Value;
-                if (boardSize.Value.y - axialCoord.R > firstRowsCount) continue;
+                var rOffset = r >> 1;
+                for (var q = -rOffset; q < boardSize.x - rOffset; q++)
+                {
+                    if (boardSize.y - r <= firstRowsCount)
+                    {
+                        var axialCoord = new AxialCoord {Q = q, R = r};
+                        BubbleCreatorService.CreateBoardBubble(axialCoord,
+                            BubbleCreatorService.GenerateRandomBubbleNumber());
+                    }
 
-                BubbleCreatorService.CreateBoardBubble(axialCoord, BubbleCreatorService.GenerateRandomBubbleNumber());
+                    if (boardSize.y - r <= ceilingRowsCount)
+                    {
+                        ceilingCoords.Add(new AxialCoord {Q = q, R = r});
+                    }
+                }
             }
+
+            _contexts.game.SetCeilingCoords(ceilingCoords);
         }
 
         private void CreateBubblesInShooter()

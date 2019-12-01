@@ -16,39 +16,42 @@ public static class GameComponentsLookup {
     public const int BubbleNumberListener = 5;
     public const int BoardOffset = 6;
     public const int BoardSize = 7;
-    public const int BubbleShiftDirty = 8;
-    public const int CeilingCoords = 9;
-    public const int PlayArea = 10;
-    public const int Bubble = 11;
-    public const int BubbleNumber = 12;
-    public const int Ghost = 13;
-    public const int ShooterPosition = 14;
-    public const int Shot = 15;
-    public const int WillBeShotNext = 16;
-    public const int Destroyed = 17;
-    public const int Id = 18;
-    public const int IdCount = 19;
-    public const int MergeDirty = 20;
-    public const int MergeTo = 21;
-    public const int Merging = 22;
-    public const int ShiftTo = 23;
-    public const int AxialCoord = 24;
-    public const int Position = 25;
-    public const int ShootingTrajectory = 26;
-    public const int Tile = 27;
-    public const int View = 28;
-    public const int DestroyedListener = 29;
-    public const int GhostListener = 30;
-    public const int GhostRemovedListener = 31;
-    public const int MergeDirtyListener = 32;
-    public const int MergeToListener = 33;
-    public const int PositionListener = 34;
-    public const int ShiftToListener = 35;
-    public const int ShotListener = 36;
-    public const int WillBeShotNextListener = 37;
-    public const int WillBeShotNextRemovedListener = 38;
+    public const int BubbleDropDirty = 8;
+    public const int BubbleShiftDirty = 9;
+    public const int CeilingCoords = 10;
+    public const int PlayArea = 11;
+    public const int Bubble = 12;
+    public const int BubbleNumber = 13;
+    public const int Dropped = 14;
+    public const int Ghost = 15;
+    public const int ShooterPosition = 16;
+    public const int Shot = 17;
+    public const int WillBeShotNext = 18;
+    public const int Destroyed = 19;
+    public const int Id = 20;
+    public const int IdCount = 21;
+    public const int MergeDirty = 22;
+    public const int MergeTo = 23;
+    public const int Merging = 24;
+    public const int ShiftTo = 25;
+    public const int AxialCoord = 26;
+    public const int Position = 27;
+    public const int ShootingTrajectory = 28;
+    public const int Tile = 29;
+    public const int View = 30;
+    public const int DestroyedListener = 31;
+    public const int DroppedListener = 32;
+    public const int GhostListener = 33;
+    public const int GhostRemovedListener = 34;
+    public const int MergeDirtyListener = 35;
+    public const int MergeToListener = 36;
+    public const int PositionListener = 37;
+    public const int ShiftToListener = 38;
+    public const int ShotListener = 39;
+    public const int WillBeShotNextListener = 40;
+    public const int WillBeShotNextRemovedListener = 41;
 
-    public const int TotalComponents = 39;
+    public const int TotalComponents = 42;
 
     public static readonly string[] componentNames = {
         "AnyBoardOffsetListener",
@@ -59,11 +62,13 @@ public static class GameComponentsLookup {
         "BubbleNumberListener",
         "BoardOffset",
         "BoardSize",
+        "BubbleDropDirty",
         "BubbleShiftDirty",
         "CeilingCoords",
         "PlayArea",
         "Bubble",
         "BubbleNumber",
+        "Dropped",
         "Ghost",
         "ShooterPosition",
         "Shot",
@@ -81,6 +86,7 @@ public static class GameComponentsLookup {
         "Tile",
         "View",
         "DestroyedListener",
+        "DroppedListener",
         "GhostListener",
         "GhostRemovedListener",
         "MergeDirtyListener",
@@ -101,11 +107,13 @@ public static class GameComponentsLookup {
         typeof(BubbleNumberListenerComponent),
         typeof(BubblePopsC.Scripts.Components.Board.BoardOffset),
         typeof(BubblePopsC.Scripts.Components.Board.BoardSizeComponent),
+        typeof(BubblePopsC.Scripts.Components.Board.BubbleDropDirty),
         typeof(BubblePopsC.Scripts.Components.Board.BubbleShiftDirty),
         typeof(BubblePopsC.Scripts.Components.Board.CeilingCoordsComponent),
         typeof(BubblePopsC.Scripts.Components.Board.PlayAreaComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleNumberComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.DroppedComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.GhostComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShooterPositionComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShotComponent),
@@ -123,6 +131,7 @@ public static class GameComponentsLookup {
         typeof(BubblePopsC.Scripts.Components.Tile.TileComponent),
         typeof(BubblePopsC.Scripts.Components.ViewComponent),
         typeof(DestroyedListenerComponent),
+        typeof(DroppedListenerComponent),
         typeof(GhostListenerComponent),
         typeof(GhostRemovedListenerComponent),
         typeof(MergeDirtyListenerComponent),

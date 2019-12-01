@@ -20,12 +20,12 @@ namespace BubblePopsC.Scripts.Systems
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.Destroyed.Added());
+            return context.CreateCollector(GameMatcher.Merging.Removed());
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return true;
+            return !entity.isMerging;
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -39,8 +39,20 @@ namespace BubblePopsC.Scripts.Systems
 
                 if (IsConnected(bubble.axialCoord.Value)) continue;
 
-                bubble.isDestroyed = true;
+                DropBubble(bubble);
             }
+        }
+
+        private void DropBubble(GameEntity bubble)
+        {
+            var bubbleId = bubble.id.Value;
+            bubble.RemoveAxialCoord();
+            bubble.AddDropped(() =>
+            {
+                var b = _contexts.game.GetEntityWithId(bubbleId);
+                if (b == null) return;
+                b.isDestroyed = true;
+            });
         }
 
         private bool IsConnected(AxialCoord rootCoord)

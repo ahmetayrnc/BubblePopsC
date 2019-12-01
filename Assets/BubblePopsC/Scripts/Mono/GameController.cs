@@ -30,7 +30,7 @@ namespace BubblePopsC.Scripts.Mono
             return new Feature("Systems")
                     //initialize
                     .Add(new InitializeBoardSystem(contexts))
-                    .Add(new InitializeTilesSystem(contexts))
+//                    .Add(new InitializeTilesSystem(contexts))
                     .Add(new InitializeBubblesSystem(contexts))
 
                     //input

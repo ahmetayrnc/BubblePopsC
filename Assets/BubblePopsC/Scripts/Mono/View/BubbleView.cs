@@ -11,7 +11,7 @@ namespace BubblePopsC.Scripts.Mono.View
 {
     public class BubbleView : View, IAxialCoordListener, IPositionListener, IDestroyedListener, IShotListener,
         IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener,
-        IMergeToListener, IShiftToListener
+        IMergeToListener, IShiftToListener, IDroppedListener
     {
         public SpriteRenderer spriteRenderer;
         public SpriteRenderer shadow;
@@ -34,6 +34,7 @@ namespace BubblePopsC.Scripts.Mono.View
             entity.AddBubbleNumberListener(this);
             entity.AddMergeToListener(this);
             entity.AddShiftToListener(this);
+            entity.AddDroppedListener(this);
         }
 
         protected override void InitializeView(GameEntity entity)
@@ -111,6 +112,11 @@ namespace BubblePopsC.Scripts.Mono.View
         {
             var movement = transform.DOMove(spot, 0.5f);
             movement.onComplete += () => callback();
+        }
+
+        public void OnDropped(GameEntity entity, Action callback)
+        {
+            transform.DOMoveY(transform.position.y - 10f, 0.75f).onComplete += () => callback();
         }
     }
 }
