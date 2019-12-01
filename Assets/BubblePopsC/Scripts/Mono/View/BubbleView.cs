@@ -1,5 +1,6 @@
 ﻿using System;
 using BubblePopsC.Scripts.Components.Position;
+using BubblePopsC.Scripts.Mono.ScriptableObjects;
 using BubblePopsC.Scripts.Services;
 using DG.Tweening;
 using Entitas.Unity;
@@ -13,9 +14,11 @@ namespace BubblePopsC.Scripts.Mono.View
         IMergeToListener, IAnyBoardOffsetListener
     {
         public SpriteRenderer spriteRenderer;
+        public SpriteRenderer shadow;
         public CircleCollider2D visualCollider;
         public PolygonCollider2D realCollider;
         public TextMeshPro bubbleNumber;
+        public BubbleColors bubbleColors;
 
         private GameEntity _entity;
 
@@ -37,8 +40,10 @@ namespace BubblePopsC.Scripts.Mono.View
         {
             _entity = entity;
             spriteRenderer.sortingLayerName = BubbleLayer;
+            shadow.sortingLayerName = BubbleLayer;
             bubbleNumber.sortingLayerID = SortingLayer.NameToID(BubbleLayer);
 
+            shadow.sortingOrder = -1;
             spriteRenderer.sortingOrder = 0;
             bubbleNumber.sortingOrder = 1;
         }
@@ -93,6 +98,7 @@ namespace BubblePopsC.Scripts.Mono.View
         public void OnBubbleNumber(GameEntity entity, int value)
         {
             bubbleNumber.text = entity.bubbleNumber.Value.ToString();
+            spriteRenderer.color = bubbleColors.value[(int) Math.Log(value, 2) - 1];
         }
 
         public void OnMergeTo(GameEntity entity, AxialCoord spot, Action callback)

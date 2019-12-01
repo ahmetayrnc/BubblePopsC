@@ -58,6 +58,9 @@
               <e p="Input" t="Include">
                 <e p="InputEmitter.cs" t="Include" />
               </e>
+              <e p="ScriptableObjects" t="Include">
+                <e p="BubbleColors.cs" t="Include" />
+              </e>
               <e p="View" t="Include">
                 <e p="BubbleView.cs" t="Include" />
                 <e p="PlayAreaView.cs" t="Include" />

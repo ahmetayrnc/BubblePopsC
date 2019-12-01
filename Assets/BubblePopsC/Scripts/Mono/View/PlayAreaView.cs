@@ -5,6 +5,7 @@ namespace BubblePopsC.Scripts.Mono.View
     public class PlayAreaView : View
     {
         public SpriteRenderer spriteRenderer;
+        public Transform colliderParent;
 
         protected override void AddListeners(GameEntity entity)
         {
@@ -16,9 +17,9 @@ namespace BubblePopsC.Scripts.Mono.View
             spriteRenderer.sortingLayerName = PlayAreaLayer;
 
             var playArea = entity.playArea;
-            var transform1 = transform;
-            transform1.position = playArea.Center;
-            transform1.localScale = playArea.Size;
+            transform.position = playArea.Center;
+            spriteRenderer.size = playArea.Size;
+            colliderParent.localScale = playArea.Size;
         }
     }
 }
