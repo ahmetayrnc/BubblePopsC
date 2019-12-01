@@ -47,6 +47,7 @@ namespace BubblePopsC.Scripts.Mono
                     .Add(new BigBubbleExplodeSystem(contexts))
                     .Add(new BubbleDropperSystem(contexts))
                     .Add(new BoardShifterSystem(contexts))
+                    .Add(new BubbleShifterSystem(contexts))
 
                     //view
                     .Add(new AddViewSystem(contexts))

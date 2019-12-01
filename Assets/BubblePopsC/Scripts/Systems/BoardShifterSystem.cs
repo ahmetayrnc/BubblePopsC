@@ -57,18 +57,15 @@ namespace BubblePopsC.Scripts.Systems
         private void ShiftUp()
         {
             ShiftBubbles(+1);
-            Debug.Log("Shift Up");
         }
 
         private void ShiftDown()
         {
             ShiftBubbles(-1);
-            Debug.Log("Shift Down");
         }
 
         private void ShiftBubbles(int direction)
         {
-            var indented = _contexts.game.boardOffset.Indented;
             foreach (var bubble in _bubbleGroup)
             {
                 var bubblePos = HexHelperService.HexToPoint(bubble.axialCoord.Value);
@@ -76,8 +73,8 @@ namespace BubblePopsC.Scripts.Systems
                 bubble.AddShiftTo(bubblePos, () =>
                 {
                     bubble.RemoveShiftTo();
-                    _contexts.game.ReplaceBoardOffset(!indented);
-                    bubble.ReplaceAxialCoord(HexHelperService.PointToHex(bubblePos, !indented));
+                    bubble.AddPosition(bubblePos);
+                    _contexts.game.isBubbleShiftDirty = true;
                 });
             }
         }

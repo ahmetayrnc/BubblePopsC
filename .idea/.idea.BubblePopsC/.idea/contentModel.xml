@@ -12,6 +12,7 @@
               <e p="Board" t="Include">
                 <e p="BoardOffset.cs" t="Include" />
                 <e p="BoardSizeComponent.cs" t="Include" />
+                <e p="BubbleShiftDirty.cs" t="Include" />
                 <e p="CeilingCoordsComponent.cs" t="Include" />
                 <e p="PlayAreaComponent.cs" t="Include" />
               </e>
@@ -82,6 +83,7 @@
               <e p="BigBubbleExplodeSystem.cs" t="Include" />
               <e p="BoardShifterSystem.cs" t="Include" />
               <e p="BubbleDropperSystem.cs" t="Include" />
+              <e p="BubbleShifterSystem.cs" t="Include" />
               <e p="BubbleShooterRefillSystem.cs" t="Include" />
               <e p="DestroySystem.cs" t="Include" />
               <e p="Initialize" t="Include">
@@ -190,6 +192,7 @@
               <e p="GameBubbleComponent.cs" t="Include" />
               <e p="GameBubbleNumberComponent.cs" t="Include" />
               <e p="GameBubbleNumberListenerComponent.cs" t="Include" />
+              <e p="GameBubbleShiftDirtyComponent.cs" t="Include" />
               <e p="GameCeilingCoordsComponent.cs" t="Include" />
               <e p="GameDestroyedComponent.cs" t="Include" />
               <e p="GameDestroyedListenerComponent.cs" t="Include" />
