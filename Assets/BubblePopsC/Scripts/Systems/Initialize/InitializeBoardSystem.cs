@@ -15,7 +15,7 @@ namespace BubblePopsC.Scripts.Systems.Initialize
         public void Initialize()
         {
             const int boardWidth = 6;
-            const int boardHeight = 12;
+            const int boardHeight = 14;
             _contexts.game.SetBoardSize(new Vector2Int(boardWidth, boardHeight));
             _contexts.game.SetIdCount(0);
             SetPlayArea(boardWidth);

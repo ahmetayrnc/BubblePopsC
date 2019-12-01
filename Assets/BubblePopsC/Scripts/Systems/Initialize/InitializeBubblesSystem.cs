@@ -26,8 +26,8 @@ namespace BubblePopsC.Scripts.Systems.Initialize
         private void CreateBubblesInGrid()
         {
             var boardSize = _contexts.game.boardSize.Value;
-            const int firstRowsCount = 4;
-            const int ceilingRowsCount = 2;
+            const int firstRowsCount = 6;
+            const int ceilingRowsCount = 4;
             var ceilingCoords = new HashSet<AxialCoord>();
             for (var r = 0; r < boardSize.y; r++)
             {

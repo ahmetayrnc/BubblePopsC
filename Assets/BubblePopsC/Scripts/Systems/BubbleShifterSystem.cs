@@ -53,28 +53,41 @@ namespace BubblePopsC.Scripts.Systems
             var boardSize = _contexts.game.boardSize.Value;
             var width = boardSize.x;
             var height = boardSize.y;
-            for (var r = 0; r < height; r++)
+            var r = height - 1;
+
+            RemoveRow(r, width, hexMap);
+            RemoveRow(r - 1, width, hexMap);
+            FillRow(r - 2, width, hexMap);
+            FillRow(r - 3, width, hexMap);
+        }
+
+        private void RemoveRow(int r, int width, GameEntity[,] hexMap)
+        {
+            var rOffset = r / 2;
+            for (var q = -rOffset; q < width - rOffset; q++)
             {
-                var rOffset = r >> 1;
-                for (var q = -rOffset; q < width - rOffset; q++)
-                {
-                    if (indented)
-                    {
-                        if (height - r != 1) continue;
-                    }
-                    else
-                    {
-                        if (height - r != 2) continue;
-                    }
+                var axialCoord = new AxialCoord {Q = q, R = r};
+                var indices = HexHelperService.GetArrayIndices(axialCoord);
+                if (hexMap[indices.x, indices.y] == null) return;
 
-                    var axialCoord = new AxialCoord {Q = q, R = r};
+                var bubble = hexMap[indices.x, indices.y];
+                bubble.isDestroyed = true;
+            }
+        }
 
-                    var indices = HexHelperService.GetArrayIndices(axialCoord);
-                    if (hexMap[indices.x, indices.y] != null) continue;
+        private void FillRow(int r, int width, GameEntity[,] hexMap)
+        {
+            var rOffset = r / 2;
+            for (var q = -rOffset; q < width - rOffset; q++)
+            {
+                var axialCoord = new AxialCoord {Q = q, R = r};
 
-                    BubbleCreatorService.CreateBoardBubble(axialCoord,
-                        BubbleCreatorService.GenerateRandomBubbleNumber());
-                }
+                var indices = HexHelperService.GetArrayIndices(axialCoord);
+
+                if (hexMap[indices.x, indices.y] != null) continue;
+
+                BubbleCreatorService.CreateBoardBubble(axialCoord,
+                    BubbleCreatorService.GenerateRandomBubbleNumber());
             }
         }
     }
