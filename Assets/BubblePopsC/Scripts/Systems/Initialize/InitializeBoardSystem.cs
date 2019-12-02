@@ -20,6 +20,7 @@ namespace BubblePopsC.Scripts.Systems.Initialize
             _contexts.game.SetIdCount(0);
             SetPlayArea(boardWidth);
             _contexts.game.SetShooterPosition(new Vector2(_contexts.game.playArea.Size.x / 2f, -0.5f));
+            _contexts.game.SetSparePosition(new Vector2(_contexts.game.playArea.Size.x / 2f - 0.78f, -0.5f));
             _contexts.game.SetBoardOffset(false);
         }
 

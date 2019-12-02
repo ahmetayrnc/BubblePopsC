@@ -7,4 +7,14 @@ namespace BubblePopsC.Scripts.Components.Bubble
     public class WillBeShotNextComponent : IComponent
     {
     }
+
+    [Game, Event(EventTarget.Self)]
+    public class SpareBubbleComponent : IComponent
+    {
+    }
+
+    [Game, Event(EventTarget.Self)]
+    public class MoveToShooterComponent : IComponent
+    {
+    }
 }

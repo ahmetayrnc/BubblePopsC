@@ -144,10 +144,12 @@
               <e p="GhostRemovedListenerComponent.cs" t="Include" />
               <e p="MergeDirtyListenerComponent.cs" t="Include" />
               <e p="MergeToListenerComponent.cs" t="Include" />
+              <e p="MoveToShooterListenerComponent.cs" t="Include" />
               <e p="NudgedListenerComponent.cs" t="Include" />
               <e p="PositionListenerComponent.cs" t="Include" />
               <e p="ShiftToListenerComponent.cs" t="Include" />
               <e p="ShotListenerComponent.cs" t="Include" />
+              <e p="SpareBubbleListenerComponent.cs" t="Include" />
               <e p="WillBeShotNextListenerComponent.cs" t="Include" />
               <e p="WillBeShotNextRemovedListenerComponent.cs" t="Include" />
             </e>
@@ -166,10 +168,12 @@
               <e p="IGhostRemovedListener.cs" t="Include" />
               <e p="IMergeDirtyListener.cs" t="Include" />
               <e p="IMergeToListener.cs" t="Include" />
+              <e p="IMoveToShooterListener.cs" t="Include" />
               <e p="INudgedListener.cs" t="Include" />
               <e p="IPositionListener.cs" t="Include" />
               <e p="IShiftToListener.cs" t="Include" />
               <e p="IShotListener.cs" t="Include" />
+              <e p="ISpareBubbleListener.cs" t="Include" />
               <e p="IWillBeShotNextListener.cs" t="Include" />
               <e p="IWillBeShotNextRemovedListener.cs" t="Include" />
             </e>
@@ -187,10 +191,12 @@
               <e p="GhostRemovedEventSystem.cs" t="Include" />
               <e p="MergeDirtyEventSystem.cs" t="Include" />
               <e p="MergeToEventSystem.cs" t="Include" />
+              <e p="MoveToShooterEventSystem.cs" t="Include" />
               <e p="NudgedEventSystem.cs" t="Include" />
               <e p="PositionEventSystem.cs" t="Include" />
               <e p="ShiftToEventSystem.cs" t="Include" />
               <e p="ShotEventSystem.cs" t="Include" />
+              <e p="SpareBubbleEventSystem.cs" t="Include" />
               <e p="WillBeShotNextEventSystem.cs" t="Include" />
               <e p="WillBeShotNextRemovedEventSystem.cs" t="Include" />
             </e>
@@ -228,6 +234,8 @@
               <e p="GameMergeToComponent.cs" t="Include" />
               <e p="GameMergeToListenerComponent.cs" t="Include" />
               <e p="GameMergingComponent.cs" t="Include" />
+              <e p="GameMoveToShooterComponent.cs" t="Include" />
+              <e p="GameMoveToShooterListenerComponent.cs" t="Include" />
               <e p="GameNudgedComponent.cs" t="Include" />
               <e p="GameNudgedListenerComponent.cs" t="Include" />
               <e p="GamePlayAreaComponent.cs" t="Include" />
@@ -239,6 +247,9 @@
               <e p="GameShootingTrajectoryComponent.cs" t="Include" />
               <e p="GameShotComponent.cs" t="Include" />
               <e p="GameShotListenerComponent.cs" t="Include" />
+              <e p="GameSpareBubbleComponent.cs" t="Include" />
+              <e p="GameSpareBubbleListenerComponent.cs" t="Include" />
+              <e p="GameSparePositionComponent.cs" t="Include" />
               <e p="GameTileComponent.cs" t="Include" />
               <e p="GameViewComponent.cs" t="Include" />
               <e p="GameWillBeShotNextComponent.cs" t="Include" />

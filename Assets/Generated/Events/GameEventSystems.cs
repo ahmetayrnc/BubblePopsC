@@ -20,12 +20,14 @@ public sealed class GameEventSystems : Feature {
         Add(new GhostRemovedEventSystem(contexts)); // priority: 0
         Add(new MergeDirtyEventSystem(contexts)); // priority: 0
         Add(new MergeToEventSystem(contexts)); // priority: 0
+        Add(new MoveToShooterEventSystem(contexts)); // priority: 0
         Add(new NudgedEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new ShiftToEventSystem(contexts)); // priority: 0
         Add(new AnyShootingTrajectoryEventSystem(contexts)); // priority: 0
         Add(new AnyShootingTrajectoryRemovedEventSystem(contexts)); // priority: 0
         Add(new ShotEventSystem(contexts)); // priority: 0
+        Add(new SpareBubbleEventSystem(contexts)); // priority: 0
         Add(new WillBeShotNextEventSystem(contexts)); // priority: 0
         Add(new WillBeShotNextRemovedEventSystem(contexts)); // priority: 0
     }

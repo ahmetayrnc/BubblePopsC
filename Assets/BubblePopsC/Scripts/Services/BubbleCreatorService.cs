@@ -42,6 +42,17 @@ namespace BubblePopsC.Scripts.Services
             return bubble;
         }
 
+        public static GameEntity CreateSpareBubble()
+        {
+            var bubble = CreateBubble();
+
+            bubble.AddPosition(Contexts.sharedInstance.game.sparePosition.Value);
+            bubble.AddBubbleNumber(GenerateRandomBubbleNumber());
+            bubble.isSpareBubble = true;
+
+            return bubble;
+        }
+
         public static int GenerateRandomBubbleNumber()
         {
             var power = Random.Range(1, 6);

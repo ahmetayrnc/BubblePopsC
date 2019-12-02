@@ -13,7 +13,8 @@ namespace BubblePopsC.Scripts.Mono.View
 {
     public class BubbleView : View, IAxialCoordListener, IPositionListener, IDestroyedListener, IShotListener,
         IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener,
-        IMergeToListener, IShiftToListener, IDroppedListener, IExplodedListener
+        IMergeToListener, IShiftToListener, IDroppedListener, IExplodedListener, ISpareBubbleListener,
+        IMoveToShooterListener
     {
         public SpriteRenderer spriteRenderer;
         public SpriteRenderer shadow;
@@ -30,8 +31,10 @@ namespace BubblePopsC.Scripts.Mono.View
         private const int BubbleOrder = 0;
         private const int BubbleNumberOrder = 1;
         private const int GhostBubbleOrder = 2;
-        private const int ShotBubbleOrder = 3;
-        private const int ShotBubbleNumberOrder = 4;
+        private const int SpareBubbleOrder = 3;
+        private const int SpareBubbleNumberOrder = 4;
+        private const int ShotBubbleOrder = 5;
+        private const int ShotBubbleNumberOrder = 6;
 
         private const int ShotSpeed = 16;
         private const float GhostBallOpacity = 0.5f;
@@ -53,6 +56,8 @@ namespace BubblePopsC.Scripts.Mono.View
             entity.AddShiftToListener(this);
             entity.AddDroppedListener(this);
             entity.AddExplodedListener(this);
+            entity.AddSpareBubbleListener(this);
+            entity.AddMoveToShooterListener(this);
         }
 
         protected override void InitializeView(GameEntity entity)
@@ -214,6 +219,22 @@ namespace BubblePopsC.Scripts.Mono.View
             {
                 CreateBubbleParticle(transform.position, spriteRenderer.color, explodeParticle);
                 callback();
+            });
+        }
+
+        public void OnSpareBubble(GameEntity entity)
+        {
+            spriteRenderer.sortingOrder = SpareBubbleOrder;
+            bubbleNumber.sortingOrder = SpareBubbleNumberOrder;
+            transform.localScale = Vector3.one * 0.75f;
+            ToggleCollider(false);
+        }
+
+        public void OnMoveToShooter(GameEntity entity)
+        {
+            transform.DOScale(1f, 0.2f).SetEase(Ease.OutSine).OnComplete(() =>
+            {
+                transform.DOMove(Contexts.sharedInstance.game.shooterPosition.Value, 0.1f).SetEase(Ease.OutSine);
             });
         }
     }

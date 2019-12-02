@@ -9,4 +9,10 @@ namespace BubblePopsC.Scripts.Components.Bubble
     {
         public Vector2 Value;
     }
+
+    [Game, Unique]
+    public class SparePositionComponent : IComponent
+    {
+        public Vector2 Value;
+    }
 }

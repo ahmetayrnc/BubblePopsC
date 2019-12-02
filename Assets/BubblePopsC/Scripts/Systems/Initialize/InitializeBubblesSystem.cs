@@ -54,6 +54,7 @@ namespace BubblePopsC.Scripts.Systems.Initialize
         private void CreateBubblesInShooter()
         {
             BubbleCreatorService.CreateShooterBubble();
+            BubbleCreatorService.CreateSpareBubble();
         }
     }
 }

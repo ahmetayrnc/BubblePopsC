@@ -7,8 +7,11 @@ namespace BubblePopsC.Scripts.Systems
 {
     public class BubbleShooterRefillSystem : ReactiveSystem<GameEntity>
     {
+        private Contexts _contexts;
+
         public BubbleShooterRefillSystem(Contexts contexts) : base(contexts.game)
         {
+            _contexts = contexts;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -23,7 +26,11 @@ namespace BubblePopsC.Scripts.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            BubbleCreatorService.CreateShooterBubble();
+            var spareBubble = _contexts.game.GetGroup(GameMatcher.SpareBubble).GetSingleEntity();
+            spareBubble.isSpareBubble = false;
+            spareBubble.isWillBeShotNext = true;
+            spareBubble.isMoveToShooter = true;
+            BubbleCreatorService.CreateSpareBubble();
         }
     }
 }

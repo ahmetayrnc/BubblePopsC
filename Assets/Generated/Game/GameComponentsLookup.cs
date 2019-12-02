@@ -25,37 +25,42 @@ public static class GameComponentsLookup {
     public const int Dropped = 14;
     public const int Exploded = 15;
     public const int Ghost = 16;
-    public const int Nudged = 17;
-    public const int ShooterPosition = 18;
-    public const int Shot = 19;
-    public const int WillBeShotNext = 20;
-    public const int Destroyed = 21;
-    public const int Id = 22;
-    public const int IdCount = 23;
-    public const int MergeDirty = 24;
-    public const int MergeTo = 25;
-    public const int Merging = 26;
-    public const int ShiftTo = 27;
-    public const int AxialCoord = 28;
-    public const int Position = 29;
-    public const int ShootingTrajectory = 30;
-    public const int Tile = 31;
-    public const int View = 32;
-    public const int DestroyedListener = 33;
-    public const int DroppedListener = 34;
-    public const int ExplodedListener = 35;
-    public const int GhostListener = 36;
-    public const int GhostRemovedListener = 37;
-    public const int MergeDirtyListener = 38;
-    public const int MergeToListener = 39;
-    public const int NudgedListener = 40;
-    public const int PositionListener = 41;
-    public const int ShiftToListener = 42;
-    public const int ShotListener = 43;
-    public const int WillBeShotNextListener = 44;
-    public const int WillBeShotNextRemovedListener = 45;
+    public const int MoveToShooter = 17;
+    public const int Nudged = 18;
+    public const int ShooterPosition = 19;
+    public const int Shot = 20;
+    public const int SpareBubble = 21;
+    public const int SparePosition = 22;
+    public const int WillBeShotNext = 23;
+    public const int Destroyed = 24;
+    public const int Id = 25;
+    public const int IdCount = 26;
+    public const int MergeDirty = 27;
+    public const int MergeTo = 28;
+    public const int Merging = 29;
+    public const int ShiftTo = 30;
+    public const int AxialCoord = 31;
+    public const int Position = 32;
+    public const int ShootingTrajectory = 33;
+    public const int Tile = 34;
+    public const int View = 35;
+    public const int DestroyedListener = 36;
+    public const int DroppedListener = 37;
+    public const int ExplodedListener = 38;
+    public const int GhostListener = 39;
+    public const int GhostRemovedListener = 40;
+    public const int MergeDirtyListener = 41;
+    public const int MergeToListener = 42;
+    public const int MoveToShooterListener = 43;
+    public const int NudgedListener = 44;
+    public const int PositionListener = 45;
+    public const int ShiftToListener = 46;
+    public const int ShotListener = 47;
+    public const int SpareBubbleListener = 48;
+    public const int WillBeShotNextListener = 49;
+    public const int WillBeShotNextRemovedListener = 50;
 
-    public const int TotalComponents = 46;
+    public const int TotalComponents = 51;
 
     public static readonly string[] componentNames = {
         "AnyBoardOffsetListener",
@@ -75,9 +80,12 @@ public static class GameComponentsLookup {
         "Dropped",
         "Exploded",
         "Ghost",
+        "MoveToShooter",
         "Nudged",
         "ShooterPosition",
         "Shot",
+        "SpareBubble",
+        "SparePosition",
         "WillBeShotNext",
         "Destroyed",
         "Id",
@@ -98,10 +106,12 @@ public static class GameComponentsLookup {
         "GhostRemovedListener",
         "MergeDirtyListener",
         "MergeToListener",
+        "MoveToShooterListener",
         "NudgedListener",
         "PositionListener",
         "ShiftToListener",
         "ShotListener",
+        "SpareBubbleListener",
         "WillBeShotNextListener",
         "WillBeShotNextRemovedListener"
     };
@@ -124,9 +134,12 @@ public static class GameComponentsLookup {
         typeof(BubblePopsC.Scripts.Components.Bubble.DroppedComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ExplodedComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.GhostComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.MoveToShooterComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.NudgedComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShooterPositionComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShotComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.SpareBubbleComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.SparePositionComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.WillBeShotNextComponent),
         typeof(BubblePopsC.Scripts.Components.DestroyedComponent),
         typeof(BubblePopsC.Scripts.Components.Id.IdComponent),
@@ -147,10 +160,12 @@ public static class GameComponentsLookup {
         typeof(GhostRemovedListenerComponent),
         typeof(MergeDirtyListenerComponent),
         typeof(MergeToListenerComponent),
+        typeof(MoveToShooterListenerComponent),
         typeof(NudgedListenerComponent),
         typeof(PositionListenerComponent),
         typeof(ShiftToListenerComponent),
         typeof(ShotListenerComponent),
+        typeof(SpareBubbleListenerComponent),
         typeof(WillBeShotNextListenerComponent),
         typeof(WillBeShotNextRemovedListenerComponent)
     };
