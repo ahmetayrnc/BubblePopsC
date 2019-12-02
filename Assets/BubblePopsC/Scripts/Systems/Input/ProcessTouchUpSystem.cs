@@ -35,6 +35,7 @@ namespace BubblePopsC.Scripts.Systems.Input
 
             var trajectory = _contexts.game.shootingTrajectory.Points;
             ShootBall(trajectory, ghostBubble);
+            _contexts.input.isInputDisabled = true;
         }
 
         private void ShootBall(List<Vector3> trajectory, GameEntity ghostBubble)

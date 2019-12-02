@@ -8,19 +8,22 @@
 //------------------------------------------------------------------------------
 public static class InputComponentsLookup {
 
-    public const int TouchDown = 0;
-    public const int TouchPosition = 1;
-    public const int TouchUp = 2;
+    public const int InputDisabled = 0;
+    public const int TouchDown = 1;
+    public const int TouchPosition = 2;
+    public const int TouchUp = 3;
 
-    public const int TotalComponents = 3;
+    public const int TotalComponents = 4;
 
     public static readonly string[] componentNames = {
+        "InputDisabled",
         "TouchDown",
         "TouchPosition",
         "TouchUp"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(BubblePopsC.Scripts.Components.Input.InputDisabledComponent),
         typeof(BubblePopsC.Scripts.Components.Input.TouchDownComponent),
         typeof(BubblePopsC.Scripts.Components.Input.TouchPositionComponent),
         typeof(BubblePopsC.Scripts.Components.Input.TouchUpComponent)

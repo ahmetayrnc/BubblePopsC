@@ -14,7 +14,7 @@ namespace BubblePopsC.Scripts.Mono.View
     public class BubbleView : View, IAxialCoordListener, IPositionListener, IDestroyedListener, IShotListener,
         IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener,
         IMergeToListener, IShiftToListener, IDroppedListener, IExplodedListener, ISpareBubbleListener,
-        IMoveToShooterListener
+        IMoveToShooterListener, INudgedListener
     {
         public SpriteRenderer spriteRenderer;
         public SpriteRenderer shadow;
@@ -58,6 +58,7 @@ namespace BubblePopsC.Scripts.Mono.View
             entity.AddExplodedListener(this);
             entity.AddSpareBubbleListener(this);
             entity.AddMoveToShooterListener(this);
+            entity.AddNudgedListener(this);
         }
 
         protected override void InitializeView(GameEntity entity)
@@ -236,6 +237,17 @@ namespace BubblePopsC.Scripts.Mono.View
             {
                 transform.DOMove(Contexts.sharedInstance.game.shooterPosition.Value, 0.1f).SetEase(Ease.OutSine);
             });
+        }
+
+        public void OnNudged(GameEntity entity, AxialCoord from, Action callback)
+        {
+            var pos = (Vector2) transform.position;
+            var nudgePos = HexHelperService.HexToPoint(from);
+            var nudgeDirection = pos - nudgePos;
+            nudgeDirection = nudgeDirection.normalized;
+
+            transform.DOMove(pos + nudgeDirection * 0.2f, 0.2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo)
+                .onComplete += () => callback();
         }
     }
 }

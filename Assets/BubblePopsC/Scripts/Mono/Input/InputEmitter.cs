@@ -23,6 +23,8 @@ namespace BubblePopsC.Scripts.Mono.Input
 
         private void EmitInput()
         {
+            if (_contexts.input.isInputDisabled) return;
+
             var touchPos = _cam.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
 
             if (UnityEngine.Input.GetMouseButtonDown(0))

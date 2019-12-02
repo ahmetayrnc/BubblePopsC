@@ -34,6 +34,7 @@
                 <e p="IdCountComponent.cs" t="Include" />
               </e>
               <e p="Input" t="Include">
+                <e p="InputDisabledComponent.cs" t="Include" />
                 <e p="TouchDownComponent.cs" t="Include" />
                 <e p="TouchPositionComponent.cs" t="Include" />
                 <e p="TouchUpComponent.cs" t="Include" />
@@ -107,6 +108,7 @@
                 <e p="ProcessTouchUpSystem.cs" t="Include" />
               </e>
               <e p="MergeSystem.cs" t="Include" />
+              <e p="NudgeSystem.cs" t="Include" />
               <e p="View" t="Include">
                 <e p="AddViewSystem.cs" t="Include" />
               </e>
@@ -264,6 +266,7 @@
           </e>
           <e p="Input" t="Include">
             <e p="Components" t="Include">
+              <e p="InputInputDisabledComponent.cs" t="Include" />
               <e p="InputTouchDownComponent.cs" t="Include" />
               <e p="InputTouchPositionComponent.cs" t="Include" />
               <e p="InputTouchUpComponent.cs" t="Include" />

@@ -21,16 +21,16 @@ public sealed class NudgedEventSystem : Entitas.ReactiveSystem<GameEntity> {
     }
 
     protected override bool Filter(GameEntity entity) {
-        return entity.isNudged && entity.hasNudgedListener;
+        return entity.hasNudged && entity.hasNudgedListener;
     }
 
     protected override void Execute(System.Collections.Generic.List<GameEntity> entities) {
         foreach (var e in entities) {
-            
+            var component = e.nudged;
             _listenerBuffer.Clear();
             _listenerBuffer.AddRange(e.nudgedListener.value);
             foreach (var listener in _listenerBuffer) {
-                listener.OnNudged(e);
+                listener.OnNudged(e, component.From, component.Callback);
             }
         }
     }

@@ -39,6 +39,7 @@ namespace BubblePopsC.Scripts.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
+            _contexts.input.isInputDisabled = false;
             var shouldShiftDown = true;
             foreach (var bubble in _bubbleGroup)
             {

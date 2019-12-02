@@ -7,5 +7,5 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 public interface INudgedListener {
-    void OnNudged(GameEntity entity);
+    void OnNudged(GameEntity entity, BubblePopsC.Scripts.Components.Position.AxialCoord from, System.Action callback);
 }

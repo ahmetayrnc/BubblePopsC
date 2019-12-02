@@ -8,25 +8,27 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly BubblePopsC.Scripts.Components.Bubble.NudgedComponent nudgedComponent = new BubblePopsC.Scripts.Components.Bubble.NudgedComponent();
+    public BubblePopsC.Scripts.Components.Bubble.NudgedComponent nudged { get { return (BubblePopsC.Scripts.Components.Bubble.NudgedComponent)GetComponent(GameComponentsLookup.Nudged); } }
+    public bool hasNudged { get { return HasComponent(GameComponentsLookup.Nudged); } }
 
-    public bool isNudged {
-        get { return HasComponent(GameComponentsLookup.Nudged); }
-        set {
-            if (value != isNudged) {
-                var index = GameComponentsLookup.Nudged;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : nudgedComponent;
+    public void AddNudged(BubblePopsC.Scripts.Components.Position.AxialCoord newFrom, System.Action newCallback) {
+        var index = GameComponentsLookup.Nudged;
+        var component = (BubblePopsC.Scripts.Components.Bubble.NudgedComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Bubble.NudgedComponent));
+        component.From = newFrom;
+        component.Callback = newCallback;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplaceNudged(BubblePopsC.Scripts.Components.Position.AxialCoord newFrom, System.Action newCallback) {
+        var index = GameComponentsLookup.Nudged;
+        var component = (BubblePopsC.Scripts.Components.Bubble.NudgedComponent)CreateComponent(index, typeof(BubblePopsC.Scripts.Components.Bubble.NudgedComponent));
+        component.From = newFrom;
+        component.Callback = newCallback;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemoveNudged() {
+        RemoveComponent(GameComponentsLookup.Nudged);
     }
 }
 
