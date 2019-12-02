@@ -22,6 +22,7 @@
                 <e p="BubbleNumberComponent.cs" t="Include" />
                 <e p="DroppedComponent.cs" t="Include" />
                 <e p="GhostComponent.cs" t="Include" />
+                <e p="NudgedComponent.cs" t="Include" />
                 <e p="ShooterPositionComponent.cs" t="Include" />
                 <e p="ShotComponent.cs" t="Include" />
                 <e p="WillBeShotNextComponent.cs" t="Include" />
@@ -62,11 +63,15 @@
               <e p="Input" t="Include">
                 <e p="InputEmitter.cs" t="Include" />
               </e>
+              <e p="Misc" t="Include">
+                <e p="DoWait.cs" t="Include" />
+              </e>
               <e p="ScriptableObjects" t="Include">
                 <e p="BubbleColors.cs" t="Include" />
               </e>
               <e p="View" t="Include">
                 <e p="BubbleView.cs" t="Include" />
+                <e p="ParticleHandler.cs" t="Include" />
                 <e p="PlayAreaView.cs" t="Include" />
                 <e p="TileView.cs" t="Include" />
                 <e p="TrajectoryView.cs" t="Include" />
@@ -137,6 +142,7 @@
               <e p="GhostRemovedListenerComponent.cs" t="Include" />
               <e p="MergeDirtyListenerComponent.cs" t="Include" />
               <e p="MergeToListenerComponent.cs" t="Include" />
+              <e p="NudgedListenerComponent.cs" t="Include" />
               <e p="PositionListenerComponent.cs" t="Include" />
               <e p="ShiftToListenerComponent.cs" t="Include" />
               <e p="ShotListenerComponent.cs" t="Include" />
@@ -157,6 +163,7 @@
               <e p="IGhostRemovedListener.cs" t="Include" />
               <e p="IMergeDirtyListener.cs" t="Include" />
               <e p="IMergeToListener.cs" t="Include" />
+              <e p="INudgedListener.cs" t="Include" />
               <e p="IPositionListener.cs" t="Include" />
               <e p="IShiftToListener.cs" t="Include" />
               <e p="IShotListener.cs" t="Include" />
@@ -176,6 +183,7 @@
               <e p="GhostRemovedEventSystem.cs" t="Include" />
               <e p="MergeDirtyEventSystem.cs" t="Include" />
               <e p="MergeToEventSystem.cs" t="Include" />
+              <e p="NudgedEventSystem.cs" t="Include" />
               <e p="PositionEventSystem.cs" t="Include" />
               <e p="ShiftToEventSystem.cs" t="Include" />
               <e p="ShotEventSystem.cs" t="Include" />
@@ -214,6 +222,8 @@
               <e p="GameMergeToComponent.cs" t="Include" />
               <e p="GameMergeToListenerComponent.cs" t="Include" />
               <e p="GameMergingComponent.cs" t="Include" />
+              <e p="GameNudgedComponent.cs" t="Include" />
+              <e p="GameNudgedListenerComponent.cs" t="Include" />
               <e p="GamePlayAreaComponent.cs" t="Include" />
               <e p="GamePositionComponent.cs" t="Include" />
               <e p="GamePositionListenerComponent.cs" t="Include" />

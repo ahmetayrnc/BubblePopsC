@@ -54,3 +54,9 @@ TagManager:
   - name: Bubble
     uniqueID: 2575424213
     locked: 0
+  - name: BubbleParticle
+    uniqueID: 3533137633
+    locked: 0
+  - name: TopPanel
+    uniqueID: 1533914729
+    locked: 0

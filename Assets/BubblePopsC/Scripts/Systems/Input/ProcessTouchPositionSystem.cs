@@ -57,7 +57,10 @@ namespace BubblePopsC.Scripts.Systems.Input
             var hex = HexHelperService.PointToHex(endPoint);
             var neighbourAxialCoord = HexHelperService.FindNearestNeighbour(hex, endPoint);
 
-            ghostBubble.ReplaceAxialCoord(neighbourAxialCoord);
+            if (ghostBubble.axialCoord.Value.Q != hex.Q || ghostBubble.axialCoord.Value.R != hex.R)
+            {
+                ghostBubble.ReplaceAxialCoord(neighbourAxialCoord);
+            }
         }
 
         private void UpdateTrajectory(bool valid, List<Vector3> trajectory)

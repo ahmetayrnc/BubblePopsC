@@ -24,34 +24,36 @@ public static class GameComponentsLookup {
     public const int BubbleNumber = 13;
     public const int Dropped = 14;
     public const int Ghost = 15;
-    public const int ShooterPosition = 16;
-    public const int Shot = 17;
-    public const int WillBeShotNext = 18;
-    public const int Destroyed = 19;
-    public const int Id = 20;
-    public const int IdCount = 21;
-    public const int MergeDirty = 22;
-    public const int MergeTo = 23;
-    public const int Merging = 24;
-    public const int ShiftTo = 25;
-    public const int AxialCoord = 26;
-    public const int Position = 27;
-    public const int ShootingTrajectory = 28;
-    public const int Tile = 29;
-    public const int View = 30;
-    public const int DestroyedListener = 31;
-    public const int DroppedListener = 32;
-    public const int GhostListener = 33;
-    public const int GhostRemovedListener = 34;
-    public const int MergeDirtyListener = 35;
-    public const int MergeToListener = 36;
-    public const int PositionListener = 37;
-    public const int ShiftToListener = 38;
-    public const int ShotListener = 39;
-    public const int WillBeShotNextListener = 40;
-    public const int WillBeShotNextRemovedListener = 41;
+    public const int Nudged = 16;
+    public const int ShooterPosition = 17;
+    public const int Shot = 18;
+    public const int WillBeShotNext = 19;
+    public const int Destroyed = 20;
+    public const int Id = 21;
+    public const int IdCount = 22;
+    public const int MergeDirty = 23;
+    public const int MergeTo = 24;
+    public const int Merging = 25;
+    public const int ShiftTo = 26;
+    public const int AxialCoord = 27;
+    public const int Position = 28;
+    public const int ShootingTrajectory = 29;
+    public const int Tile = 30;
+    public const int View = 31;
+    public const int DestroyedListener = 32;
+    public const int DroppedListener = 33;
+    public const int GhostListener = 34;
+    public const int GhostRemovedListener = 35;
+    public const int MergeDirtyListener = 36;
+    public const int MergeToListener = 37;
+    public const int NudgedListener = 38;
+    public const int PositionListener = 39;
+    public const int ShiftToListener = 40;
+    public const int ShotListener = 41;
+    public const int WillBeShotNextListener = 42;
+    public const int WillBeShotNextRemovedListener = 43;
 
-    public const int TotalComponents = 42;
+    public const int TotalComponents = 44;
 
     public static readonly string[] componentNames = {
         "AnyBoardOffsetListener",
@@ -70,6 +72,7 @@ public static class GameComponentsLookup {
         "BubbleNumber",
         "Dropped",
         "Ghost",
+        "Nudged",
         "ShooterPosition",
         "Shot",
         "WillBeShotNext",
@@ -91,6 +94,7 @@ public static class GameComponentsLookup {
         "GhostRemovedListener",
         "MergeDirtyListener",
         "MergeToListener",
+        "NudgedListener",
         "PositionListener",
         "ShiftToListener",
         "ShotListener",
@@ -115,6 +119,7 @@ public static class GameComponentsLookup {
         typeof(BubblePopsC.Scripts.Components.Bubble.BubbleNumberComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.DroppedComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.GhostComponent),
+        typeof(BubblePopsC.Scripts.Components.Bubble.NudgedComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShooterPositionComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.ShotComponent),
         typeof(BubblePopsC.Scripts.Components.Bubble.WillBeShotNextComponent),
@@ -136,6 +141,7 @@ public static class GameComponentsLookup {
         typeof(GhostRemovedListenerComponent),
         typeof(MergeDirtyListenerComponent),
         typeof(MergeToListenerComponent),
+        typeof(NudgedListenerComponent),
         typeof(PositionListenerComponent),
         typeof(ShiftToListenerComponent),
         typeof(ShotListenerComponent),

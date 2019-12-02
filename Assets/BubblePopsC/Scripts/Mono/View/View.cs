@@ -9,6 +9,7 @@ namespace BubblePopsC.Scripts.Mono.View
         protected const string PlayAreaLayer = "PlayArea";
         protected const string TileLayer = "Tile";
         protected const string BubbleLayer = "Bubble";
+        protected const string BubbleParticleLayer = "BubbleParticle";
         
         public void Link(IEntity entity)
         {

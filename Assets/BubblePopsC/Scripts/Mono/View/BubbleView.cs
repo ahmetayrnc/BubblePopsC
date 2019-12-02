@@ -6,6 +6,7 @@ using DG.Tweening;
 using Entitas.Unity;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace BubblePopsC.Scripts.Mono.View
 {
@@ -19,8 +20,21 @@ namespace BubblePopsC.Scripts.Mono.View
         public PolygonCollider2D realCollider;
         public TextMeshPro bubbleNumber;
         public BubbleColors bubbleColors;
+        public TrailRenderer trail;
+        public ParticleHandler bubbleParticle;
 
-        private GameEntity _entity;
+        private const int ShadowOrder = -1;
+        private const int BubbleOrder = 0;
+        private const int BubbleNumberOrder = 1;
+        private const int GhostBubbleOrder = 2;
+        private const int ShotBubbleOrder = 3;
+        private const int ShotBubbleNumberOrder = 4;
+
+        private const int ShotSpeed = 16;
+        private const float GhostBallOpacity = 0.5f;
+        private const float MergeDuration = 0.25f;
+        private const float ShiftDuration = 0.5f;
+        private const float GhostAppearDuration = 0.2f;
 
         protected override void AddListeners(GameEntity entity)
         {
@@ -39,19 +53,24 @@ namespace BubblePopsC.Scripts.Mono.View
 
         protected override void InitializeView(GameEntity entity)
         {
-            _entity = entity;
             spriteRenderer.sortingLayerName = BubbleLayer;
             shadow.sortingLayerName = BubbleLayer;
             bubbleNumber.sortingLayerID = SortingLayer.NameToID(BubbleLayer);
 
-            shadow.sortingOrder = -1;
-            spriteRenderer.sortingOrder = 0;
-            bubbleNumber.sortingOrder = 1;
+            shadow.sortingOrder = ShadowOrder;
+            spriteRenderer.sortingOrder = BubbleOrder;
+            bubbleNumber.sortingOrder = BubbleNumberOrder;
+            trail.enabled = false;
         }
 
         public void OnAxialCoord(GameEntity entity, AxialCoord hex)
         {
             transform.position = HexHelperService.HexToPoint(hex);
+
+            if (entity.isGhost)
+            {
+                GhostBubbleAppear();
+            }
         }
 
         public void OnPosition(GameEntity entity, Vector2 value)
@@ -68,9 +87,8 @@ namespace BubblePopsC.Scripts.Mono.View
 
         public void OnShot(GameEntity entity, Vector3[] trajectory, Action callback)
         {
-            var movement = transform.DOPath(trajectory, 0.4f);
+            var movement = transform.DOPath(trajectory, ShotSpeed).SetSpeedBased();
             movement.onComplete += () => callback();
-            movement.SetEase(Ease.InOutSine);
         }
 
         private void ToggleCollider(bool active)
@@ -81,42 +99,91 @@ namespace BubblePopsC.Scripts.Mono.View
 
         public void OnGhost(GameEntity entity)
         {
-            spriteRenderer.color = Color.green;
-            spriteRenderer.sortingOrder = 1;
+            var willBeShotBubble = Contexts.sharedInstance.game.GetGroup(GameMatcher.WillBeShotNext).GetSingleEntity();
+            var ghostColor = bubbleColors.value[(int) Mathf.Log(willBeShotBubble.bubbleNumber.Value, 2) - 1];
+            ghostColor.a = GhostBallOpacity;
+
+            spriteRenderer.color = ghostColor;
+            spriteRenderer.sortingOrder = GhostBubbleOrder;
+            shadow.enabled = false;
             ToggleCollider(false);
+        }
+
+        private void GhostBubbleAppear()
+        {
+            transform.localScale = Vector3.zero;
+            transform.DOScale(Vector3.one, GhostAppearDuration);
         }
 
         public void OnWillBeShotNext(GameEntity entity)
         {
+            trail.enabled = true;
+            spriteRenderer.sortingOrder = ShotBubbleOrder;
+            bubbleNumber.sortingOrder = ShotBubbleNumberOrder;
             ToggleCollider(false);
         }
 
         public void OnWillBeShotNextRemoved(GameEntity entity)
         {
+            trail.enabled = false;
+            spriteRenderer.sortingOrder = BubbleOrder;
+            bubbleNumber.sortingOrder = BubbleNumberOrder;
             ToggleCollider(true);
         }
 
         public void OnBubbleNumber(GameEntity entity, int value)
         {
-            bubbleNumber.text = entity.bubbleNumber.Value.ToString();
+            bubbleNumber.text = GetBubbleNumberText(entity.bubbleNumber.Value);
             spriteRenderer.color = bubbleColors.value[(int) Math.Log(value, 2) - 1];
+        }
+
+        private string GetBubbleNumberText(int number)
+        {
+            if (number == 1024)
+            {
+                return "1K";
+            }
+
+            if (number == 2048)
+            {
+                return "2K";
+            }
+
+            return number.ToString();
         }
 
         public void OnMergeTo(GameEntity entity, AxialCoord spot, Action callback)
         {
-            transform.DOMove(HexHelperService.HexToPoint(spot), 0.1f).onComplete +=
-                () => callback();
+            var movement = transform.DOMove(HexHelperService.HexToPoint(spot), MergeDuration);
+            var seq = DOTween.Sequence();
+            seq.AppendInterval(0.05f);
+            seq.Append(movement);
+            seq.onComplete += () => callback();
         }
 
         public void OnShiftTo(GameEntity entity, Vector2 spot, Action callback)
         {
-            var movement = transform.DOMove(spot, 0.5f);
+            var movement = transform.DOMove(spot, ShiftDuration);
             movement.onComplete += () => callback();
         }
 
         public void OnDropped(GameEntity entity, Action callback)
         {
-            transform.DOMoveY(transform.position.y - 10f, 0.75f).onComplete += () => callback();
+            var speed = Random.Range(4f, 10f);
+            var xOffset = Random.Range(-2f, 2f);
+            var transform1 = transform;
+            transform1.DOMoveX(transform1.position.x + xOffset, speed / 16f).SetSpeedBased();
+            var yMovement = transform1.DOMoveY(-0.5f, speed).SetSpeedBased();
+            yMovement.onComplete += () => callback();
+            yMovement.onComplete += () =>
+            {
+                var particle = Instantiate(bubbleParticle);
+                particle.particleRenderer.sortingLayerName = BubbleParticleLayer;
+                particle.transform.position = transform1.position;
+                var main = particle.particle.main;
+                main.startColor = bubbleColors.value[(int) Math.Log(entity.bubbleNumber.Value, 2) - 1];
+                particle.PlayAndDie();
+            };
         }
     }
 }
