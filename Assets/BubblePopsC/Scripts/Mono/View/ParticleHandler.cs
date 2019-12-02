@@ -33,10 +33,9 @@ namespace BubblePopsC.Scripts.Mono.View
 
         public void PlayAndDie()
         {
-            Refresh();
             particle.Play(true);
 
-            DoWait.WaitWhile(() => particle.isPlaying, () => Destroy(this));
+            DoWait.WaitWhile(() => particle.isPlaying, () => Destroy(gameObject));
         }
 
         public void Refresh()

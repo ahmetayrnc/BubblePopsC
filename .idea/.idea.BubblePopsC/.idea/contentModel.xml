@@ -21,6 +21,7 @@
                 <e p="BubbleComponent.cs" t="Include" />
                 <e p="BubbleNumberComponent.cs" t="Include" />
                 <e p="DroppedComponent.cs" t="Include" />
+                <e p="ExplodedComponent.cs" t="Include" />
                 <e p="GhostComponent.cs" t="Include" />
                 <e p="NudgedComponent.cs" t="Include" />
                 <e p="ShooterPositionComponent.cs" t="Include" />
@@ -138,6 +139,7 @@
               <e p="BubbleNumberListenerComponent.cs" t="Include" />
               <e p="DestroyedListenerComponent.cs" t="Include" />
               <e p="DroppedListenerComponent.cs" t="Include" />
+              <e p="ExplodedListenerComponent.cs" t="Include" />
               <e p="GhostListenerComponent.cs" t="Include" />
               <e p="GhostRemovedListenerComponent.cs" t="Include" />
               <e p="MergeDirtyListenerComponent.cs" t="Include" />
@@ -159,6 +161,7 @@
               <e p="IBubbleNumberListener.cs" t="Include" />
               <e p="IDestroyedListener.cs" t="Include" />
               <e p="IDroppedListener.cs" t="Include" />
+              <e p="IExplodedListener.cs" t="Include" />
               <e p="IGhostListener.cs" t="Include" />
               <e p="IGhostRemovedListener.cs" t="Include" />
               <e p="IMergeDirtyListener.cs" t="Include" />
@@ -179,6 +182,7 @@
               <e p="BubbleNumberEventSystem.cs" t="Include" />
               <e p="DestroyedEventSystem.cs" t="Include" />
               <e p="DroppedEventSystem.cs" t="Include" />
+              <e p="ExplodedEventSystem.cs" t="Include" />
               <e p="GhostEventSystem.cs" t="Include" />
               <e p="GhostRemovedEventSystem.cs" t="Include" />
               <e p="MergeDirtyEventSystem.cs" t="Include" />
@@ -212,6 +216,8 @@
               <e p="GameDestroyedListenerComponent.cs" t="Include" />
               <e p="GameDroppedComponent.cs" t="Include" />
               <e p="GameDroppedListenerComponent.cs" t="Include" />
+              <e p="GameExplodedComponent.cs" t="Include" />
+              <e p="GameExplodedListenerComponent.cs" t="Include" />
               <e p="GameGhostComponent.cs" t="Include" />
               <e p="GameGhostListenerComponent.cs" t="Include" />
               <e p="GameGhostRemovedListenerComponent.cs" t="Include" />

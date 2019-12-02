@@ -1,5 +1,6 @@
 ﻿using System;
 using BubblePopsC.Scripts.Components.Position;
+using BubblePopsC.Scripts.Mono.Misc;
 using BubblePopsC.Scripts.Mono.ScriptableObjects;
 using BubblePopsC.Scripts.Services;
 using DG.Tweening;
@@ -12,7 +13,7 @@ namespace BubblePopsC.Scripts.Mono.View
 {
     public class BubbleView : View, IAxialCoordListener, IPositionListener, IDestroyedListener, IShotListener,
         IGhostListener, IWillBeShotNextListener, IWillBeShotNextRemovedListener, IBubbleNumberListener,
-        IMergeToListener, IShiftToListener, IDroppedListener
+        IMergeToListener, IShiftToListener, IDroppedListener, IExplodedListener
     {
         public SpriteRenderer spriteRenderer;
         public SpriteRenderer shadow;
@@ -21,7 +22,9 @@ namespace BubblePopsC.Scripts.Mono.View
         public TextMeshPro bubbleNumber;
         public BubbleColors bubbleColors;
         public TrailRenderer trail;
-        public ParticleHandler bubbleParticle;
+        public ParticleHandler mergeParticle;
+        public ParticleHandler dropParticle;
+        public ParticleHandler explodeParticle;
 
         private const int ShadowOrder = -1;
         private const int BubbleOrder = 0;
@@ -49,6 +52,7 @@ namespace BubblePopsC.Scripts.Mono.View
             entity.AddMergeToListener(this);
             entity.AddShiftToListener(this);
             entity.AddDroppedListener(this);
+            entity.AddExplodedListener(this);
         }
 
         protected override void InitializeView(GameEntity entity)
@@ -155,6 +159,8 @@ namespace BubblePopsC.Scripts.Mono.View
         public void OnMergeTo(GameEntity entity, AxialCoord spot, Action callback)
         {
             var movement = transform.DOMove(HexHelperService.HexToPoint(spot), MergeDuration);
+            DoWait.WaitSeconds(0.05f, () =>
+                CreateBubbleParticle(transform.position, spriteRenderer.color, mergeParticle));
             var seq = DOTween.Sequence();
             seq.AppendInterval(0.05f);
             seq.Append(movement);
@@ -177,13 +183,38 @@ namespace BubblePopsC.Scripts.Mono.View
             yMovement.onComplete += () => callback();
             yMovement.onComplete += () =>
             {
-                var particle = Instantiate(bubbleParticle);
-                particle.particleRenderer.sortingLayerName = BubbleParticleLayer;
-                particle.transform.position = transform1.position;
-                var main = particle.particle.main;
-                main.startColor = bubbleColors.value[(int) Math.Log(entity.bubbleNumber.Value, 2) - 1];
-                particle.PlayAndDie();
+                CreateBubbleParticle(transform.position,
+                    bubbleColors.value[(int) Math.Log(entity.bubbleNumber.Value, 2) - 1], dropParticle);
             };
+        }
+
+        private void CreateBubbleParticle(Vector3 pos, Color color, ParticleHandler particlePrefab)
+        {
+            var particle = Instantiate(particlePrefab);
+            particle.particleRenderer.sortingLayerName = BubbleParticleLayer;
+            particle.transform.position = pos;
+            var main = particle.particle.main;
+            main.startColor = color;
+            particle.PlayAndDie();
+        }
+
+        public void OnExploded(GameEntity entity, Action callback, bool isMaster)
+        {
+            if (!isMaster)
+            {
+                DoWait.WaitSeconds(0.05f, () =>
+                {
+                    CreateBubbleParticle(transform.position, spriteRenderer.color, dropParticle);
+                    callback();
+                });
+                return;
+            }
+
+            DoWait.WaitSeconds(0.05f, () =>
+            {
+                CreateBubbleParticle(transform.position, spriteRenderer.color, explodeParticle);
+                callback();
+            });
         }
     }
 }

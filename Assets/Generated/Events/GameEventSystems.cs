@@ -15,6 +15,7 @@ public sealed class GameEventSystems : Feature {
         Add(new BubbleNumberEventSystem(contexts)); // priority: 0
         Add(new DestroyedEventSystem(contexts)); // priority: 0
         Add(new DroppedEventSystem(contexts)); // priority: 0
+        Add(new ExplodedEventSystem(contexts)); // priority: 0
         Add(new GhostEventSystem(contexts)); // priority: 0
         Add(new GhostRemovedEventSystem(contexts)); // priority: 0
         Add(new MergeDirtyEventSystem(contexts)); // priority: 0

@@ -59,12 +59,18 @@ namespace BubblePopsC.Scripts.Systems
                         //null check
                         if (hexMap[arrayIndices.x, arrayIndices.y] == null) continue;
 
-                        hexMap[arrayIndices.x, arrayIndices.y].isDestroyed = true;
+                        ExplodeBubble(hexMap[arrayIndices.x, arrayIndices.y], false);
                     }
 
-                    bubble.isDestroyed = true;
+                    ExplodeBubble(bubble, true);
                 }
             }
+        }
+
+        private void ExplodeBubble(GameEntity bubble, bool master)
+        {
+            bubble.AddExploded(() => { bubble.isDestroyed = true; },
+                master);
         }
     }
 }
