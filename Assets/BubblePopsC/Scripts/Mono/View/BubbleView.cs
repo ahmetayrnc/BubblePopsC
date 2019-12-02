@@ -184,7 +184,8 @@ namespace BubblePopsC.Scripts.Mono.View
             var speed = Random.Range(4f, 10f);
             var xOffset = Random.Range(-2f, 2f);
             var transform1 = transform;
-            transform1.DOMoveX(transform1.position.x + xOffset, speed / 16f).SetSpeedBased();
+            var pos = transform1.position;
+            transform1.DOMoveX(pos.x + xOffset, speed / 16f).SetSpeedBased();
             var yMovement = transform1.DOMoveY(-0.5f, speed).SetSpeedBased();
             yMovement.onComplete += () => callback();
             yMovement.onComplete += () =>
